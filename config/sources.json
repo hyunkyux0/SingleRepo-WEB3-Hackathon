@@ -1,0 +1,49 @@
+{
+  "sources": [
+    {
+      "id": "cryptopanic",
+      "type": "api",
+      "enabled": true,
+      "priority": 1,
+      "source_weight": 1.0,
+      "fetch_interval_min": 5,
+      "config": {
+        "base_url": "https://cryptopanic.com/api/v1",
+        "auth_token_env": "CRYPTOPANIC_API_KEY"
+      }
+    },
+    {
+      "id": "rss_coindesk",
+      "type": "rss",
+      "enabled": true,
+      "priority": 2,
+      "source_weight": 0.8,
+      "fetch_interval_min": 5,
+      "config": {
+        "feed_url": "https://www.coindesk.com/arc/outboundfeeds/rss/"
+      }
+    },
+    {
+      "id": "rss_cointelegraph",
+      "type": "rss",
+      "enabled": true,
+      "priority": 2,
+      "source_weight": 0.8,
+      "fetch_interval_min": 5,
+      "config": {
+        "feed_url": "https://cointelegraph.com/rss"
+      }
+    },
+    {
+      "id": "rss_decrypt",
+      "type": "rss",
+      "enabled": true,
+      "priority": 2,
+      "source_weight": 0.8,
+      "fetch_interval_min": 5,
+      "config": {
+        "feed_url": "https://decrypt.co/feed"
+      }
+    }
+  ]
+}

@@ -1,0 +1,647 @@
+"""Data processing functions for the news sentiment pipeline.
+
+Handles news fetching from multiple sources, deduplication, keyword-based
+pre-filtering, and SQLite persistence via the shared :class:`utils.db.DataStore`.
+"""
+
+from __future__ import annotations
+
+import hashlib
+import json
+import logging
+import os
+import re
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from datetime import datetime, timezone
+from typing import Any
+
+import feedparser
+import requests
+
+from news_sentiment.models import ArticleInput, ClassificationOutput
+from utils.db import DataStore
+
+logger = logging.getLogger(__name__)
+
+# ---------------------------------------------------------------------------
+# High-impact keywords used for catalyst detection and relevance scoring
+# ---------------------------------------------------------------------------
+
+HIGH_IMPACT_KEYWORDS: set[str] = {
+    "partnership",
+    "hack",
+    "sec",
+    "etf",
+    "listing",
+    "launch",
+    "upgrade",
+    "exploit",
+    "breach",
+    "acquisition",
+}
+
+# Additional sector-related keywords that boost relevance
+SECTOR_KEYWORDS: set[str] = {
+    "gpu",
+    "nvidia",
+    "defi",
+    "tvl",
+    "lending",
+    "dex",
+    "yield",
+    "staking",
+    "layer 1",
+    "l1",
+    "rollup",
+    "zk",
+    "meme",
+    "memecoin",
+    "nft",
+    "ai",
+    "compute",
+    "mining",
+    "halving",
+    "fork",
+    "airdrop",
+    "regulation",
+    "compliance",
+}
+
+# ---------------------------------------------------------------------------
+# Config loaders
+# ---------------------------------------------------------------------------
+
+
+def load_sector_map(path: str) -> dict[str, Any]:
+    """Load the token-to-sector mapping from *path*.
+
+    Args:
+        path: Filesystem path to ``config/sector_map.json``.
+
+    Returns:
+        Parsed JSON object mapping ``"TICKER/USD"`` to sector info.
+    """
+    with open(path, "r", encoding="utf-8") as fh:
+        return json.load(fh)
+
+
+def load_sources_config(path: str) -> dict[str, Any]:
+    """Load the data-source registry from *path*.
+
+    Args:
+        path: Filesystem path to ``config/sources.json``.
+
+    Returns:
+        Parsed JSON object with a ``"sources"`` list.
+    """
+    with open(path, "r", encoding="utf-8") as fh:
+        return json.load(fh)
+
+
+# ---------------------------------------------------------------------------
+# Source fetchers
+# ---------------------------------------------------------------------------
+
+
+def fetch_cryptopanic(config: dict[str, Any]) -> list[ArticleInput]:
+    """Fetch recent posts from the CryptoPanic API.
+
+    Args:
+        config: The ``"config"`` sub-dict from the CryptoPanic source entry
+                in ``sources.json``.  Must contain ``"base_url"`` and
+                ``"auth_token_env"``.
+
+    Returns:
+        A list of :class:`ArticleInput` objects.  Returns an empty list on
+        any API or parsing error.
+    """
+    api_key = os.getenv(config.get("auth_token_env", "CRYPTOPANIC_API_KEY"), "")
+    if not api_key:
+        logger.warning("CRYPTOPANIC_API_KEY not set; skipping CryptoPanic fetch")
+        return []
+
+    base_url = config.get("base_url", "https://cryptopanic.com/api/v1")
+    url = f"{base_url}/posts/?auth_token={api_key}&filter=hot&public=true"
+
+    try:
+        resp = requests.get(url, timeout=15)
+        resp.raise_for_status()
+        data = resp.json()
+    except Exception:
+        logger.exception("CryptoPanic API request failed")
+        return []
+
+    articles: list[ArticleInput] = []
+    for item in data.get("results", []):
+        try:
+            # Parse timestamp — CryptoPanic uses ISO 8601
+            ts_raw = item.get("published_at") or item.get("created_at", "")
+            ts = datetime.fromisoformat(ts_raw.replace("Z", "+00:00"))
+
+            # Extract tickers from currencies list
+            tickers: list[str] = []
+            for cur in item.get("currencies", []) or []:
+                code = cur.get("code", "")
+                if code:
+                    tickers.append(code.upper())
+
+            # Derive sentiment from votes if available
+            votes = item.get("votes", {}) or {}
+            pos = votes.get("positive", 0)
+            neg = votes.get("negative", 0)
+            source_sentiment: float | None = None
+            if pos + neg > 0:
+                source_sentiment = (pos - neg) / (pos + neg)
+
+            article_url = item.get("url", "") or ""
+            article_id = hashlib.sha256(
+                (article_url or item.get("title", "") + ts_raw).encode()
+            ).hexdigest()[:16]
+
+            articles.append(
+                ArticleInput(
+                    id=article_id,
+                    timestamp=ts,
+                    source="cryptopanic",
+                    headline=item.get("title", ""),
+                    body_snippet=item.get("body", "") or "",
+                    url=article_url,
+                    mentioned_tickers=tickers,
+                    source_sentiment=source_sentiment,
+                )
+            )
+        except Exception:
+            logger.exception("Failed to parse CryptoPanic item: %s", item.get("title", ""))
+            continue
+
+    logger.info("CryptoPanic: fetched %d articles", len(articles))
+    return articles
+
+
+def fetch_rss(config: dict[str, Any]) -> list[ArticleInput]:
+    """Fetch articles from an RSS feed.
+
+    Args:
+        config: The ``"config"`` sub-dict from an RSS source entry in
+                ``sources.json``.  Must contain ``"feed_url"``.
+
+    Returns:
+        A list of :class:`ArticleInput` objects.  Returns an empty list on
+        any fetch or parsing error.
+    """
+    feed_url = config.get("feed_url", "")
+    if not feed_url:
+        logger.warning("No feed_url in RSS config; skipping")
+        return []
+
+    try:
+        feed = feedparser.parse(feed_url)
+    except Exception:
+        logger.exception("RSS fetch failed for %s", feed_url)
+        return []
+
+    if feed.bozo and not feed.entries:
+        logger.warning("RSS feed returned no entries: %s", feed_url)
+        return []
+
+    # Derive source id from feed URL
+    source_id = "rss"
+    if "coindesk" in feed_url.lower():
+        source_id = "rss_coindesk"
+    elif "cointelegraph" in feed_url.lower():
+        source_id = "rss_cointelegraph"
+    elif "decrypt" in feed_url.lower():
+        source_id = "rss_decrypt"
+    elif "theblock" in feed_url.lower():
+        source_id = "rss_theblock"
+
+    articles: list[ArticleInput] = []
+    for entry in feed.entries:
+        try:
+            # Parse timestamp
+            ts: datetime
+            if hasattr(entry, "published_parsed") and entry.published_parsed:
+                import time as _time
+
+                ts = datetime.fromtimestamp(
+                    _time.mktime(entry.published_parsed), tz=timezone.utc
+                )
+            elif hasattr(entry, "updated_parsed") and entry.updated_parsed:
+                import time as _time
+
+                ts = datetime.fromtimestamp(
+                    _time.mktime(entry.updated_parsed), tz=timezone.utc
+                )
+            else:
+                ts = datetime.now(tz=timezone.utc)
+
+            headline = entry.get("title", "")
+            link = entry.get("link", "")
+            summary = entry.get("summary", "") or ""
+            # Strip HTML tags from summary (simple approach)
+            body_snippet = re.sub(r"<[^>]+>", "", summary)[:500]
+
+            article_id = hashlib.sha256(
+                (link or headline + str(ts)).encode()
+            ).hexdigest()[:16]
+
+            articles.append(
+                ArticleInput(
+                    id=article_id,
+                    timestamp=ts,
+                    source=source_id,
+                    headline=headline,
+                    body_snippet=body_snippet,
+                    url=link,
+                )
+            )
+        except Exception:
+            logger.exception("Failed to parse RSS entry: %s", entry.get("title", ""))
+            continue
+
+    logger.info("%s: fetched %d articles", source_id, len(articles))
+    return articles
+
+
+# Mapping from source type to fetcher function
+_FETCHER_MAP: dict[str, Any] = {
+    "api": fetch_cryptopanic,
+    "rss": fetch_rss,
+}
+
+
+def fetch_all_sources(sources_config: dict[str, Any]) -> list[ArticleInput]:
+    """Fetch articles from all enabled sources in parallel.
+
+    Args:
+        sources_config: The parsed ``sources.json`` object containing a
+                        ``"sources"`` list.
+
+    Returns:
+        Combined list of :class:`ArticleInput` from all enabled sources.
+    """
+    sources = sources_config.get("sources", [])
+    enabled = [s for s in sources if s.get("enabled", False)]
+
+    all_articles: list[ArticleInput] = []
+
+    with ThreadPoolExecutor(max_workers=min(len(enabled), 8) or 1) as executor:
+        future_to_source = {}
+        for src in enabled:
+            src_type = src.get("type", "")
+            fetcher = _FETCHER_MAP.get(src_type)
+            if fetcher is None:
+                logger.warning("No fetcher for source type %r, skipping %s", src_type, src.get("id"))
+                continue
+            future = executor.submit(fetcher, src.get("config", {}))
+            future_to_source[future] = src.get("id", src_type)
+
+        for future in as_completed(future_to_source):
+            source_id = future_to_source[future]
+            try:
+                articles = future.result()
+                all_articles.extend(articles)
+            except Exception:
+                logger.exception("Fetcher failed for source %s", source_id)
+
+    logger.info("fetch_all_sources: %d total articles from %d sources", len(all_articles), len(enabled))
+    return all_articles
+
+
+# ---------------------------------------------------------------------------
+# Deduplication
+# ---------------------------------------------------------------------------
+
+
+def _jaccard_similarity(a: str, b: str) -> float:
+    """Compute Jaccard similarity between two strings based on word tokens.
+
+    Args:
+        a: First string.
+        b: Second string.
+
+    Returns:
+        Jaccard similarity coefficient (0.0 to 1.0).
+    """
+    words_a = set(a.lower().split())
+    words_b = set(b.lower().split())
+    if not words_a or not words_b:
+        return 0.0
+    return len(words_a & words_b) / len(words_a | words_b)
+
+
+def deduplicate(
+    articles: list[ArticleInput], db: DataStore
+) -> list[ArticleInput]:
+    """Remove duplicate articles.
+
+    Deduplication uses two strategies:
+
+    1. **Exact URL match** against articles already stored in the database.
+    2. **Headline similarity** via Jaccard coefficient > 0.7 within the
+       incoming batch.
+
+    Args:
+        articles: Incoming articles to deduplicate.
+        db: An open :class:`DataStore` for checking existing URLs.
+
+    Returns:
+        Deduplicated list of articles.
+    """
+    if not articles:
+        return []
+
+    # 1. Remove articles whose URL already exists in DB
+    existing_urls: set[str] = set()
+    rows = db.fetchall("SELECT url FROM articles WHERE url != ''")
+    for row in rows:
+        existing_urls.add(row["url"])
+
+    unique: list[ArticleInput] = []
+    for art in articles:
+        if art.url and art.url in existing_urls:
+            continue
+        unique.append(art)
+
+    # 2. Remove near-duplicate headlines within the batch (Jaccard > 0.7)
+    deduped: list[ArticleInput] = []
+    for art in unique:
+        is_dup = False
+        for kept in deduped:
+            if _jaccard_similarity(art.headline, kept.headline) > 0.7:
+                is_dup = True
+                break
+        if not is_dup:
+            deduped.append(art)
+
+    removed = len(articles) - len(deduped)
+    if removed > 0:
+        logger.info("Deduplication removed %d articles (%d -> %d)", removed, len(articles), len(deduped))
+
+    return deduped
+
+
+# ---------------------------------------------------------------------------
+# Keyword pre-filter
+# ---------------------------------------------------------------------------
+
+
+def keyword_prefilter(
+    articles: list[ArticleInput], sector_map: dict[str, Any]
+) -> list[ArticleInput]:
+    """Score relevance and flag catalysts using keyword matching.
+
+    For each article:
+
+    - Check headline for token names/tickers from *sector_map*.
+    - Check for sector-related keywords (GPU, NVIDIA, DeFi, TVL, etc.).
+    - Check for high-impact keywords (partnership, hack, SEC, ETF, ...).
+    - Set ``relevance_score`` (0-1), ``is_catalyst``, ``matched_sectors``,
+      ``mentioned_tickers``.
+    - Filter out articles with ``relevance_score < 0.1``.
+
+    Args:
+        articles: Articles to score and filter.
+        sector_map: Parsed ``config/sector_map.json``.
+
+    Returns:
+        Filtered list with relevance annotations populated.
+    """
+    # Build lookup structures from sector_map
+    # sector_map keys are like "BTC/USD" -> {"primary": "l1_infra", ...}
+    ticker_to_sectors: dict[str, list[str]] = {}
+    all_tickers: set[str] = set()
+
+    for pair, info in sector_map.items():
+        ticker = pair.split("/")[0].upper()
+        all_tickers.add(ticker)
+        sectors: list[str] = []
+        if info.get("primary"):
+            sectors.append(info["primary"])
+        if info.get("secondary"):
+            sectors.append(info["secondary"])
+        ticker_to_sectors[ticker] = sectors
+
+    # Build word-boundary regex patterns for each ticker to avoid
+    # false positives (e.g. single-char ticker "S" matching inside "sports").
+    ticker_patterns: dict[str, re.Pattern[str]] = {}
+    for ticker in all_tickers:
+        ticker_patterns[ticker] = re.compile(
+            r"\b" + re.escape(ticker.lower()) + r"\b"
+        )
+
+    filtered: list[ArticleInput] = []
+
+    for art in articles:
+        headline_lower = art.headline.lower()
+        body_lower = art.body_snippet.lower() if art.body_snippet else ""
+
+        score = 0.0
+        matched_sectors: set[str] = set()
+        mentioned_tickers: list[str] = list(art.mentioned_tickers)  # preserve existing
+        is_catalyst = False
+
+        # 1. Check for token tickers in headline using word-boundary matching
+        for ticker, pattern in ticker_patterns.items():
+            if pattern.search(headline_lower):
+                score += 0.3
+                if ticker not in mentioned_tickers:
+                    mentioned_tickers.append(ticker)
+                for sector in ticker_to_sectors.get(ticker, []):
+                    matched_sectors.add(sector)
+
+        # 2. Check for sector keywords
+        combined_text = headline_lower + " " + body_lower
+        for kw in SECTOR_KEYWORDS:
+            if kw in combined_text:
+                score += 0.15
+                break  # count sector keyword match once
+
+        # 3. Check for high-impact keywords
+        found_high_impact = False
+        for kw in HIGH_IMPACT_KEYWORDS:
+            if kw in combined_text:
+                score += 0.25
+                found_high_impact = True
+                break  # count high-impact match once
+
+        # 4. Catalyst detection: high-impact keyword + mentioned ticker
+        if found_high_impact and mentioned_tickers:
+            is_catalyst = True
+            score += 0.2
+
+        # 5. Baseline relevance for crypto-related content
+        crypto_terms = {"crypto", "bitcoin", "ethereum", "blockchain", "token", "coin", "web3"}
+        if any(term in combined_text for term in crypto_terms):
+            score += 0.1
+
+        # Clamp score to [0, 1]
+        score = min(1.0, score)
+
+        # Filter out low-relevance articles
+        if score < 0.1:
+            continue
+
+        # Update article fields
+        art_updated = art.model_copy(
+            update={
+                "relevance_score": score,
+                "is_catalyst": is_catalyst,
+                "matched_sectors": sorted(matched_sectors),
+                "mentioned_tickers": mentioned_tickers,
+            }
+        )
+        filtered.append(art_updated)
+
+    removed = len(articles) - len(filtered)
+    logger.info(
+        "Keyword pre-filter: %d -> %d articles (removed %d, catalysts: %d)",
+        len(articles),
+        len(filtered),
+        removed,
+        sum(1 for a in filtered if a.is_catalyst),
+    )
+    return filtered
+
+
+# ---------------------------------------------------------------------------
+# SQLite persistence
+# ---------------------------------------------------------------------------
+
+
+def store_articles(articles: list[ArticleInput], db: DataStore) -> int:
+    """Insert articles into the SQLite ``articles`` table.
+
+    Existing articles (by ``id``) are silently skipped via
+    ``INSERT OR IGNORE``.
+
+    Args:
+        articles: Articles to store.
+        db: An open :class:`DataStore`.
+
+    Returns:
+        Number of rows actually inserted.
+    """
+    if not articles:
+        return 0
+
+    sql = """
+        INSERT OR IGNORE INTO articles (
+            id, timestamp, source, headline, body_snippet, url,
+            mentioned_tickers, source_sentiment, relevance_score,
+            is_catalyst, matched_sectors, processed
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0)
+    """
+
+    rows_before = db.fetchone("SELECT COUNT(*) AS cnt FROM articles")
+    count_before = rows_before["cnt"] if rows_before else 0
+
+    params_seq = [
+        (
+            art.id,
+            art.timestamp.isoformat(),
+            art.source,
+            art.headline,
+            art.body_snippet,
+            art.url,
+            json.dumps(art.mentioned_tickers),
+            art.source_sentiment,
+            art.relevance_score,
+            art.is_catalyst,
+            json.dumps(art.matched_sectors),
+        )
+        for art in articles
+    ]
+
+    db.executemany(sql, params_seq)
+    db.commit()
+
+    rows_after = db.fetchone("SELECT COUNT(*) AS cnt FROM articles")
+    count_after = rows_after["cnt"] if rows_after else 0
+    inserted = count_after - count_before
+
+    logger.info("store_articles: inserted %d of %d articles", inserted, len(articles))
+    return inserted
+
+
+def get_unprocessed_articles(db: DataStore) -> list[ArticleInput]:
+    """Query SQLite for articles with ``processed = 0``.
+
+    Args:
+        db: An open :class:`DataStore`.
+
+    Returns:
+        List of :class:`ArticleInput` objects awaiting LLM classification.
+    """
+    rows = db.fetchall(
+        "SELECT * FROM articles WHERE processed = 0 ORDER BY timestamp ASC"
+    )
+
+    articles: list[ArticleInput] = []
+    for row in rows:
+        try:
+            tickers = json.loads(row["mentioned_tickers"]) if row["mentioned_tickers"] else []
+            sectors = json.loads(row["matched_sectors"]) if row["matched_sectors"] else []
+
+            articles.append(
+                ArticleInput(
+                    id=row["id"],
+                    timestamp=datetime.fromisoformat(row["timestamp"]),
+                    source=row["source"],
+                    headline=row["headline"],
+                    body_snippet=row["body_snippet"] or "",
+                    url=row["url"] or "",
+                    mentioned_tickers=tickers,
+                    source_sentiment=row["source_sentiment"],
+                    relevance_score=row["relevance_score"] or 0.0,
+                    is_catalyst=bool(row["is_catalyst"]),
+                    matched_sectors=sectors,
+                )
+            )
+        except Exception:
+            logger.exception("Failed to parse article row id=%s", row["id"])
+            continue
+
+    logger.info("get_unprocessed_articles: found %d articles", len(articles))
+    return articles
+
+
+def mark_processed(
+    article_id: str,
+    classification: ClassificationOutput,
+    db: DataStore,
+) -> None:
+    """Update an article row with LLM classification results and mark processed.
+
+    Args:
+        article_id: The article's primary key.
+        classification: The LLM classification output to persist.
+        db: An open :class:`DataStore`.
+    """
+    sql = """
+        UPDATE articles SET
+            processed = 1,
+            llm_sector = ?,
+            llm_secondary_sector = ?,
+            llm_sentiment = ?,
+            llm_magnitude = ?,
+            llm_confidence = ?,
+            llm_cross_market = ?,
+            llm_reasoning = ?
+        WHERE id = ?
+    """
+    db.execute(
+        sql,
+        (
+            classification.primary_sector,
+            classification.secondary_sector,
+            classification.sentiment,
+            classification.magnitude,
+            classification.confidence,
+            classification.cross_market,
+            classification.reasoning,
+            article_id,
+        ),
+    )
+    db.commit()
+    logger.debug("Marked article %s as processed (sector=%s)", article_id, classification.primary_sector)

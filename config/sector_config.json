@@ -1,0 +1,56 @@
+{
+  "l1_infra": {
+    "sentiment_weight": 0.2,
+    "lookback_hours": 24,
+    "decay_lambda": 0.1,
+    "momentum_lookback_hours": 24,
+    "entry_threshold": 0.3,
+    "catalyst_threshold": 0.7,
+    "regime": "persistent_co_mover"
+  },
+  "defi": {
+    "sentiment_weight": 0.3,
+    "lookback_hours": 24,
+    "decay_lambda": 0.3,
+    "momentum_lookback_hours": 12,
+    "entry_threshold": 0.3,
+    "catalyst_threshold": 0.7,
+    "regime": "persistent_co_mover"
+  },
+  "ai_compute": {
+    "sentiment_weight": 0.6,
+    "lookback_hours": 12,
+    "decay_lambda": 0.5,
+    "momentum_lookback_hours": 12,
+    "entry_threshold": 0.3,
+    "catalyst_threshold": 0.7,
+    "regime": "event_driven"
+  },
+  "meme": {
+    "sentiment_weight": 0.9,
+    "lookback_hours": 4,
+    "decay_lambda": 2.0,
+    "momentum_lookback_hours": 4,
+    "entry_threshold": 0.2,
+    "catalyst_threshold": 0.5,
+    "regime": "pure_sentiment"
+  },
+  "store_of_value": {
+    "sentiment_weight": 0.1,
+    "lookback_hours": 72,
+    "decay_lambda": 0.1,
+    "momentum_lookback_hours": 72,
+    "entry_threshold": 0.3,
+    "catalyst_threshold": 0.7,
+    "regime": "weakly_connected"
+  },
+  "other": {
+    "sentiment_weight": 0.4,
+    "lookback_hours": 24,
+    "decay_lambda": 0.5,
+    "momentum_lookback_hours": 24,
+    "entry_threshold": 0.3,
+    "catalyst_threshold": 0.7,
+    "regime": "mixed"
+  }
+}
