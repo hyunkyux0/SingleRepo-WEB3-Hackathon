@@ -1,0 +1,9 @@
+- id: DECISION-2026-03-18-001
+  type: decision
+  title: "Deprioritize training/ML/RL until feature space is comprehensive"
+  timestamp: "2026-03-18T12:00:00Z"
+  description: "Push FinBERT fine-tuning, DRL portfolio optimization, and information-driven bars for ML training to lowest priority. Build out all signal sources (technical indicators, sentiment via API, on-chain analytics, clustering/rotation) first to ensure models will have the richest possible input feature space when training begins."
+  context: "User reviewed research report and decided that training models on an incomplete feature set would produce suboptimal results. Feature engineering comes before model training."
+  resolution: "Reorder roadmap: Phase 1-3 focus on expanding signal/feature coverage. Phase 4+ addresses ML/RL training only after feature space is comprehensive."
+  related_subtask: null
+  related_proposal: null
