@@ -2,9 +2,11 @@
 
 > **For agentic workers:** REQUIRED: Use superpowers:subagent-driven-development (if subagents available) or superpowers:executing-plans to implement this plan. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Complete the sentiment signal pipeline by building the orchestrator, sector map builder script, and stub modules for future signal sources.
+**Goal:** Complete the sentiment signal pipeline by building the orchestrator, composite adapters, sector map builder script, and a technicals stub module.
 
-**Architecture:** The pipeline orchestrator (`SentimentPipeline`) coordinates news fetching, LLM classification, and signal aggregation on a 5-minute tick. It uses the already-built `news_sentiment` and `sentiment_score` modules. Stub modules (`derivatives/`, `on_chain/`, `technicals/`, `composite/`) provide empty `__init__.py` + placeholder model files so future phases have a landing pad.
+**Architecture:** The pipeline orchestrator (`SentimentPipeline`) coordinates news fetching, LLM classification, and signal aggregation on a 5-minute tick. It uses the already-built `news_sentiment` and `sentiment_score` modules. The composite adapter bridges sector-level signals to per-asset scores consumed by the existing `composite/scorer.py`.
+
+**Note:** `derivatives/`, `on_chain/`, and `composite/` already have substantial implementations from concurrent work. Only `technicals/` needs a stub.
 
 **Tech Stack:** Python 3.11, SQLite (via `utils/db.py`), OpenAI SDK (via `utils/llm_client.py`), pycoingecko, pydantic
 
@@ -24,11 +26,8 @@
 | `pipeline/__init__.py` | Package marker | Create |
 | `pipeline/orchestrator.py` | `SentimentPipeline` class with `tick()` method, rate limiting, logging | Create |
 | `scripts/build_sector_map.py` | One-time CoinGecko API pull → `config/sector_map.json` | Create |
-| `derivatives/__init__.py` | Stub package marker | Create |
-| `on_chain/__init__.py` | Stub package marker | Create |
 | `technicals/__init__.py` | Stub package marker | Create |
-| `composite/__init__.py` | Stub package marker | Create |
-| `composite/adapters.py` | `SectorSignalSet` → per-asset sentiment score via sector map | Create |
+| `composite/adapters.py` | `SectorSignalSet` → per-asset sentiment score via sector map | Create (composite/ already exists) |
 | `tests/test_orchestrator.py` | Tests for the pipeline orchestrator | Create |
 | `tests/test_adapters.py` | Tests for composite adapters | Create |
 | `tests/test_build_sector_map.py` | Tests for the sector map builder | Create |
@@ -366,10 +365,12 @@ class SentimentPipeline:
         # 4. Fast path — classify catalysts immediately
         catalysts = [a for a in filtered if a.is_catalyst]
         fast_classified = 0
+        llm_calls = 0
         for article in catalysts:
             classification = classify_article_fast(article)
             mark_processed(article.id, classification, self._db)
             fast_classified += 1
+            llm_calls += 1  # single-shot fast classify
 
         # 5. Batch path — process unprocessed backlog every batch_interval
         batch_processed = 0
@@ -400,6 +401,7 @@ class SentimentPipeline:
 
                 mark_processed(article.id, full_classification, self._db)
                 batch_processed += 1
+                llm_calls += 2  # classify + score
 
             self._last_batch_time = datetime.now(tz=timezone.utc)
 
@@ -416,6 +418,7 @@ class SentimentPipeline:
             "catalysts_detected": len(catalysts),
             "fast_path_classified": fast_classified,
             "batch_processed": batch_processed,
+            "llm_calls": llm_calls,
             "processing_time_ms": round(tick_ms, 1),
         })
 
@@ -604,13 +607,7 @@ def sector_signal_to_asset_score(
     return result
 ```
 
-- [ ] **Step 4: Create composite/__init__.py**
-
-```python
-# composite/__init__.py
-```
-
-- [ ] **Step 5: Run tests to verify they pass**
+- [ ] **Step 4: Run tests to verify they pass**
 
 Run: `python -m pytest tests/test_adapters.py -v`
 Expected: All PASS
@@ -933,37 +930,30 @@ git commit -m "feat: add CoinGecko-based sector map builder script"
 
 ---
 
-### Task 4: Stub Modules for Future Phases
+### Task 4: Technicals Stub Module
+
+**Note:** `derivatives/`, `on_chain/`, and `composite/` already have implementations from concurrent work. Only `technicals/` needs creation.
 
 **Files:**
-- Create: `derivatives/__init__.py`
-- Create: `on_chain/__init__.py`
 - Create: `technicals/__init__.py`
-- No tests needed (empty stubs)
 
-- [ ] **Step 1: Create stub __init__.py files**
+- [ ] **Step 1: Create technicals/__init__.py**
 
 ```python
-# derivatives/__init__.py
-"""Derivatives signals module (Phase 2 — not yet implemented)."""
-
-# on_chain/__init__.py
-"""On-chain analytics module (Phase 3 — not yet implemented)."""
-
 # technicals/__init__.py
 """Technical analysis signals module (to be refactored from sma-prediction/)."""
 ```
 
 - [ ] **Step 2: Verify imports work**
 
-Run: `python -c "import derivatives; import on_chain; import technicals; import composite; print('All stub imports OK')"`
-Expected: `All stub imports OK`
+Run: `python -c "import derivatives; import on_chain; import technicals; import composite; print('All imports OK')"`
+Expected: `All imports OK`
 
 - [ ] **Step 3: Commit**
 
 ```bash
-git add derivatives/__init__.py on_chain/__init__.py technicals/__init__.py
-git commit -m "feat: add stub modules for derivatives, on-chain, and technicals"
+git add technicals/__init__.py
+git commit -m "feat: add technicals stub module"
 ```
 
 ---
