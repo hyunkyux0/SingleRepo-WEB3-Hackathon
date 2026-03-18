@@ -1,0 +1,16 @@
+{
+  "coinmetrics_poll_hour_utc": 0,
+  "whale_transfer_threshold_usd": 1000000,
+  "whale_rolling_window_hours": 4,
+  "exchange_flow_normalization_days": 30,
+  "nupl_thresholds": {
+    "euphoria": 0.75,
+    "capitulation": 0.0
+  },
+  "sub_weights": {
+    "exchange_flow": 0.3,
+    "nupl": 0.25,
+    "active_addresses": 0.15,
+    "whale_activity": 0.3
+  }
+}

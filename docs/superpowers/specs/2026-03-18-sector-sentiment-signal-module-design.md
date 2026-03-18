@@ -14,7 +14,7 @@
 | Duration | 10-day trading window |
 | Positions | Long-only (buy & sell), no limit on count |
 | Trading frequency | Any time, 5-minute intervals |
-| Universe | 67 tokens (defined in `universe.json`) |
+| Universe | 67 tokens (defined in `config/asset_universe.json`) |
 | Scoring | Composite: strategy design + returns + risk-adjusted metrics (Sharpe, Sortino, Calmar) |
 | Module role | One signal among several; does not own trading decisions |
 
@@ -271,7 +271,7 @@ SingleRepo-WEB3-Hackathon/
   scripts/
     build_sector_map.py            # CoinGecko API -> sector_map.json
   data/
-    articles.db                    # SQLite article cache
+    trading_bot.db               # Shared SQLite database (articles + all other tables)
 ```
 
 ### Key Pydantic Models

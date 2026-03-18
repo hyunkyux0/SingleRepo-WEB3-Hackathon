@@ -1,0 +1,11 @@
+{
+  "polling_interval_seconds": 300,
+  "funding_rate_neutral_band": [-0.0001, 0.0001],
+  "oi_lookback_periods": 12,
+  "long_short_extreme_threshold": 2.0,
+  "sub_weights": {
+    "funding": 0.4,
+    "oi_divergence": 0.35,
+    "long_short": 0.25
+  }
+}

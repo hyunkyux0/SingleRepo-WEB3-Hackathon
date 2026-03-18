@@ -1,0 +1,25 @@
+{
+  "weights": {
+    "technical": 0.35,
+    "derivatives": 0.25,
+    "on_chain": 0.15,
+    "multi_timeframe": 0.10,
+    "sentiment": 0.15
+  },
+  "thresholds": {
+    "buy_default": 0.3,
+    "sell_default": 0.3
+  },
+  "overrides": {
+    "funding_soft_threshold": 0.001,
+    "funding_hard_threshold": 0.002,
+    "nupl_soft_high": 0.75,
+    "nupl_hard_high": 0.90,
+    "nupl_soft_low": 0.0,
+    "nupl_hard_low": -0.25,
+    "soft_penalty_multiplier": 0.2,
+    "tf_opposition_multiplier": 0.5,
+    "catalyst_boost_multiplier": 1.5,
+    "catalyst_sentiment_threshold": 0.7
+  }
+}

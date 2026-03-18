@@ -12,6 +12,10 @@ numpy>=1.24.0              # Numerical computations (sma-prediction, backtest, t
 # Visualization and Plotting
 matplotlib>=3.5.0          # Plotting and data visualization (sma-prediction/backtest_sma.py)
 
+# Derivatives & On-Chain Signal Modules
+pydantic>=2.0.0            # Data models for signal pipeline
+coinmetrics-api-client>=2024.1  # CoinMetrics Community API for on-chain data
+
 # Standard library modules used (no pip install needed):
 # Built-in Python modules that don't require installation:
 # - os, sys, time, signal, logging       # System operations and logging
