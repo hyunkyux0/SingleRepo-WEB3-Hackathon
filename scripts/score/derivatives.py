@@ -67,11 +67,21 @@ def main(argv: list[str] | None = None) -> None:
             else:
                 oi_change_pct = 0
 
-            # Price change (placeholder — would come from OHLC)
-            price_change_pct = 0  # TODO: read from ohlc_data table
+            # Price change from OHLC data
+            ohlc = db.get_ohlc(asset, "5m", lookback=20)
+            if len(ohlc) >= 2:
+                old_close = ohlc[0]["close"]
+                new_close = ohlc[-1]["close"]
+                price_change_pct = (new_close - old_close) / old_close if old_close > 0 else 0
+            else:
+                price_change_pct = 0
 
-            # Long/short ratio (placeholder)
-            ls_ratio = 1.0  # TODO: read from long_short_ratio table
+            # Long/short ratio from DB (Coinalyze)
+            ls_rows = db.fetchall(
+                "SELECT ratio FROM long_short_ratio WHERE asset = ? ORDER BY timestamp DESC LIMIT 1",
+                (asset,),
+            )
+            ls_ratio = dict(ls_rows[0])["ratio"] if ls_rows else 1.0
 
             signal = generate_derivatives_signal(
                 asset=asset,
@@ -84,13 +94,18 @@ def main(argv: list[str] | None = None) -> None:
 
             entry = {
                 "asset": asset,
-                "funding_rate_aggregated": agg_rate,
-                "oi_change_pct": oi_change_pct,
+                "inputs": {
+                    "funding_rate_aggregated": agg_rate,
+                    "oi_change_pct": oi_change_pct,
+                    "price_change_pct": price_change_pct,
+                    "long_short_ratio": ls_ratio,
+                    "funding_sources": len(funding_rows),
+                    "ohlc_candles": len(ohlc),
+                },
                 "funding_score": signal.funding_score,
                 "oi_divergence_score": signal.oi_divergence_score,
                 "long_short_score": signal.long_short_score,
                 "combined_score": signal.combined_score,
-                "funding_sources": len(funding_rows),
             }
             results.append(entry)
             print(f"  {asset:>6s}: combined={signal.combined_score:+.4f} (fund={signal.funding_score:+.3f} oi={signal.oi_divergence_score:+.3f} ls={signal.long_short_score:+.3f})")
