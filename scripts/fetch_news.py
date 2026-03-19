@@ -230,7 +230,7 @@ def fetch_all(
 
 
 def _filter_by_age(
-    articles: list[dict], max_age_hours: float = 24,
+    articles: list[dict], max_age_hours: float = 48,
 ) -> list[dict]:
     """Discard articles older than max_age_hours.
 

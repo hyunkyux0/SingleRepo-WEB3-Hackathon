@@ -1,0 +1,683 @@
+{
+  "timestamp": "2026-03-19T16:20:19.440666+00:00",
+  "metadata": {
+    "sector_count": 6,
+    "total_articles": 105,
+    "articles_fetched": 110,
+    "articles_after_dedup": 75,
+    "articles_after_filter": 69,
+    "articles_stored": 69,
+    "catalysts_detected": 4,
+    "fast_path_classified": 4,
+    "batch_classified": 65,
+    "llm_calls": 74,
+    "processing_time_ms": 222044.4
+  },
+  "sector_signals": {
+    "l1_infra": {
+      "sentiment": -0.35,
+      "momentum": -0.35,
+      "catalyst_active": false,
+      "catalyst_details": null,
+      "article_count": 7,
+      "confidence": 0.62,
+      "key_driver": "Elevated Ethereum long-squeeze/liquidation risk amid sector-wide weakness",
+      "reasoning": "Sector tokens are broadly red over the last 24h (ETH -4.3%, SUI -4.4%, SOL -3.1%), and accelerating article velocity (7 articles) suggests heightened near-term attention. The most market-relevant negative catalyst is the ETH long-squeeze risk as ETH dips toward ~$2,100 with potential for >$2.5B liquidations below $2K, which can spill over to L1 infra sentiment. Offsetting positives (Polygon/RWA compliance and institutional staking tooling) are more incremental and are outweighed by the immediate downside pressure and additional L1-related operational concern (Algorand staff cuts)."
+    },
+    "defi": {
+      "sentiment": -0.25,
+      "momentum": -0.25,
+      "catalyst_active": false,
+      "catalyst_details": null,
+      "article_count": 15,
+      "confidence": 0.62,
+      "key_driver": "Near-term risk-off from multiple DeFi security/exploit headlines (bad debt + hacked tokens) outweighs incremental bullish infrastructure launches.",
+      "reasoning": "DeFi tokens are already broadly red (e.g., AAVE -3.5% and UNI -4.1% over 24h) while article velocity is accelerating (15 articles), suggesting heightened attention and sensitivity to risk. News flow includes meaningful bearish items—Venus’ XVS plunges 9% after an exploit causing bad debt and a report highlighting that hacked tokens often drop ~61% and rarely recover—creating net downside pressure over the next 1–7 days. Bullish catalysts like OP_NET’s Bitcoin DeFi push and institutional/derivatives expansion (Hyperliquid S&P 500 perps) are positive but appear more incremental and not enough to fully offset the security-driven drawdown risk."
+    },
+    "ai_compute": {
+      "sentiment": 0.15,
+      "momentum": 0.15,
+      "catalyst_active": false,
+      "catalyst_details": null,
+      "article_count": 6,
+      "confidence": 0.62,
+      "key_driver": "AI-agent payment tooling and broader AI adoption signals (Visa/Stripe-backed Tempo) partially offset negative employment/centralization concerns from Crypto.com layoffs.",
+      "reasoning": "Sector tokens are already sharply down over the last 24h (FET -8.8%, TAO -10.1%, WLD -10.3%), which limits upside follow-through from incremental bullish headlines. While multiple articles highlight AI-agent adoption (Nasdaq exec view; Visa/Stripe-backed Tempo payment tools), the dominant near-term narrative is cost-cutting and centralization risk from Crypto.com’s 12% workforce reduction, keeping the net impact only mildly positive. With 6 articles in a short window, the theme is active, but the bearish employment/structure angle prevents a strong bullish score."
+    },
+    "meme": {
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "catalyst_active": false,
+      "catalyst_details": null,
+      "article_count": 0,
+      "confidence": 0.0,
+      "key_driver": "",
+      "reasoning": "No articles in window."
+    },
+    "store_of_value": {
+      "sentiment": -0.25,
+      "momentum": -0.25,
+      "catalyst_active": false,
+      "catalyst_details": null,
+      "article_count": 59,
+      "confidence": 0.62,
+      "key_driver": "ETF outflows and BTC dip below key levels weakening near-term store-of-value demand",
+      "reasoning": "Despite several bullish catalysts for crypto broadly (e.g., SEC approval for tokenized securities trading and reports of BTC buying/spot ETF inflow support), the dominant near-term signal is risk-off: BTC dipped under $71K/$70K and one article highlights a $164M ETF outflow streak. This aligns with the sector context showing store_of_value proxies already down (PAXG -4.5% and ZEC -5.5% over 24h), suggesting the net 1–7 day impact is mildly bearish rather than a strong rebound."
+    },
+    "other": {
+      "sentiment": -0.12,
+      "momentum": -0.12,
+      "catalyst_active": false,
+      "catalyst_details": null,
+      "article_count": 18,
+      "confidence": 0.58,
+      "key_driver": "Regulatory/security headlines are mixed but skew slightly negative for near-term sentiment in smaller “other” tokens.",
+      "reasoning": "Sector tokens in “other” are broadly red over 24h (e.g., OPEN -2.3%, S -3.7%, AVNT -3.7%), suggesting weak near-term demand. News flow is steady and mixed: bullish items like SEC approval for tokenized securities (Nasdaq pilot) are offset by security concerns around Coinbase Commerce requesting seed phrases, which can dampen risk appetite. Net expected 1–7 day impact is therefore slightly bearish but likely limited in magnitude."
+    }
+  },
+  "asset_scores": {
+    "BTC/USD": {
+      "sentiment": -0.35,
+      "momentum": -0.35,
+      "confidence": 0.62,
+      "sector": "l1_infra",
+      "catalyst_active": false,
+      "primary_sentiment": -0.35,
+      "secondary_sentiment": -0.125
+    },
+    "ETH/USD": {
+      "sentiment": -0.35,
+      "momentum": -0.35,
+      "confidence": 0.62,
+      "sector": "l1_infra",
+      "catalyst_active": false,
+      "primary_sentiment": -0.35,
+      "secondary_sentiment": null
+    },
+    "SOL/USD": {
+      "sentiment": -0.35,
+      "momentum": -0.35,
+      "confidence": 0.62,
+      "sector": "l1_infra",
+      "catalyst_active": false,
+      "primary_sentiment": -0.35,
+      "secondary_sentiment": null
+    },
+    "AVAX/USD": {
+      "sentiment": -0.35,
+      "momentum": -0.35,
+      "confidence": 0.62,
+      "sector": "l1_infra",
+      "catalyst_active": false,
+      "primary_sentiment": -0.35,
+      "secondary_sentiment": null
+    },
+    "SUI/USD": {
+      "sentiment": -0.35,
+      "momentum": -0.35,
+      "confidence": 0.62,
+      "sector": "l1_infra",
+      "catalyst_active": false,
+      "primary_sentiment": -0.35,
+      "secondary_sentiment": null
+    },
+    "NEAR/USD": {
+      "sentiment": -0.35,
+      "momentum": -0.35,
+      "confidence": 0.62,
+      "sector": "l1_infra",
+      "catalyst_active": false,
+      "primary_sentiment": -0.35,
+      "secondary_sentiment": 0.075
+    },
+    "SEI/USD": {
+      "sentiment": -0.35,
+      "momentum": -0.35,
+      "confidence": 0.62,
+      "sector": "l1_infra",
+      "catalyst_active": false,
+      "primary_sentiment": -0.35,
+      "secondary_sentiment": null
+    },
+    "APT/USD": {
+      "sentiment": -0.35,
+      "momentum": -0.35,
+      "confidence": 0.62,
+      "sector": "l1_infra",
+      "catalyst_active": false,
+      "primary_sentiment": -0.35,
+      "secondary_sentiment": null
+    },
+    "TON/USD": {
+      "sentiment": -0.35,
+      "momentum": -0.35,
+      "confidence": 0.62,
+      "sector": "l1_infra",
+      "catalyst_active": false,
+      "primary_sentiment": -0.35,
+      "secondary_sentiment": null
+    },
+    "ADA/USD": {
+      "sentiment": -0.35,
+      "momentum": -0.35,
+      "confidence": 0.62,
+      "sector": "l1_infra",
+      "catalyst_active": false,
+      "primary_sentiment": -0.35,
+      "secondary_sentiment": null
+    },
+    "DOT/USD": {
+      "sentiment": -0.35,
+      "momentum": -0.35,
+      "confidence": 0.62,
+      "sector": "l1_infra",
+      "catalyst_active": false,
+      "primary_sentiment": -0.35,
+      "secondary_sentiment": null
+    },
+    "ICP/USD": {
+      "sentiment": -0.35,
+      "momentum": -0.35,
+      "confidence": 0.62,
+      "sector": "l1_infra",
+      "catalyst_active": false,
+      "primary_sentiment": -0.35,
+      "secondary_sentiment": null
+    },
+    "XRP/USD": {
+      "sentiment": -0.35,
+      "momentum": -0.35,
+      "confidence": 0.62,
+      "sector": "l1_infra",
+      "catalyst_active": false,
+      "primary_sentiment": -0.35,
+      "secondary_sentiment": null
+    },
+    "XLM/USD": {
+      "sentiment": -0.35,
+      "momentum": -0.35,
+      "confidence": 0.62,
+      "sector": "l1_infra",
+      "catalyst_active": false,
+      "primary_sentiment": -0.35,
+      "secondary_sentiment": null
+    },
+    "HBAR/USD": {
+      "sentiment": -0.35,
+      "momentum": -0.35,
+      "confidence": 0.62,
+      "sector": "l1_infra",
+      "catalyst_active": false,
+      "primary_sentiment": -0.35,
+      "secondary_sentiment": null
+    },
+    "TRX/USD": {
+      "sentiment": -0.35,
+      "momentum": -0.35,
+      "confidence": 0.62,
+      "sector": "l1_infra",
+      "catalyst_active": false,
+      "primary_sentiment": -0.35,
+      "secondary_sentiment": null
+    },
+    "BNB/USD": {
+      "sentiment": -0.35,
+      "momentum": -0.35,
+      "confidence": 0.62,
+      "sector": "l1_infra",
+      "catalyst_active": false,
+      "primary_sentiment": -0.35,
+      "secondary_sentiment": null
+    },
+    "POL/USD": {
+      "sentiment": -0.35,
+      "momentum": -0.35,
+      "confidence": 0.62,
+      "sector": "l1_infra",
+      "catalyst_active": false,
+      "primary_sentiment": -0.35,
+      "secondary_sentiment": null
+    },
+    "ARB/USD": {
+      "sentiment": -0.35,
+      "momentum": -0.35,
+      "confidence": 0.62,
+      "sector": "l1_infra",
+      "catalyst_active": false,
+      "primary_sentiment": -0.35,
+      "secondary_sentiment": null
+    },
+    "LINEA/USD": {
+      "sentiment": -0.35,
+      "momentum": -0.35,
+      "confidence": 0.62,
+      "sector": "l1_infra",
+      "catalyst_active": false,
+      "primary_sentiment": -0.35,
+      "secondary_sentiment": null
+    },
+    "HEMI/USD": {
+      "sentiment": -0.35,
+      "momentum": -0.35,
+      "confidence": 0.62,
+      "sector": "l1_infra",
+      "catalyst_active": false,
+      "primary_sentiment": -0.35,
+      "secondary_sentiment": null
+    },
+    "AAVE/USD": {
+      "sentiment": -0.25,
+      "momentum": -0.25,
+      "confidence": 0.62,
+      "sector": "defi",
+      "catalyst_active": false,
+      "primary_sentiment": -0.25,
+      "secondary_sentiment": null
+    },
+    "UNI/USD": {
+      "sentiment": -0.25,
+      "momentum": -0.25,
+      "confidence": 0.62,
+      "sector": "defi",
+      "catalyst_active": false,
+      "primary_sentiment": -0.25,
+      "secondary_sentiment": null
+    },
+    "CRV/USD": {
+      "sentiment": -0.25,
+      "momentum": -0.25,
+      "confidence": 0.62,
+      "sector": "defi",
+      "catalyst_active": false,
+      "primary_sentiment": -0.25,
+      "secondary_sentiment": null
+    },
+    "PENDLE/USD": {
+      "sentiment": -0.25,
+      "momentum": -0.25,
+      "confidence": 0.62,
+      "sector": "defi",
+      "catalyst_active": false,
+      "primary_sentiment": -0.25,
+      "secondary_sentiment": null
+    },
+    "LINK/USD": {
+      "sentiment": -0.25,
+      "momentum": -0.25,
+      "confidence": 0.62,
+      "sector": "defi",
+      "catalyst_active": false,
+      "primary_sentiment": -0.25,
+      "secondary_sentiment": null
+    },
+    "LISTA/USD": {
+      "sentiment": -0.25,
+      "momentum": -0.25,
+      "confidence": 0.62,
+      "sector": "defi",
+      "catalyst_active": false,
+      "primary_sentiment": -0.25,
+      "secondary_sentiment": null
+    },
+    "ENA/USD": {
+      "sentiment": -0.25,
+      "momentum": -0.25,
+      "confidence": 0.62,
+      "sector": "defi",
+      "catalyst_active": false,
+      "primary_sentiment": -0.25,
+      "secondary_sentiment": null
+    },
+    "ONDO/USD": {
+      "sentiment": -0.25,
+      "momentum": -0.25,
+      "confidence": 0.62,
+      "sector": "defi",
+      "catalyst_active": false,
+      "primary_sentiment": -0.25,
+      "secondary_sentiment": null
+    },
+    "CAKE/USD": {
+      "sentiment": -0.25,
+      "momentum": -0.25,
+      "confidence": 0.62,
+      "sector": "defi",
+      "catalyst_active": false,
+      "primary_sentiment": -0.25,
+      "secondary_sentiment": null
+    },
+    "EIGEN/USD": {
+      "sentiment": -0.25,
+      "momentum": -0.25,
+      "confidence": 0.62,
+      "sector": "defi",
+      "catalyst_active": false,
+      "primary_sentiment": -0.25,
+      "secondary_sentiment": null
+    },
+    "FET/USD": {
+      "sentiment": 0.15,
+      "momentum": 0.15,
+      "confidence": 0.62,
+      "sector": "ai_compute",
+      "catalyst_active": false,
+      "primary_sentiment": 0.15,
+      "secondary_sentiment": null
+    },
+    "TAO/USD": {
+      "sentiment": 0.15,
+      "momentum": 0.15,
+      "confidence": 0.62,
+      "sector": "ai_compute",
+      "catalyst_active": false,
+      "primary_sentiment": 0.15,
+      "secondary_sentiment": null
+    },
+    "WLD/USD": {
+      "sentiment": 0.15,
+      "momentum": 0.15,
+      "confidence": 0.62,
+      "sector": "ai_compute",
+      "catalyst_active": false,
+      "primary_sentiment": 0.15,
+      "secondary_sentiment": null
+    },
+    "VIRTUAL/USD": {
+      "sentiment": 0.15,
+      "momentum": 0.15,
+      "confidence": 0.62,
+      "sector": "ai_compute",
+      "catalyst_active": false,
+      "primary_sentiment": 0.15,
+      "secondary_sentiment": null
+    },
+    "DOGE/USD": {
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.0,
+      "sector": "meme",
+      "catalyst_active": false,
+      "primary_sentiment": 0.0,
+      "secondary_sentiment": null
+    },
+    "SHIB/USD": {
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.0,
+      "sector": "meme",
+      "catalyst_active": false,
+      "primary_sentiment": 0.0,
+      "secondary_sentiment": null
+    },
+    "PEPE/USD": {
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.0,
+      "sector": "meme",
+      "catalyst_active": false,
+      "primary_sentiment": 0.0,
+      "secondary_sentiment": null
+    },
+    "BONK/USD": {
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.0,
+      "sector": "meme",
+      "catalyst_active": false,
+      "primary_sentiment": 0.0,
+      "secondary_sentiment": null
+    },
+    "WIF/USD": {
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.0,
+      "sector": "meme",
+      "catalyst_active": false,
+      "primary_sentiment": 0.0,
+      "secondary_sentiment": null
+    },
+    "FLOKI/USD": {
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.0,
+      "sector": "meme",
+      "catalyst_active": false,
+      "primary_sentiment": 0.0,
+      "secondary_sentiment": null
+    },
+    "PENGU/USD": {
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.0,
+      "sector": "meme",
+      "catalyst_active": false,
+      "primary_sentiment": 0.0,
+      "secondary_sentiment": null
+    },
+    "1000CHEEMS/USD": {
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.0,
+      "sector": "meme",
+      "catalyst_active": false,
+      "primary_sentiment": 0.0,
+      "secondary_sentiment": null
+    },
+    "TRUMP/USD": {
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.0,
+      "sector": "meme",
+      "catalyst_active": false,
+      "primary_sentiment": 0.0,
+      "secondary_sentiment": null
+    },
+    "PUMP/USD": {
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.0,
+      "sector": "meme",
+      "catalyst_active": false,
+      "primary_sentiment": 0.0,
+      "secondary_sentiment": null
+    },
+    "PAXG/USD": {
+      "sentiment": -0.25,
+      "momentum": -0.25,
+      "confidence": 0.62,
+      "sector": "store_of_value",
+      "catalyst_active": false,
+      "primary_sentiment": -0.25,
+      "secondary_sentiment": null
+    },
+    "LTC/USD": {
+      "sentiment": -0.25,
+      "momentum": -0.25,
+      "confidence": 0.62,
+      "sector": "store_of_value",
+      "catalyst_active": false,
+      "primary_sentiment": -0.25,
+      "secondary_sentiment": null
+    },
+    "ZEC/USD": {
+      "sentiment": -0.25,
+      "momentum": -0.25,
+      "confidence": 0.62,
+      "sector": "store_of_value",
+      "catalyst_active": false,
+      "primary_sentiment": -0.25,
+      "secondary_sentiment": null
+    },
+    "OPEN/USD": {
+      "sentiment": -0.12,
+      "momentum": -0.12,
+      "confidence": 0.58,
+      "sector": "other",
+      "catalyst_active": false,
+      "primary_sentiment": -0.12,
+      "secondary_sentiment": null
+    },
+    "S/USD": {
+      "sentiment": -0.12,
+      "momentum": -0.12,
+      "confidence": 0.58,
+      "sector": "other",
+      "catalyst_active": false,
+      "primary_sentiment": -0.12,
+      "secondary_sentiment": null
+    },
+    "OMNI/USD": {
+      "sentiment": -0.12,
+      "momentum": -0.12,
+      "confidence": 0.58,
+      "sector": "other",
+      "catalyst_active": false,
+      "primary_sentiment": -0.12,
+      "secondary_sentiment": null
+    },
+    "AVNT/USD": {
+      "sentiment": -0.12,
+      "momentum": -0.12,
+      "confidence": 0.58,
+      "sector": "other",
+      "catalyst_active": false,
+      "primary_sentiment": -0.12,
+      "secondary_sentiment": null
+    },
+    "EDEN/USD": {
+      "sentiment": -0.12,
+      "momentum": -0.12,
+      "confidence": 0.58,
+      "sector": "other",
+      "catalyst_active": false,
+      "primary_sentiment": -0.12,
+      "secondary_sentiment": null
+    },
+    "FORM/USD": {
+      "sentiment": -0.12,
+      "momentum": -0.12,
+      "confidence": 0.58,
+      "sector": "other",
+      "catalyst_active": false,
+      "primary_sentiment": -0.12,
+      "secondary_sentiment": null
+    },
+    "WLFI/USD": {
+      "sentiment": -0.12,
+      "momentum": -0.12,
+      "confidence": 0.58,
+      "sector": "other",
+      "catalyst_active": false,
+      "primary_sentiment": -0.12,
+      "secondary_sentiment": null
+    },
+    "BIO/USD": {
+      "sentiment": -0.12,
+      "momentum": -0.12,
+      "confidence": 0.58,
+      "sector": "other",
+      "catalyst_active": false,
+      "primary_sentiment": -0.12,
+      "secondary_sentiment": null
+    },
+    "MIRA/USD": {
+      "sentiment": -0.12,
+      "momentum": -0.12,
+      "confidence": 0.58,
+      "sector": "other",
+      "catalyst_active": false,
+      "primary_sentiment": -0.12,
+      "secondary_sentiment": null
+    },
+    "PLUME/USD": {
+      "sentiment": -0.12,
+      "momentum": -0.12,
+      "confidence": 0.58,
+      "sector": "other",
+      "catalyst_active": false,
+      "primary_sentiment": -0.12,
+      "secondary_sentiment": null
+    },
+    "ASTER/USD": {
+      "sentiment": -0.12,
+      "momentum": -0.12,
+      "confidence": 0.58,
+      "sector": "other",
+      "catalyst_active": false,
+      "primary_sentiment": -0.12,
+      "secondary_sentiment": null
+    },
+    "BMT/USD": {
+      "sentiment": -0.12,
+      "momentum": -0.12,
+      "confidence": 0.58,
+      "sector": "other",
+      "catalyst_active": false,
+      "primary_sentiment": -0.12,
+      "secondary_sentiment": null
+    },
+    "STO/USD": {
+      "sentiment": -0.12,
+      "momentum": -0.12,
+      "confidence": 0.58,
+      "sector": "other",
+      "catalyst_active": false,
+      "primary_sentiment": -0.12,
+      "secondary_sentiment": null
+    },
+    "SOMI/USD": {
+      "sentiment": -0.12,
+      "momentum": -0.12,
+      "confidence": 0.58,
+      "sector": "other",
+      "catalyst_active": false,
+      "primary_sentiment": -0.12,
+      "secondary_sentiment": null
+    },
+    "XPL/USD": {
+      "sentiment": -0.12,
+      "momentum": -0.12,
+      "confidence": 0.58,
+      "sector": "other",
+      "catalyst_active": false,
+      "primary_sentiment": -0.12,
+      "secondary_sentiment": null
+    },
+    "CFX/USD": {
+      "sentiment": -0.12,
+      "momentum": -0.12,
+      "confidence": 0.58,
+      "sector": "other",
+      "catalyst_active": false,
+      "primary_sentiment": -0.12,
+      "secondary_sentiment": null
+    },
+    "TUT/USD": {
+      "sentiment": -0.12,
+      "momentum": -0.12,
+      "confidence": 0.58,
+      "sector": "other",
+      "catalyst_active": false,
+      "primary_sentiment": -0.12,
+      "secondary_sentiment": null
+    },
+    "ZEN/USD": {
+      "sentiment": -0.12,
+      "momentum": -0.12,
+      "confidence": 0.58,
+      "sector": "other",
+      "catalyst_active": false,
+      "primary_sentiment": -0.12,
+      "secondary_sentiment": null
+    },
+    "FIL/USD": {
+      "sentiment": -0.12,
+      "momentum": -0.12,
+      "confidence": 0.58,
+      "sector": "other",
+      "catalyst_active": false,
+      "primary_sentiment": -0.12,
+      "secondary_sentiment": null
+    }
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "timestamp": "2026-03-19T15-28-01",
+  "scores": [
+    {
+      "asset": "BTC",
+      "inputs": {
+        "funding_rate_aggregated": 4.045e-06,
+        "oi_change_pct": -7.195643212209088e-05,
+        "price_change_pct": 3.967759859053627e-05,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": -0.0020225,
+      "oi_divergence_score": 1.190327957716088e-05,
+      "long_short_score": -0.0,
+      "combined_score": -0.0008048338521479937
+    },
+    {
+      "asset": "ETH",
+      "inputs": {
+        "funding_rate_aggregated": 1.7545000000000002e-05,
+        "oi_change_pct": -0.0013064016362876968,
+        "price_change_pct": -0.006556101767195021,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": -0.0087725,
+      "oi_divergence_score": -0.001966830530158506,
+      "long_short_score": -0.0,
+      "combined_score": -0.0041973906855554775
+    },
+    {
+      "asset": "SOL",
+      "inputs": {
+        "funding_rate_aggregated": -9.231e-05,
+        "oi_change_pct": -4.1484114631635155e-05,
+        "price_change_pct": -0.004307901598458173,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": 0.046155,
+      "oi_divergence_score": -0.0012923704795374518,
+      "long_short_score": -0.0,
+      "combined_score": 0.018009670332161894
+    },
+    {
+      "asset": "TRUMP",
+      "inputs": {
+        "funding_rate_aggregated": -0.00016236,
+        "oi_change_pct": 0,
+        "price_change_pct": -0.0008894159501927404,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": 0.08118,
+      "oi_divergence_score": -0.0002668247850578221,
+      "long_short_score": -0.0,
+      "combined_score": 0.03237861132522976
+    },
+    {
+      "asset": "DOGE",
+      "inputs": {
+        "funding_rate_aggregated": -1.2215e-05,
+        "oi_change_pct": 0,
+        "price_change_pct": -0.00010774701002057969,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": 0.0061075,
+      "oi_divergence_score": -3.232410300617391e-05,
+      "long_short_score": -0.0,
+      "combined_score": 0.0024316865639478396
+    }
+  ]
+}

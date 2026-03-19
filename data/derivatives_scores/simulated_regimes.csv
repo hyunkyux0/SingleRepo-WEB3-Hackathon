@@ -1,0 +1,16 @@
+scenario,funding_rate,oi_change_pct,price_change_pct,long_short_ratio,funding_score,oi_divergence_score,long_short_score,combined_score
+Calm market (current),4e-06,0.0004,4e-05,1.0,-0.002,0.0,-0.0,-0.0008
+Slight bull,0.0001,0.03,0.02,1.2,-0.05,0.006,-0.263,-0.0837
+Moderate bull,0.0003,0.1,0.05,1.5,-0.15,0.05,-0.585,-0.1887
+Strong bull,0.0005,0.2,0.08,2.0,-0.25,0.16,-1.0,-0.294
+Overcrowded longs,0.0008,0.3,0.08,3.0,-0.4,0.24,-1.0,-0.326
+Extreme euphoria,0.0015,0.5,0.15,5.0,-0.75,0.75,-1.0,-0.2875
+Slight bear,-0.0001,0.02,-0.02,0.8,0.05,-0.004,0.3219,0.0991
+Moderate bear,-0.0003,0.1,-0.05,0.6,0.15,-0.05,0.737,0.2267
+Strong bear,-0.0005,0.2,-0.08,0.4,0.25,-0.16,1.0,0.294
+Crash / cascade,-0.0012,0.4,-0.1,0.3,0.6,-0.4,1.0,0.35
+Extreme panic,-0.002,0.6,-0.2,0.2,1.0,-1.0,1.0,0.3
+Capitulation (deleverage),-0.0005,-0.3,-0.08,0.5,0.25,-0.024,1.0,0.3416
+Short squeeze,-0.001,0.2,0.12,0.4,0.5,0.24,1.0,0.534
+Choppy range,5e-05,0.001,-0.002,1.05,-0.025,-0.0,-0.0704,-0.0276
+Dead market,0.0,0.0,0.0,1.0,-0.0,0.0,-0.0,0.0

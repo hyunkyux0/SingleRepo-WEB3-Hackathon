@@ -1,0 +1,50 @@
+{
+  "timestamp": "2026-03-19T14-51-06",
+  "scores": [
+    {
+      "asset": "BTC",
+      "inputs": {
+        "funding_rate_aggregated": 4.045e-06,
+        "oi_change_pct": 0.8055879968526464,
+        "price_change_pct": 3.967759859053627e-05,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": -0.0020225,
+      "oi_divergence_score": 0.00031963797168473496,
+      "long_short_score": -0.0,
+      "combined_score": -0.0006971267099103428
+    },
+    {
+      "asset": "ETH",
+      "inputs": {
+        "funding_rate_aggregated": 1.7545000000000002e-05,
+        "oi_change_pct": 1.6483362123837004,
+        "price_change_pct": -0.006556101767195021,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": -0.0087725,
+      "oi_divergence_score": -0.10806659954940326,
+      "long_short_score": -0.0,
+      "combined_score": -0.04133230984229114
+    },
+    {
+      "asset": "SOL",
+      "inputs": {
+        "funding_rate_aggregated": -9.231e-05,
+        "oi_change_pct": 0.4826757427081136,
+        "price_change_pct": -0.004307901598458173,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": 0.046155,
+      "oi_divergence_score": -0.020793196035492685,
+      "long_short_score": -0.0,
+      "combined_score": 0.011184381387577564
+    }
+  ]
+}

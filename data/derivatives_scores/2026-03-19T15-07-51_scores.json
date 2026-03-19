@@ -1,0 +1,935 @@
+{
+  "timestamp": "2026-03-19T15-07-51",
+  "scores": [
+    {
+      "asset": "PUMP",
+      "inputs": {
+        "funding_rate_aggregated": 8.67e-06,
+        "oi_change_pct": 0,
+        "price_change_pct": -0.012924071082390918,
+        "long_short_ratio": 1.0,
+        "funding_sources": 1,
+        "ohlc_candles": 20
+      },
+      "funding_score": -0.004335,
+      "oi_divergence_score": -0.003877221324717275,
+      "long_short_score": -0.0,
+      "combined_score": -0.0030910274636510465
+    },
+    {
+      "asset": "1000CHEEMS",
+      "inputs": {
+        "funding_rate_aggregated": -2.379e-05,
+        "oi_change_pct": 0,
+        "price_change_pct": -0.0022075055187638507,
+        "long_short_ratio": 1.0,
+        "funding_sources": 1,
+        "ohlc_candles": 20
+      },
+      "funding_score": 0.011895000000000001,
+      "oi_divergence_score": -0.0006622516556291552,
+      "long_short_score": -0.0,
+      "combined_score": 0.004526211920529797
+    },
+    {
+      "asset": "PENGU",
+      "inputs": {
+        "funding_rate_aggregated": -2.509e-05,
+        "oi_change_pct": 0.22450458884574936,
+        "price_change_pct": 0.0008570204256534679,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": 0.012544999999999999,
+      "oi_divergence_score": 0.0019240501829374092,
+      "long_short_score": -0.0,
+      "combined_score": 0.005691417564028093
+    },
+    {
+      "asset": "DOGE",
+      "inputs": {
+        "funding_rate_aggregated": -1.2215e-05,
+        "oi_change_pct": 0.6790612270157353,
+        "price_change_pct": -0.00010774701002057969,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": 0.0061075,
+      "oi_divergence_score": -0.0007316681683185157,
+      "long_short_score": -0.0,
+      "combined_score": 0.00218691614108852
+    },
+    {
+      "asset": "LINEA",
+      "inputs": {
+        "funding_rate_aggregated": 5e-05,
+        "oi_change_pct": 0.6551558007312891,
+        "price_change_pct": -0.0031152647975077963,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": -0.025,
+      "oi_divergence_score": -0.020409838029012174,
+      "long_short_score": -0.0,
+      "combined_score": -0.01714344331015426
+    },
+    {
+      "asset": "WLFI",
+      "inputs": {
+        "funding_rate_aggregated": 5e-05,
+        "oi_change_pct": 1.8778532923827775,
+        "price_change_pct": 0.0021321961620469694,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": -0.025,
+      "oi_divergence_score": 0.040039515829058236,
+      "long_short_score": -0.0,
+      "combined_score": 0.00401383054017038
+    },
+    {
+      "asset": "ENA",
+      "inputs": {
+        "funding_rate_aggregated": -7.18e-06,
+        "oi_change_pct": 0.49329682246589956,
+        "price_change_pct": -0.007789678675754578,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": 0.00359,
+      "oi_divergence_score": -0.03842623738780109,
+      "long_short_score": -0.0,
+      "combined_score": -0.012013183085730381
+    },
+    {
+      "asset": "PLUME",
+      "inputs": {
+        "funding_rate_aggregated": 4.0549999999999996e-05,
+        "oi_change_pct": 0.8224687312822866,
+        "price_change_pct": -0.0027051397655544437,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": -0.020274999999999998,
+      "oi_divergence_score": -0.022248928709168257,
+      "long_short_score": -0.0,
+      "combined_score": -0.015897125048208886
+    },
+    {
+      "asset": "XPL",
+      "inputs": {
+        "funding_rate_aggregated": -0.000135535,
+        "oi_change_pct": 0.5356962402405674,
+        "price_change_pct": -0.008937437934458769,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": 0.0677675,
+      "oi_divergence_score": -0.04787751898872984,
+      "long_short_score": -0.0,
+      "combined_score": 0.010349868353944556
+    },
+    {
+      "asset": "TRX",
+      "inputs": {
+        "funding_rate_aggregated": 5.869e-05,
+        "oi_change_pct": 2.3375950996466037,
+        "price_change_pct": 0.001986754966887382,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": -0.029345,
+      "oi_divergence_score": 0.04644228674794495,
+      "long_short_score": -0.0,
+      "combined_score": 0.00451680036178073
+    },
+    {
+      "asset": "ADA",
+      "inputs": {
+        "funding_rate_aggregated": -6.002e-05,
+        "oi_change_pct": 0.6844718851444552,
+        "price_change_pct": -0.003010914565299087,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": 0.03001,
+      "oi_divergence_score": -0.02060886368519164,
+      "long_short_score": -0.0,
+      "combined_score": 0.004790897710182927
+    },
+    {
+      "asset": "BIO",
+      "inputs": {
+        "funding_rate_aggregated": 1.0034999999999998e-05,
+        "oi_change_pct": 1.5975404370149926,
+        "price_change_pct": -0.004975124378109422,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": -0.0050174999999999985,
+      "oi_divergence_score": -0.0794796237320887,
+      "long_short_score": -0.0,
+      "combined_score": -0.029824868306231038
+    },
+    {
+      "asset": "XRP",
+      "inputs": {
+        "funding_rate_aggregated": -2.689e-05,
+        "oi_change_pct": 0.7586876081245506,
+        "price_change_pct": 0.0044487696371472,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": 0.013444999999999999,
+      "oi_divergence_score": 0.03375226395104334,
+      "long_short_score": -0.0,
+      "combined_score": 0.017191292382865167
+    },
+    {
+      "asset": "HBAR",
+      "inputs": {
+        "funding_rate_aggregated": -9.258999999999999e-05,
+        "oi_change_pct": 0.3175015380798028,
+        "price_change_pct": 0.001626192541196849,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": 0.046294999999999996,
+      "oi_divergence_score": 0.005163186330439027,
+      "long_short_score": -0.0,
+      "combined_score": 0.02032511521565366
+    },
+    {
+      "asset": "HEMI",
+      "inputs": {
+        "funding_rate_aggregated": 5e-05,
+        "oi_change_pct": 2.2734978412239255,
+        "price_change_pct": -0.0026178010471204255,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": -0.025,
+      "oi_divergence_score": -0.059515650293820194,
+      "long_short_score": -0.0,
+      "combined_score": -0.030830477602837067
+    },
+    {
+      "asset": "SEI",
+      "inputs": {
+        "funding_rate_aggregated": -3.355e-06,
+        "oi_change_pct": 0.016857216705248215,
+        "price_change_pct": -0.004709576138147701,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": 0.0016775,
+      "oi_divergence_score": -0.0007939034555062179,
+      "long_short_score": -0.0,
+      "combined_score": 0.0003931337905728238
+    },
+    {
+      "asset": "ARB",
+      "inputs": {
+        "funding_rate_aggregated": -3.656e-05,
+        "oi_change_pct": 0.036317966455356114,
+        "price_change_pct": -0.005040322580645166,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": 0.01828,
+      "oi_divergence_score": -0.0018305426640804511,
+      "long_short_score": -0.0,
+      "combined_score": 0.006671310067571843
+    },
+    {
+      "asset": "TUT",
+      "inputs": {
+        "funding_rate_aggregated": 5e-05,
+        "oi_change_pct": 3.5204854522389106,
+        "price_change_pct": 0.0010427528675703433,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": -0.025,
+      "oi_divergence_score": 0.03670996300561801,
+      "long_short_score": -0.0,
+      "combined_score": 0.0028484870519663013
+    },
+    {
+      "asset": "POL",
+      "inputs": {
+        "funding_rate_aggregated": -1.3699999999999987e-06,
+        "oi_change_pct": 0.02364656592419802,
+        "price_change_pct": -0.00524658971668416,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": 0.0006849999999999993,
+      "oi_divergence_score": -0.0012406382961279141,
+      "long_short_score": -0.0,
+      "combined_score": -0.0001602234036447702
+    },
+    {
+      "asset": "FET",
+      "inputs": {
+        "funding_rate_aggregated": 2.286e-05,
+        "oi_change_pct": 0,
+        "price_change_pct": -0.0014485755673587382,
+        "long_short_ratio": 1.0,
+        "funding_sources": 1,
+        "ohlc_candles": 20
+      },
+      "funding_score": -0.011430000000000001,
+      "oi_divergence_score": -0.0004345726702076215,
+      "long_short_score": -0.0,
+      "combined_score": -0.004724100434572668
+    },
+    {
+      "asset": "XLM",
+      "inputs": {
+        "funding_rate_aggregated": 3.5295e-05,
+        "oi_change_pct": 0.5263744127780708,
+        "price_change_pct": 0.0012084592145013774,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": -0.0176475,
+      "oi_divergence_score": 0.006361020093994113,
+      "long_short_score": -0.0,
+      "combined_score": -0.004832642967102061
+    },
+    {
+      "asset": "ASTER",
+      "inputs": {
+        "funding_rate_aggregated": -1.7585000000000002e-05,
+        "oi_change_pct": 0.9955380069074375,
+        "price_change_pct": 0.007418397626112766,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": 0.0087925,
+      "oi_divergence_score": 0.07385296787147169,
+      "long_short_score": -0.0,
+      "combined_score": 0.02936553875501509
+    },
+    {
+      "asset": "WLD",
+      "inputs": {
+        "funding_rate_aggregated": -2.8350000000000005e-05,
+        "oi_change_pct": 0.7287473330873554,
+        "price_change_pct": -0.00835073068893519,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": 0.014175000000000002,
+      "oi_divergence_score": -0.06085572718892254,
+      "long_short_score": -0.0,
+      "combined_score": -0.015629504516122886
+    },
+    {
+      "asset": "S",
+      "inputs": {
+        "funding_rate_aggregated": -4.4880000000000004e-05,
+        "oi_change_pct": 0.21413948338997388,
+        "price_change_pct": -0.010662431941923733,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": 0.02244,
+      "oi_divergence_score": -0.022832476677243044,
+      "long_short_score": -0.0,
+      "combined_score": 0.000984633162964937
+    },
+    {
+      "asset": "WIF",
+      "inputs": {
+        "funding_rate_aggregated": -2.2064999999999996e-05,
+        "oi_change_pct": 0.5227668341581673,
+        "price_change_pct": 0.005813953488372099,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": 0.011032499999999997,
+      "oi_divergence_score": 0.030393420590591153,
+      "long_short_score": -0.0,
+      "combined_score": 0.015050697206706903
+    },
+    {
+      "asset": "SUI",
+      "inputs": {
+        "funding_rate_aggregated": 6.370000000000002e-06,
+        "oi_change_pct": 0.4884717230796871,
+        "price_change_pct": 0.0004215407313732395,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": -0.0031850000000000008,
+      "oi_divergence_score": 0.002059107274021578,
+      "long_short_score": -0.0,
+      "combined_score": -0.0005533124540924481
+    },
+    {
+      "asset": "CFX",
+      "inputs": {
+        "funding_rate_aggregated": 5.346e-05,
+        "oi_change_pct": 1.77585708305272,
+        "price_change_pct": 0.006191950464396258,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": -0.02673,
+      "oi_divergence_score": 0.10996019090109674,
+      "long_short_score": -0.0,
+      "combined_score": 0.027794066815383857
+    },
+    {
+      "asset": "CRV",
+      "inputs": {
+        "funding_rate_aggregated": 4.6030000000000005e-05,
+        "oi_change_pct": 0.293377246961133,
+        "price_change_pct": -0.00042826552462533937,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": -0.023015,
+      "oi_divergence_score": -0.0012564336058294736,
+      "long_short_score": -0.0,
+      "combined_score": -0.009645751762040316
+    },
+    {
+      "asset": "BMT",
+      "inputs": {
+        "funding_rate_aggregated": 4.4894999999999996e-05,
+        "oi_change_pct": 2.573304204708189,
+        "price_change_pct": -0.006285355122564387,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": -0.0224475,
+      "oi_divergence_score": -0.16174130764979092,
+      "long_short_score": -0.0,
+      "combined_score": -0.06558845767742681
+    },
+    {
+      "asset": "ONDO",
+      "inputs": {
+        "funding_rate_aggregated": -4.987e-05,
+        "oi_change_pct": -0.24502820016917432,
+        "price_change_pct": 0.0011686793922868037,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": 0.024935,
+      "oi_divergence_score": 0.0003506038176860411,
+      "long_short_score": -0.0,
+      "combined_score": 0.010096711336190115
+    },
+    {
+      "asset": "EDEN",
+      "inputs": {
+        "funding_rate_aggregated": 5e-05,
+        "oi_change_pct": 4.855508384693034,
+        "price_change_pct": -0.008522727272727319,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": -0.025,
+      "oi_divergence_score": -0.4138217373317949,
+      "long_short_score": -0.0,
+      "combined_score": -0.1548376080661282
+    },
+    {
+      "asset": "NEAR",
+      "inputs": {
+        "funding_rate_aggregated": 2.675000000000004e-06,
+        "oi_change_pct": 0.3066202597796033,
+        "price_change_pct": -0.005235602094240759,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": -0.0013375000000000019,
+      "oi_divergence_score": -0.016053416742387368,
+      "long_short_score": -0.0,
+      "combined_score": -0.006153695859835579
+    },
+    {
+      "asset": "STO",
+      "inputs": {
+        "funding_rate_aggregated": 5e-05,
+        "oi_change_pct": 1.6734690148053688,
+        "price_change_pct": 0.0205811138014527,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": -0.025,
+      "oi_divergence_score": 0.3444185623691423,
+      "long_short_score": -0.0,
+      "combined_score": 0.11054649682919979
+    },
+    {
+      "asset": "FIL",
+      "inputs": {
+        "funding_rate_aggregated": 3.989e-05,
+        "oi_change_pct": 1.429553258722651,
+        "price_change_pct": -0.005574136008918622,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": -0.019945,
+      "oi_divergence_score": -0.07968524296112889,
+      "long_short_score": -0.0,
+      "combined_score": -0.03586783503639511
+    },
+    {
+      "asset": "AVNT",
+      "inputs": {
+        "funding_rate_aggregated": -0.000162315,
+        "oi_change_pct": 0.24203540866008239,
+        "price_change_pct": 0.0006715916722631899,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": 0.08115750000000001,
+      "oi_divergence_score": 0.0016254896484892928,
+      "long_short_score": -0.0,
+      "combined_score": 0.03303192137697126
+    },
+    {
+      "asset": "DOT",
+      "inputs": {
+        "funding_rate_aggregated": -0.000135655,
+        "oi_change_pct": 0.48900683103560416,
+        "price_change_pct": -0.0085301837270342,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": 0.0678275,
+      "oi_divergence_score": -0.041713181125084736,
+      "long_short_score": -0.0,
+      "combined_score": 0.012531386606220345
+    },
+    {
+      "asset": "EIGEN",
+      "inputs": {
+        "funding_rate_aggregated": -0.000165195,
+        "oi_change_pct": -0.15904850419025052,
+        "price_change_pct": -0.015463917525773209,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": 0.0825975,
+      "oi_divergence_score": -0.004639175257731962,
+      "long_short_score": -0.0,
+      "combined_score": 0.031415288659793816
+    },
+    {
+      "asset": "APT",
+      "inputs": {
+        "funding_rate_aggregated": -3.4075e-05,
+        "oi_change_pct": 0.22299290699423102,
+        "price_change_pct": -0.0219435736677115,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": 0.0170375,
+      "oi_divergence_score": -0.04893261282005048,
+      "long_short_score": -0.0,
+      "combined_score": -0.010311414487017664
+    },
+    {
+      "asset": "FORM",
+      "inputs": {
+        "funding_rate_aggregated": 5e-05,
+        "oi_change_pct": 10.302563216000495,
+        "price_change_pct": -0.007214428857715415,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": -0.025,
+      "oi_divergence_score": -0.7432710937395131,
+      "long_short_score": -0.0,
+      "combined_score": -0.2701448828088296
+    },
+    {
+      "asset": "VIRTUAL",
+      "inputs": {
+        "funding_rate_aggregated": -2.7895000000000003e-05,
+        "oi_change_pct": -0.010601887032433026,
+        "price_change_pct": -0.004552567932849596,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": 0.013947500000000002,
+      "oi_divergence_score": -0.0013657703798548788,
+      "long_short_score": -0.0,
+      "combined_score": 0.005100980367050793
+    },
+    {
+      "asset": "UNI",
+      "inputs": {
+        "funding_rate_aggregated": -2.5744999999999998e-05,
+        "oi_change_pct": 2.217553485923099,
+        "price_change_pct": -0.002810567734682346,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": 0.012872499999999999,
+      "oi_divergence_score": -0.06232584277467825,
+      "long_short_score": -0.0,
+      "combined_score": -0.016665044971137386
+    },
+    {
+      "asset": "TON",
+      "inputs": {
+        "funding_rate_aggregated": -6.5985e-05,
+        "oi_change_pct": 0.07305959408053103,
+        "price_change_pct": -0.0024154589371979803,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": 0.0329925,
+      "oi_divergence_score": -0.0017647244946987536,
+      "long_short_score": -0.0,
+      "combined_score": 0.012579346426855436
+    },
+    {
+      "asset": "MIRA",
+      "inputs": {
+        "funding_rate_aggregated": 1.1400000000000026e-06,
+        "oi_change_pct": 0.8914635670081895,
+        "price_change_pct": 0.010088272383354465,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": -0.0005700000000000013,
+      "oi_divergence_score": 0.08993327283815382,
+      "long_short_score": -0.0,
+      "combined_score": 0.031248645493353835
+    },
+    {
+      "asset": "LISTA",
+      "inputs": {
+        "funding_rate_aggregated": 5e-05,
+        "oi_change_pct": 5.87744801460176,
+        "price_change_pct": -0.005733944954128446,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": -0.025,
+      "oi_divergence_score": -0.33700963386478017,
+      "long_short_score": -0.0,
+      "combined_score": -0.12795337185267305
+    },
+    {
+      "asset": "OPEN",
+      "inputs": {
+        "funding_rate_aggregated": 5e-05,
+        "oi_change_pct": 2.6349964696482653,
+        "price_change_pct": 0.001344086021505415,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": -0.025,
+      "oi_divergence_score": 0.03541661921570351,
+      "long_short_score": -0.0,
+      "combined_score": 0.002395816725496224
+    },
+    {
+      "asset": "TRUMP",
+      "inputs": {
+        "funding_rate_aggregated": -0.00016236,
+        "oi_change_pct": 0.6734376967488425,
+        "price_change_pct": -0.0008894159501927404,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": 0.08118,
+      "oi_divergence_score": -0.005989662289494822,
+      "long_short_score": -0.0,
+      "combined_score": 0.030375618198676815
+    },
+    {
+      "asset": "SOMI",
+      "inputs": {
+        "funding_rate_aggregated": 5e-05,
+        "oi_change_pct": 0.19339192926293128,
+        "price_change_pct": 0.0011428571428571757,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": -0.025,
+      "oi_divergence_score": 0.0022101934772907066,
+      "long_short_score": -0.0,
+      "combined_score": -0.009226432282948255
+    },
+    {
+      "asset": "ICP",
+      "inputs": {
+        "funding_rate_aggregated": -5.635e-06,
+        "oi_change_pct": 0.40900069641353853,
+        "price_change_pct": -0.0020024028834601097,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": 0.0028175,
+      "oi_divergence_score": -0.008189841738356626,
+      "long_short_score": -0.0,
+      "combined_score": -0.0017394446084248187
+    },
+    {
+      "asset": "SOL",
+      "inputs": {
+        "funding_rate_aggregated": -9.231e-05,
+        "oi_change_pct": 0.4826757427081136,
+        "price_change_pct": -0.004307901598458173,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": 0.046155,
+      "oi_divergence_score": -0.020793196035492685,
+      "long_short_score": -0.0,
+      "combined_score": 0.011184381387577564
+    },
+    {
+      "asset": "LINK",
+      "inputs": {
+        "funding_rate_aggregated": -0.000101335,
+        "oi_change_pct": 0.39759267226337025,
+        "price_change_pct": -0.0022321428571430075,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": 0.050667500000000004,
+      "oi_divergence_score": -0.008874836434450827,
+      "long_short_score": -0.0,
+      "combined_score": 0.017160807247942216
+    },
+    {
+      "asset": "AVAX",
+      "inputs": {
+        "funding_rate_aggregated": -1.884e-05,
+        "oi_change_pct": 0.5008408006670058,
+        "price_change_pct": -0.00634249471458779,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": 0.00942,
+      "oi_divergence_score": -0.03176580131080401,
+      "long_short_score": -0.0,
+      "combined_score": -0.007350030458781402
+    },
+    {
+      "asset": "PENDLE",
+      "inputs": {
+        "funding_rate_aggregated": 7.364e-05,
+        "oi_change_pct": 0.6868419918736927,
+        "price_change_pct": 0.0,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": -0.036820000000000006,
+      "oi_divergence_score": 0.0,
+      "long_short_score": -0.0,
+      "combined_score": -0.014728000000000003
+    },
+    {
+      "asset": "CAKE",
+      "inputs": {
+        "funding_rate_aggregated": -2.559e-05,
+        "oi_change_pct": 1.7235354558022893,
+        "price_change_pct": -0.0007112375533427383,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": 0.012795,
+      "oi_divergence_score": -0.012258431406842813,
+      "long_short_score": -0.0,
+      "combined_score": 0.0008275490076050168
+    },
+    {
+      "asset": "ETH",
+      "inputs": {
+        "funding_rate_aggregated": 1.7545000000000002e-05,
+        "oi_change_pct": 1.6483362123837004,
+        "price_change_pct": -0.006556101767195021,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": -0.0087725,
+      "oi_divergence_score": -0.10806659954940326,
+      "long_short_score": -0.0,
+      "combined_score": -0.04133230984229114
+    },
+    {
+      "asset": "ZEN",
+      "inputs": {
+        "funding_rate_aggregated": -0.00010517500000000001,
+        "oi_change_pct": 1.3718010940573877,
+        "price_change_pct": -0.0012066885019825135,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": 0.0525875,
+      "oi_divergence_score": -0.016553366072060823,
+      "long_short_score": -0.0,
+      "combined_score": 0.015241321874778713
+    },
+    {
+      "asset": "LTC",
+      "inputs": {
+        "funding_rate_aggregated": 4.4235e-05,
+        "oi_change_pct": 0.25929594165410075,
+        "price_change_pct": -0.00018201674554055354,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": -0.0221175,
+      "oi_divergence_score": -0.0004719620343175267,
+      "long_short_score": -0.0,
+      "combined_score": -0.009012186712011133
+    },
+    {
+      "asset": "ZEC",
+      "inputs": {
+        "funding_rate_aggregated": 5.1695000000000006e-05,
+        "oi_change_pct": 2.0268897275469557,
+        "price_change_pct": -0.0042610076029742745,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": -0.025847500000000002,
+      "oi_divergence_score": -0.08636592539468035,
+      "long_short_score": -0.0,
+      "combined_score": -0.04056707388813813
+    },
+    {
+      "asset": "BNB",
+      "inputs": {
+        "funding_rate_aggregated": -4.2340000000000005e-05,
+        "oi_change_pct": 2.576233560286953,
+        "price_change_pct": -0.0017524095631493374,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": 0.02117,
+      "oi_divergence_score": -0.045146163279531214,
+      "long_short_score": -0.0,
+      "combined_score": -0.007333157147835922
+    },
+    {
+      "asset": "AAVE",
+      "inputs": {
+        "funding_rate_aggregated": 1.9500000000000025e-07,
+        "oi_change_pct": -0.09663964135186563,
+        "price_change_pct": -0.007543485977990845,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": -9.750000000000012e-05,
+      "oi_divergence_score": -0.0022630457933972537,
+      "long_short_score": -0.0,
+      "combined_score": -0.0008310660276890389
+    },
+    {
+      "asset": "TAO",
+      "inputs": {
+        "funding_rate_aggregated": 4.8535e-05,
+        "oi_change_pct": 0.5063843689917327,
+        "price_change_pct": 0.011006930289441453,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": -0.0242675,
+      "oi_divergence_score": 0.055737374491547996,
+      "long_short_score": -0.0,
+      "combined_score": 0.009801081072041796
+    },
+    {
+      "asset": "BTC",
+      "inputs": {
+        "funding_rate_aggregated": 4.045e-06,
+        "oi_change_pct": 0.8055879968526464,
+        "price_change_pct": 3.967759859053627e-05,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": -0.0020225,
+      "oi_divergence_score": 0.00031963797168473496,
+      "long_short_score": -0.0,
+      "combined_score": -0.0006971267099103428
+    },
+    {
+      "asset": "PAXG",
+      "inputs": {
+        "funding_rate_aggregated": 4.2975e-05,
+        "oi_change_pct": 4.432103950073304,
+        "price_change_pct": 0.005483031002062024,
+        "long_short_ratio": 1.0,
+        "funding_sources": 2,
+        "ohlc_candles": 20
+      },
+      "funding_score": -0.0214875,
+      "oi_divergence_score": 0.24301363362613485,
+      "long_short_score": -0.0,
+      "combined_score": 0.07645977176914719
+    }
+  ]
+}
