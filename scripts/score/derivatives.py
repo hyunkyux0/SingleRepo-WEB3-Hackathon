@@ -58,14 +58,26 @@ def main(argv: list[str] | None = None) -> None:
                  for r in funding_rows]
             )
 
-            # Compute OI change (need at least 2 data points)
+            # Compute OI change per exchange, then average the changes.
+            # Each exchange has different absolute OI values (Bybit 47K vs Binance 86K),
+            # so we track change within each exchange separately.
             oi_history = db.get_oi_history(asset, lookback_hours=24)
-            if len(oi_history) >= 2:
-                old_oi = oi_history[0]["oi_value"]
-                new_oi = oi_history[-1]["oi_value"]
-                oi_change_pct = (new_oi - old_oi) / old_oi if old_oi > 0 else 0
-            else:
-                oi_change_pct = 0
+            oi_change_pct = 0
+            if oi_history:
+                from collections import defaultdict
+                by_exchange = defaultdict(list)
+                for row in oi_history:
+                    by_exchange[row["exchange"]].append(row)
+                exchange_changes = []
+                for ex, rows in by_exchange.items():
+                    rows.sort(key=lambda r: r["timestamp"])
+                    if len(rows) >= 2:
+                        old_v = rows[0]["oi_value"]
+                        new_v = rows[-1]["oi_value"]
+                        if old_v > 0:
+                            exchange_changes.append((new_v - old_v) / old_v)
+                if exchange_changes:
+                    oi_change_pct = sum(exchange_changes) / len(exchange_changes)
 
             # Price change from OHLC data
             ohlc = db.get_ohlc(asset, "5m", lookback=20)
