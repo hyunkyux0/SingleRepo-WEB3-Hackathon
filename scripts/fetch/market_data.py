@@ -1,7 +1,7 @@
 # scripts/fetch/market_data.py
 """Fetch OHLCV market data from Binance for all universe assets.
 
-Builds incrementally: per-asset JSON files are appended (deduplicated by
+Builds incrementally: per-asset CSV files are appended (deduplicated by
 timestamp), and the DB uses INSERT OR REPLACE so re-runs are safe.
 
 Usage:
@@ -12,10 +12,11 @@ Usage:
     python -m scripts.fetch.market_data --full-history --interval 1d  # daily history (~1000 days)
     python -m scripts.fetch.market_data --from-db
 
-Output: data/market_data/<asset>_<interval>.json (per-asset, incremental)
-        data/market_data/<timestamp>_summary.json
+Output: data/market_data/<asset>_<interval>.csv (per-asset, incremental)
+        data/market_data/<timestamp>_summary.json (run metadata)
 """
 import argparse
+import csv
 import json
 import logging
 import time
@@ -29,6 +30,7 @@ from utils.db import DataStore
 logger = logging.getLogger(__name__)
 
 OUTPUT_DIR = Path("data/market_data")
+CSV_HEADER = ["timestamp", "open", "high", "low", "close", "volume"]
 
 
 def _to_binance_spot(asset: str) -> str:
@@ -80,7 +82,7 @@ def fetch_full_history(asset: str, interval: str = "5m") -> list[dict]:
     Binance returns max 1000 candles per request.
     """
     all_rows = []
-    end_time = None  # start from most recent
+    end_time = None
 
     while True:
         params = {"symbol": _to_binance_spot(asset), "interval": interval, "limit": 1000}
@@ -103,42 +105,56 @@ def fetch_full_history(asset: str, interval: str = "5m") -> list[dict]:
             break
 
         rows = _parse_candles(asset, raw, interval)
-        all_rows = rows + all_rows  # prepend older data
+        all_rows = rows + all_rows
 
-        # Next page: go before the earliest candle we got
         earliest_ts = raw[0][0]
         end_time = earliest_ts - 1
 
         if len(raw) < 1000:
-            break  # no more data available
+            break
 
-        time.sleep(0.2)  # rate limit courtesy
+        time.sleep(0.2)
 
     return all_rows
 
 
-def _load_existing(path: Path) -> list[dict]:
-    """Load existing per-asset JSON file if it exists."""
+def _load_existing_timestamps(path: Path) -> set[str]:
+    """Load existing timestamps from a CSV file for dedup."""
+    timestamps = set()
     if path.exists():
         try:
-            return json.loads(path.read_text())
-        except (json.JSONDecodeError, IOError):
+            with open(path, newline="") as f:
+                reader = csv.DictReader(f)
+                for row in reader:
+                    timestamps.add(row["timestamp"])
+        except (IOError, KeyError):
             pass
-    return []
+    return timestamps
 
 
-def _merge_incremental(existing: list[dict], new: list[dict]) -> list[dict]:
-    """Merge new candles into existing data, deduplicated by timestamp."""
-    seen = {r["timestamp"] for r in existing}
-    merged = list(existing)
-    added = 0
-    for row in new:
-        if row["timestamp"] not in seen:
-            merged.append(row)
-            seen.add(row["timestamp"])
-            added += 1
-    merged.sort(key=lambda r: r["timestamp"])
-    return merged, added
+def _append_csv(path: Path, rows: list[dict], existing_ts: set[str]) -> int:
+    """Append new rows to CSV, skipping duplicates. Returns count of rows added."""
+    new_rows = [r for r in rows if r["timestamp"] not in existing_ts]
+    if not new_rows:
+        return 0
+
+    write_header = not path.exists() or path.stat().st_size == 0
+    with open(path, "a", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=CSV_HEADER)
+        if write_header:
+            writer.writeheader()
+        for r in sorted(new_rows, key=lambda x: x["timestamp"]):
+            writer.writerow({k: r[k] for k in CSV_HEADER})
+
+    return len(new_rows)
+
+
+def _count_csv_rows(path: Path) -> int:
+    """Count data rows in a CSV (excluding header)."""
+    if not path.exists():
+        return 0
+    with open(path) as f:
+        return sum(1 for _ in f) - 1  # subtract header
 
 
 def load_universe(path: str = "config/asset_universe.json") -> list[str]:
@@ -186,28 +202,24 @@ def main(argv: list[str] | None = None) -> None:
             rows = fetch_klines(asset, interval=args.interval, limit=args.limit)
 
         if rows:
-            # Incremental merge with existing file
-            asset_path = OUTPUT_DIR / f"{asset}_{args.interval}.json"
-            existing = _load_existing(asset_path)
-            merged, added = _merge_incremental(existing, rows)
-            asset_path.write_text(json.dumps(merged, indent=2))
+            asset_path = OUTPUT_DIR / f"{asset}_{args.interval}.csv"
+            existing_ts = _load_existing_timestamps(asset_path)
+            added = _append_csv(asset_path, rows, existing_ts)
+            total_rows = _count_csv_rows(asset_path)
 
             all_new_rows.extend(rows)
             success += 1
             total_added += added
 
-            first_ts = merged[0]["timestamp"][:10]
-            last_ts = merged[-1]["timestamp"][:10]
-            print(f"  {asset:>8s}: {len(merged)} total candles ({added} new), {first_ts} to {last_ts}, close=${rows[-1]['close']:.4f}")
+            print(f"  {asset:>8s}: {total_rows} total ({added} new), close=${rows[-1]['close']:.4f}")
         else:
             failed.append(asset)
             print(f"  {asset:>8s}: FAILED")
 
-        # Rate limit: ~10 req/sec for normal, slower for full history (handled inside fetch_full_history)
         if not args.full_history and (i + 1) % 10 == 0:
             time.sleep(1)
 
-    # Save summary
+    # Save summary (JSON — has nested metadata)
     summary = {
         "timestamp": ts,
         "interval": args.interval,
