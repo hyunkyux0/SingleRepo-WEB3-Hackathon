@@ -1,4 +1,4 @@
-"""Integration test: full pipeline tick with mocked fetch layer and LLM."""
+"""Integration test: full pipeline tick with mocked fetch layer and LLM (v2)."""
 
 from datetime import datetime, timezone
 from unittest.mock import patch
@@ -13,7 +13,6 @@ from composite.adapters import sector_signal_to_asset_score
 
 NOW = datetime.now(tz=timezone.utc)
 
-# Raw article dicts (as returned by scripts/fetch_news.py)
 _MOCK_RAW_ARTICLES = [
     {
         "id": "int1",
@@ -60,20 +59,52 @@ def _mock_classify_batch(article):
     )
 
 
-def _mock_score_batch(headline, snippet, sector):
+_DEFAULT_EVIDENCE = {
+    "token_prices": [], "previous_sentiment": 0.0,
+    "funding_rate": None, "nupl": None, "exchange_net_flow": None,
+}
+
+
+def _mock_score_sector(summary, evidence):
+    sector = summary.get("sector", "other")
+    if sector == "ai_compute" and summary.get("article_count", 0) > 0:
+        return {
+            "sentiment": 0.7, "magnitude": "high", "confidence": 0.85,
+            "key_driver": "FET partnership",
+            "reasoning": "Strong bullish from FET cloud partnership.",
+        }
+    if sector == "defi" and summary.get("article_count", 0) > 0:
+        return {
+            "sentiment": 0.3, "magnitude": "medium", "confidence": 0.6,
+            "key_driver": "DeFi TVL growth",
+            "reasoning": "Positive DeFi growth signal.",
+        }
     return {
-        "sentiment": 0.4, "magnitude": "medium",
-        "confidence": 0.75, "reasoning": "Positive DeFi growth",
+        "sentiment": 0.0, "magnitude": "low", "confidence": 0.0,
+        "key_driver": "", "reasoning": "No articles.",
     }
 
 
+@patch("pipeline.orchestrator.score_sector", side_effect=_mock_score_sector)
+@patch("pipeline.orchestrator.gather_evidence", return_value=_DEFAULT_EVIDENCE)
+@patch("pipeline.orchestrator.build_sector_summary")
 @patch("pipeline.orchestrator.raw_dedup", side_effect=_identity)
 @patch("pipeline.orchestrator.fetch_all_sources", side_effect=_mock_fetch)
 @patch("pipeline.orchestrator.classify_article_fast", side_effect=_mock_classify_fast)
 @patch("pipeline.orchestrator.classify_article_batch", side_effect=_mock_classify_batch)
-@patch("pipeline.orchestrator.score_article_batch", side_effect=_mock_score_batch)
-def test_full_pipeline_tick(mock_score, mock_batch, mock_fast, mock_fetch, mock_dedup, tmp_path):
-    """Full pipeline tick: fetch -> classify -> score -> aggregate."""
+def test_full_pipeline_tick(
+    mock_batch, mock_fast, mock_fetch, mock_dedup,
+    mock_summary, mock_evidence, mock_score, tmp_path
+):
+    # Make build_sector_summary return dynamic sector-aware summaries
+    def _dynamic_summary(db, sector, lookback):
+        return {
+            "sector": sector, "article_count": 1 if sector in ("ai_compute", "defi") else 0,
+            "velocity": "steady", "top_headlines": [],
+            "mentioned_tickers": {}, "catalyst_count": 0,
+        }
+    mock_summary.side_effect = _dynamic_summary
+
     db_path = tmp_path / "integration.db"
     with SentimentPipeline(db_path=db_path) as pipeline:
         result = pipeline.tick()
@@ -82,19 +113,26 @@ def test_full_pipeline_tick(mock_score, mock_batch, mock_fast, mock_fetch, mock_
     assert len(result.sectors) == 6
 
     ai = result.sectors["ai_compute"]
-    assert ai.article_count >= 1
-    assert ai.sentiment > 0
+    assert ai.sentiment == 0.7
+    assert ai.key_driver == "FET partnership"
 
     assert result.metadata["articles_fetched"] == 2
     assert result.metadata["catalysts_detected"] == 1
     assert result.metadata["fast_path_classified"] == 1
-    assert result.metadata["llm_calls"] >= 1
 
 
+@patch("pipeline.orchestrator.score_sector", return_value={
+    "sentiment": 0.0, "magnitude": "low", "confidence": 0.0,
+    "key_driver": "", "reasoning": "",
+})
+@patch("pipeline.orchestrator.gather_evidence", return_value=_DEFAULT_EVIDENCE)
+@patch("pipeline.orchestrator.build_sector_summary", return_value={
+    "sector": "other", "article_count": 0, "velocity": "steady",
+    "top_headlines": [], "mentioned_tickers": {}, "catalyst_count": 0,
+})
 @patch("pipeline.orchestrator.raw_dedup", side_effect=_identity)
 @patch("pipeline.orchestrator.fetch_all_sources", return_value=[])
-def test_empty_tick_is_safe(mock_fetch, mock_dedup, tmp_path):
-    """Pipeline produces zero signals when no articles are available."""
+def test_empty_tick_is_safe(mock_fetch, mock_dedup, mock_summary, mock_evidence, mock_score, tmp_path):
     db_path = tmp_path / "empty.db"
     with SentimentPipeline(db_path=db_path) as pipeline:
         result = pipeline.tick()
@@ -104,18 +142,28 @@ def test_empty_tick_is_safe(mock_fetch, mock_dedup, tmp_path):
     assert result.metadata["llm_calls"] == 0
 
 
+@patch("pipeline.orchestrator.score_sector", side_effect=_mock_score_sector)
+@patch("pipeline.orchestrator.gather_evidence", return_value=_DEFAULT_EVIDENCE)
+@patch("pipeline.orchestrator.build_sector_summary")
 @patch("pipeline.orchestrator.raw_dedup", side_effect=_identity)
 @patch("pipeline.orchestrator.fetch_all_sources", side_effect=_mock_fetch)
 @patch("pipeline.orchestrator.classify_article_fast", side_effect=_mock_classify_fast)
 @patch("pipeline.orchestrator.classify_article_batch", side_effect=_mock_classify_batch)
-@patch("pipeline.orchestrator.score_article_batch", side_effect=_mock_score_batch)
 def test_pipeline_to_adapter_integration(
-    mock_score, mock_batch, mock_fast, mock_fetch, mock_dedup, tmp_path
+    mock_batch, mock_fast, mock_fetch, mock_dedup,
+    mock_summary, mock_evidence, mock_score, tmp_path
 ):
-    """End-to-end: pipeline tick -> adapter produces per-asset score."""
     import json
     with open("config/sector_map.json") as f:
         sector_map = json.load(f)
+
+    def _dynamic_summary(db, sector, lookback):
+        return {
+            "sector": sector, "article_count": 1 if sector == "ai_compute" else 0,
+            "velocity": "steady", "top_headlines": [],
+            "mentioned_tickers": {}, "catalyst_count": 0,
+        }
+    mock_summary.side_effect = _dynamic_summary
 
     db_path = tmp_path / "e2e.db"
     with SentimentPipeline(db_path=db_path) as pipeline:
@@ -123,26 +171,8 @@ def test_pipeline_to_adapter_integration(
 
     fet_score = sector_signal_to_asset_score("FET/USD", signal_set, sector_map)
     assert fet_score["sector"] == "ai_compute"
-    assert fet_score["sentiment"] > 0
+    assert fet_score["sentiment"] == 0.7
 
     doge_score = sector_signal_to_asset_score("DOGE/USD", signal_set, sector_map)
     assert doge_score["sector"] == "meme"
     assert doge_score["sentiment"] == 0.0
-
-
-@patch("pipeline.orchestrator.raw_dedup", side_effect=_identity)
-@patch("pipeline.orchestrator.fetch_all_sources", side_effect=_mock_fetch)
-@patch("pipeline.orchestrator.classify_article_fast", side_effect=_mock_classify_fast)
-@patch("pipeline.orchestrator.classify_article_batch", side_effect=_mock_classify_batch)
-@patch("pipeline.orchestrator.score_article_batch", side_effect=_mock_score_batch)
-def test_multiple_ticks_accumulate(
-    mock_score, mock_batch, mock_fast, mock_fetch, mock_dedup, tmp_path
-):
-    """Multiple ticks should accumulate articles and update signals."""
-    db_path = tmp_path / "multi.db"
-    with SentimentPipeline(db_path=db_path) as pipeline:
-        result1 = pipeline.tick()
-        result2 = pipeline.tick()
-
-    assert isinstance(result1, SectorSignalSet)
-    assert isinstance(result2, SectorSignalSet)

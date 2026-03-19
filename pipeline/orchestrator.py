@@ -1,7 +1,7 @@
-"""Unified tick scheduler for the sentiment signal pipeline.
+"""Unified tick scheduler for the sentiment signal pipeline (v2).
 
-Coordinates news fetching, LLM classification (fast + batch paths),
-and signal aggregation on a 5-minute interval.
+Coordinates news fetching, LLM classification, and evidence-based
+per-sector scoring on a 5-minute interval.
 
 Usage::
 
@@ -29,9 +29,13 @@ from news_sentiment.processors import (
 )
 from news_sentiment.prompter import classify_article_batch, classify_article_fast
 from scripts.fetch_news import fetch_all as fetch_all_sources, deduplicate as raw_dedup
-from sentiment_score.models import SectorSignalSet
-from sentiment_score.processors import compute_sector_signals, load_sector_config
-from sentiment_score.prompter import score_article_batch
+from sentiment_score.models import SectorSignal, SectorSignalSet
+from sentiment_score.processors import (
+    build_sector_summary,
+    gather_evidence,
+    load_sector_config,
+)
+from sentiment_score.prompter import score_sector
 from utils.db import DataStore
 
 logger = logging.getLogger(__name__)
@@ -77,8 +81,7 @@ class SentimentPipeline:
         db_path: Path to the SQLite database file.
         sector_map_path: Path to ``config/sector_map.json``.
         sector_config_path: Path to ``config/sector_config.json``.
-        sources_config_path: Path to ``config/sources.json``.
-        batch_interval_min: Minutes between batch LLM processing runs.
+        batch_interval_min: Minutes between batch LLM classification runs.
     """
 
     def __init__(
@@ -97,6 +100,8 @@ class SentimentPipeline:
         self._sector_map: dict[str, Any] = {}
         self._sector_config: dict[str, Any] = {}
         self._last_batch_time: datetime | None = None
+        self._last_rss_fetch: datetime | None = None
+        self._previous_signals: dict[str, float] = {}
 
         self._batch_limiter = RateLimiter(calls_per_minute=20)
 
@@ -124,27 +129,32 @@ class SentimentPipeline:
     def __exit__(self, *exc: Any) -> None:
         self.close()
 
-    # -- batch timing --------------------------------------------------------
+    # -- timing helpers ------------------------------------------------------
 
     def _batch_due(self) -> bool:
-        """Return True if enough time has passed for a batch run."""
+        """Return True if enough time has passed for a batch classification run."""
         if self._last_batch_time is None:
             return True
         return datetime.now(tz=timezone.utc) - self._last_batch_time >= self._batch_interval
+
+    def _rss_due(self) -> bool:
+        """Return True if enough time has passed for an RSS fetch (15 min)."""
+        if self._last_rss_fetch is None:
+            return True
+        return (datetime.now(tz=timezone.utc) - self._last_rss_fetch).total_seconds() >= 900
 
     # -- main tick -----------------------------------------------------------
 
     def tick(self) -> SectorSignalSet:
         """Run one pipeline cycle and return the current sector signals.
 
-        Steps:
-        1. Fetch new articles from all enabled sources.
-        2. Deduplicate and keyword pre-filter.
+        v2 flow:
+        1. Fetch news (CryptoPanic every tick, RSS every 15 min).
+        2. Deduplicate + keyword pre-filter.
         3. Store to SQLite.
-        4. Fast path: classify catalyst articles immediately.
-        5. Batch path: if interval elapsed, process unprocessed backlog.
-        6. Aggregate all scored articles into sector signals.
-        7. Return the SectorSignalSet.
+        4. Classify articles into sectors (fast path for catalysts, batch for rest).
+        5. Score each sector with evidence (ONE LLM call per sector).
+        6. Return SectorSignalSet.
 
         Returns:
             A :class:`SectorSignalSet` with signals for all 6 sectors.
@@ -152,8 +162,12 @@ class SentimentPipeline:
         assert self._db is not None, "Pipeline not opened. Use 'with' or call open()."
         tick_start = time.monotonic()
 
-        # 1. Fetch (via scripts/fetch_news.py — sole fetching layer)
-        raw_dicts = fetch_all_sources()
+        # 1. Fetch (CryptoPanic every tick, RSS every 15 min)
+        if self._rss_due():
+            raw_dicts = fetch_all_sources()
+            self._last_rss_fetch = datetime.now(tz=timezone.utc)
+        else:
+            raw_dicts = fetch_all_sources(sources=["cryptopanic"])
         raw_dicts = raw_dedup(raw_dicts)
         raw_articles = [dict_to_article(d) for d in raw_dicts]
 
@@ -164,53 +178,99 @@ class SentimentPipeline:
         # 3. Store
         stored_count = store_articles(filtered, self._db)
 
-        # 4. Fast path — classify catalysts immediately
+        # 4. Classify all articles into sectors
         catalysts = [a for a in filtered if a.is_catalyst]
         fast_classified = 0
         llm_calls = 0
+
+        # Fast path: catalysts get single-shot classification + sentiment
         for article in catalysts:
             classification = classify_article_fast(article)
             mark_processed(article.id, classification, self._db)
             fast_classified += 1
-            llm_calls += 1  # single-shot fast classify
+            llm_calls += 1
 
-        # 5. Batch path — process unprocessed backlog every batch_interval
-        batch_processed = 0
+        # Batch path: classify remaining (sector only, no per-article scoring)
+        batch_classified = 0
         if self._batch_due():
             unprocessed = get_unprocessed_articles(self._db)
             for article in unprocessed:
                 self._batch_limiter.wait()
-
-                # Step 1: classify sector
                 classification = classify_article_batch(article)
-
-                # Step 2: score sentiment
-                score_result = score_article_batch(
-                    article.headline, article.body_snippet,
-                    classification.primary_sector,
-                )
-
-                # Merge score into classification
-                full_classification = ClassificationOutput(
-                    primary_sector=classification.primary_sector,
-                    secondary_sector=classification.secondary_sector,
-                    sentiment=score_result["sentiment"],
-                    magnitude=score_result["magnitude"],
-                    confidence=score_result.get("confidence", classification.confidence),
-                    cross_market=classification.cross_market,
-                    reasoning=score_result.get("reasoning", ""),
-                )
-
-                mark_processed(article.id, full_classification, self._db)
-                batch_processed += 1
-                llm_calls += 2  # classify + score
-
+                mark_processed(article.id, classification, self._db)
+                batch_classified += 1
+                llm_calls += 1
             self._last_batch_time = datetime.now(tz=timezone.utc)
 
-        # 6. Aggregate
-        signal_set = compute_sector_signals(self._db, self._sector_config)
+        # 5. Score each sector with evidence (ONE LLM call per sector)
+        now = datetime.now(tz=timezone.utc)
+        sectors: dict[str, SectorSignal] = {}
 
-        # 7. Logging
+        for sector, cfg in self._sector_config.items():
+            lookback_hours = float(cfg.get("lookback_hours", 24))
+            catalyst_threshold = float(cfg.get("catalyst_threshold", 0.7))
+
+            # Build summary + gather evidence
+            summary = build_sector_summary(self._db, sector, lookback_hours)
+            evidence = gather_evidence(
+                sector, self._sector_map, summary, self._previous_signals
+            )
+
+            # Score sector (skips LLM if 0 articles)
+            score_result = score_sector(summary, evidence)
+            if summary["article_count"] > 0:
+                llm_calls += 1
+
+            # Catalyst detection from fast-path articles
+            catalyst_active = False
+            catalyst_details = None
+            catalyst_cutoff = now - timedelta(minutes=30)
+
+            catalyst_rows = self._db.fetchall(
+                """SELECT id, llm_sentiment, llm_magnitude, timestamp
+                   FROM articles WHERE processed=1 AND llm_sector=?
+                   AND llm_magnitude='high' AND timestamp>=?""",
+                (sector, catalyst_cutoff.isoformat()),
+            )
+            for row in catalyst_rows:
+                if row["llm_sentiment"] is not None and abs(row["llm_sentiment"]) > catalyst_threshold:
+                    catalyst_active = True
+                    catalyst_details = {
+                        "article_id": row["id"],
+                        "sentiment": row["llm_sentiment"],
+                        "timestamp": row["timestamp"],
+                    }
+                    break
+
+            # Tick-based momentum
+            prev_sent = self._previous_signals.get(sector, 0.0)
+            momentum = score_result["sentiment"] - prev_sent
+
+            sectors[sector] = SectorSignal(
+                sector=sector,
+                sentiment=score_result["sentiment"],
+                momentum=momentum,
+                catalyst_active=catalyst_active,
+                catalyst_details=catalyst_details,
+                article_count=summary["article_count"],
+                confidence=score_result["confidence"],
+                key_driver=score_result.get("key_driver", ""),
+                reasoning=score_result.get("reasoning", ""),
+            )
+
+        signal_set = SectorSignalSet(
+            timestamp=now,
+            sectors=sectors,
+            metadata={
+                "sector_count": len(sectors),
+                "total_articles": sum(s.article_count for s in sectors.values()),
+            },
+        )
+
+        # Store previous signals for next tick
+        self._previous_signals = {s: sig.sentiment for s, sig in sectors.items()}
+
+        # Logging metadata
         tick_ms = (time.monotonic() - tick_start) * 1000
         signal_set.metadata.update({
             "articles_fetched": len(raw_articles),
@@ -219,21 +279,18 @@ class SentimentPipeline:
             "articles_stored": stored_count,
             "catalysts_detected": len(catalysts),
             "fast_path_classified": fast_classified,
-            "batch_processed": batch_processed,
+            "batch_classified": batch_classified,
             "llm_calls": llm_calls,
             "processing_time_ms": round(tick_ms, 1),
         })
 
-        strongest = max(
-            signal_set.sectors.values(),
-            key=lambda s: abs(s.sentiment),
-            default=None,
-        )
+        strongest = max(sectors.values(), key=lambda s: abs(s.sentiment), default=None)
         logger.info(
-            "tick: fetched=%d filtered=%d stored=%d fast=%d batch=%d "
+            "tick: fetched=%d filtered=%d fast=%d batch=%d sector_scores=%d "
             "llm_calls=%d strongest=%s(%.2f) time=%.0fms",
-            len(raw_articles), len(filtered), stored_count,
-            fast_classified, batch_processed, llm_calls,
+            len(raw_articles), len(filtered), fast_classified, batch_classified,
+            len([s for s in sectors.values() if s.article_count > 0]),
+            llm_calls,
             strongest.sector if strongest else "none",
             strongest.sentiment if strongest else 0.0,
             tick_ms,

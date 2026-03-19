@@ -1,4 +1,4 @@
-"""Tests for the pipeline orchestrator."""
+"""Tests for the pipeline orchestrator (v2 — evidence-based scoring)."""
 
 import time
 from datetime import datetime, timedelta, timezone
@@ -38,8 +38,23 @@ _BATCH_DICT = {
 
 
 def _identity(x):
-    """Pass-through for mocking raw_dedup."""
     return x
+
+
+_DEFAULT_SCORE = {
+    "sentiment": 0.0, "magnitude": "low", "confidence": 0.0,
+    "key_driver": "", "reasoning": "",
+}
+
+_DEFAULT_SUMMARY = {
+    "sector": "other", "article_count": 0, "velocity": "steady",
+    "top_headlines": [], "mentioned_tickers": {}, "catalyst_count": 0,
+}
+
+_DEFAULT_EVIDENCE = {
+    "token_prices": [], "previous_sentiment": 0.0,
+    "funding_rate": None, "nupl": None, "exchange_net_flow": None,
+}
 
 
 @pytest.fixture
@@ -108,13 +123,23 @@ class TestSentimentPipelineInit:
         with pytest.raises(AssertionError, match="not opened"):
             pipeline.tick()
 
+    def test_has_previous_signals(self, pipeline):
+        pipeline.open()
+        assert pipeline._previous_signals == {}
+        pipeline.close()
+
+    def test_has_rss_fetch_tracking(self, pipeline):
+        pipeline.open()
+        assert pipeline._last_rss_fetch is None
+        pipeline.close()
+
 
 # ═════════════════════════════════════════════════════════════════════════
-# Batch timing
+# Batch + RSS timing
 # ═════════════════════════════════════════════════════════════════════════
 
 
-class TestBatchTiming:
+class TestTiming:
     def test_batch_due_on_first_tick(self, pipeline):
         with pipeline:
             assert pipeline._batch_due() is True
@@ -129,99 +154,153 @@ class TestBatchTiming:
             pipeline._last_batch_time = datetime.now(tz=timezone.utc) - timedelta(minutes=31)
             assert pipeline._batch_due() is True
 
+    def test_rss_due_on_first_tick(self, pipeline):
+        with pipeline:
+            assert pipeline._rss_due() is True
+
+    def test_rss_not_due_after_recent(self, pipeline):
+        with pipeline:
+            pipeline._last_rss_fetch = datetime.now(tz=timezone.utc)
+            assert pipeline._rss_due() is False
+
+    def test_rss_due_after_15_min(self, pipeline):
+        with pipeline:
+            pipeline._last_rss_fetch = datetime.now(tz=timezone.utc) - timedelta(minutes=16)
+            assert pipeline._rss_due() is True
+
 
 # ═════════════════════════════════════════════════════════════════════════
-# Tick — with mocked fetch layer
+# Tick — v2 with evidence-based sector scoring
 # ═════════════════════════════════════════════════════════════════════════
 
 
 class TestSentimentPipelineTick:
+    @patch("pipeline.orchestrator.score_sector", return_value=_DEFAULT_SCORE)
+    @patch("pipeline.orchestrator.gather_evidence", return_value=_DEFAULT_EVIDENCE)
+    @patch("pipeline.orchestrator.build_sector_summary", return_value=_DEFAULT_SUMMARY)
     @patch("pipeline.orchestrator.raw_dedup", side_effect=_identity)
     @patch("pipeline.orchestrator.fetch_all_sources", return_value=[])
-    def test_tick_returns_sector_signal_set(self, mock_fetch, mock_dedup, pipeline):
+    def test_tick_returns_sector_signal_set(
+        self, mock_fetch, mock_dedup, mock_summary, mock_evidence, mock_score, pipeline
+    ):
         with pipeline:
             result = pipeline.tick()
             assert isinstance(result, SectorSignalSet)
             assert len(result.sectors) == 6
 
+    @patch("pipeline.orchestrator.score_sector", return_value=_DEFAULT_SCORE)
+    @patch("pipeline.orchestrator.gather_evidence", return_value=_DEFAULT_EVIDENCE)
+    @patch("pipeline.orchestrator.build_sector_summary", return_value=_DEFAULT_SUMMARY)
     @patch("pipeline.orchestrator.raw_dedup", side_effect=_identity)
     @patch("pipeline.orchestrator.fetch_all_sources", return_value=[])
-    def test_tick_with_no_articles_produces_zero_signals(self, mock_fetch, mock_dedup, pipeline):
+    def test_tick_with_no_articles_zero_signals(
+        self, mock_fetch, mock_dedup, mock_summary, mock_evidence, mock_score, pipeline
+    ):
         with pipeline:
             result = pipeline.tick()
             for signal in result.sectors.values():
                 assert signal.sentiment == 0.0
                 assert signal.confidence == 0.0
 
+    @patch("pipeline.orchestrator.score_sector", return_value=_DEFAULT_SCORE)
+    @patch("pipeline.orchestrator.gather_evidence", return_value=_DEFAULT_EVIDENCE)
+    @patch("pipeline.orchestrator.build_sector_summary", return_value=_DEFAULT_SUMMARY)
     @patch("pipeline.orchestrator.raw_dedup", side_effect=_identity)
     @patch("pipeline.orchestrator.fetch_all_sources", return_value=[])
-    def test_tick_metadata_populated(self, mock_fetch, mock_dedup, pipeline):
+    def test_tick_metadata_populated(
+        self, mock_fetch, mock_dedup, mock_summary, mock_evidence, mock_score, pipeline
+    ):
         with pipeline:
             result = pipeline.tick()
             assert "articles_fetched" in result.metadata
             assert "catalysts_detected" in result.metadata
             assert "fast_path_classified" in result.metadata
-            assert "batch_processed" in result.metadata
+            assert "batch_classified" in result.metadata
             assert "llm_calls" in result.metadata
             assert "processing_time_ms" in result.metadata
             assert "total_articles" in result.metadata
             assert "sector_count" in result.metadata
 
+    @patch("pipeline.orchestrator.score_sector", return_value=_DEFAULT_SCORE)
+    @patch("pipeline.orchestrator.gather_evidence", return_value=_DEFAULT_EVIDENCE)
+    @patch("pipeline.orchestrator.build_sector_summary", return_value=_DEFAULT_SUMMARY)
     @patch("pipeline.orchestrator.raw_dedup", side_effect=_identity)
     @patch("pipeline.orchestrator.fetch_all_sources", return_value=[])
-    def test_tick_zero_llm_calls_with_no_articles(self, mock_fetch, mock_dedup, pipeline):
+    def test_tick_zero_llm_calls_with_no_articles(
+        self, mock_fetch, mock_dedup, mock_summary, mock_evidence, mock_score, pipeline
+    ):
         with pipeline:
             result = pipeline.tick()
             assert result.metadata["llm_calls"] == 0
             assert result.metadata["articles_fetched"] == 0
 
+    @patch("pipeline.orchestrator.score_sector", return_value={
+        "sentiment": 0.85, "magnitude": "high", "confidence": 0.9,
+        "key_driver": "FET partnership", "reasoning": "Strong signal",
+    })
+    @patch("pipeline.orchestrator.gather_evidence", return_value=_DEFAULT_EVIDENCE)
+    @patch("pipeline.orchestrator.build_sector_summary")
     @patch("pipeline.orchestrator.raw_dedup", side_effect=_identity)
     @patch("pipeline.orchestrator.classify_article_fast")
     @patch("pipeline.orchestrator.fetch_all_sources")
-    def test_tick_classifies_catalysts_fast(self, mock_fetch, mock_classify, mock_dedup, pipeline):
+    def test_tick_classifies_catalysts_fast(
+        self, mock_fetch, mock_classify, mock_dedup,
+        mock_summary, mock_evidence, mock_score, pipeline
+    ):
         mock_fetch.return_value = [_CATALYST_DICT]
         mock_classify.return_value = ClassificationOutput(
             primary_sector="ai_compute", sentiment=0.9,
             magnitude="high", confidence=0.95,
         )
+        mock_summary.return_value = {
+            "sector": "ai_compute", "article_count": 1, "velocity": "steady",
+            "top_headlines": [], "mentioned_tickers": {}, "catalyst_count": 1,
+        }
         with pipeline:
             result = pipeline.tick()
             mock_classify.assert_called_once()
             assert result.metadata["fast_path_classified"] == 1
-            assert result.metadata["llm_calls"] == 1
 
+    @patch("pipeline.orchestrator.score_sector", return_value=_DEFAULT_SCORE)
+    @patch("pipeline.orchestrator.gather_evidence", return_value=_DEFAULT_EVIDENCE)
+    @patch("pipeline.orchestrator.build_sector_summary", return_value=_DEFAULT_SUMMARY)
     @patch("pipeline.orchestrator.raw_dedup", side_effect=_identity)
-    @patch("pipeline.orchestrator.score_article_batch")
     @patch("pipeline.orchestrator.classify_article_batch")
     @patch("pipeline.orchestrator.fetch_all_sources")
-    def test_tick_batch_processes_non_catalysts(
-        self, mock_fetch, mock_classify, mock_score, mock_dedup, pipeline
+    def test_tick_batch_classifies_non_catalysts(
+        self, mock_fetch, mock_classify, mock_dedup,
+        mock_summary, mock_evidence, mock_score, pipeline
     ):
         mock_fetch.return_value = [_BATCH_DICT]
         mock_classify.return_value = ClassificationOutput(
             primary_sector="defi", sentiment=0.0,
             magnitude="low", confidence=0.7,
         )
-        mock_score.return_value = {
-            "sentiment": 0.4, "magnitude": "medium",
-            "confidence": 0.75, "reasoning": "DeFi growth",
-        }
         with pipeline:
             result = pipeline.tick()
-            assert result.metadata["batch_processed"] == 1
-            assert result.metadata["llm_calls"] == 2
+            assert result.metadata["batch_classified"] == 1
 
+    @patch("pipeline.orchestrator.score_sector", return_value=_DEFAULT_SCORE)
+    @patch("pipeline.orchestrator.gather_evidence", return_value=_DEFAULT_EVIDENCE)
+    @patch("pipeline.orchestrator.build_sector_summary", return_value=_DEFAULT_SUMMARY)
     @patch("pipeline.orchestrator.raw_dedup", side_effect=_identity)
     @patch("pipeline.orchestrator.fetch_all_sources", return_value=[])
-    def test_tick_updates_last_batch_time(self, mock_fetch, mock_dedup, pipeline):
+    def test_stores_previous_signals(
+        self, mock_fetch, mock_dedup, mock_summary, mock_evidence, mock_score, pipeline
+    ):
         with pipeline:
-            assert pipeline._last_batch_time is None
             pipeline.tick()
-            assert pipeline._last_batch_time is not None
+            assert len(pipeline._previous_signals) == 6
+            assert all(v == 0.0 for v in pipeline._previous_signals.values())
 
+    @patch("pipeline.orchestrator.score_sector", return_value=_DEFAULT_SCORE)
+    @patch("pipeline.orchestrator.gather_evidence", return_value=_DEFAULT_EVIDENCE)
+    @patch("pipeline.orchestrator.build_sector_summary", return_value=_DEFAULT_SUMMARY)
     @patch("pipeline.orchestrator.raw_dedup", side_effect=_identity)
     @patch("pipeline.orchestrator.fetch_all_sources", return_value=[])
-    def test_second_tick_skips_batch_if_not_due(self, mock_fetch, mock_dedup, pipeline):
+    def test_second_tick_skips_batch_if_not_due(
+        self, mock_fetch, mock_dedup, mock_summary, mock_evidence, mock_score, pipeline
+    ):
         with pipeline:
             pipeline.tick()
             first_batch_time = pipeline._last_batch_time

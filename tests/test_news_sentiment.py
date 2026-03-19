@@ -311,6 +311,23 @@ class TestDeduplicate:
         assert len(result) == 1
         assert result[0].id == "j1"  # keeps first
 
+    def test_jaccard_dedup_against_db(self, tmp_db):
+        """Headlines similar to recent DB articles should be deduped."""
+        existing = _make_article(
+            id="db1",
+            headline="Bitcoin surges past 100K on massive ETF inflows",
+            url="https://old.com/1",
+        )
+        store_articles([existing], tmp_db)
+
+        new_article = _make_article(
+            id="new1",
+            headline="Bitcoin surges past 100K on massive ETF inflows today",
+            url="https://new.com/1",
+        )
+        result = deduplicate([new_article], tmp_db)
+        assert len(result) == 0
+
     def test_different_articles_kept(self, tmp_db):
         articles = [
             _make_article(id="d1", headline="Bitcoin rallies on ETF news"),

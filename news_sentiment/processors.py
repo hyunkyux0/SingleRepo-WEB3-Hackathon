@@ -143,15 +143,16 @@ def deduplicate(
 ) -> list[ArticleInput]:
     """Remove duplicate articles.
 
-    Deduplication uses two strategies:
+    Deduplication uses three strategies:
 
     1. **Exact URL match** against articles already stored in the database.
-    2. **Headline similarity** via Jaccard coefficient > 0.7 within the
-       incoming batch.
+    2. **Headline similarity** via Jaccard coefficient > 0.7 against the
+       last 200 articles in the database.
+    3. **Headline similarity** within the incoming batch.
 
     Args:
         articles: Incoming articles to deduplicate.
-        db: An open :class:`DataStore` for checking existing URLs.
+        db: An open :class:`DataStore` for checking existing URLs and headlines.
 
     Returns:
         Deduplicated list of articles.
@@ -171,14 +172,30 @@ def deduplicate(
             continue
         unique.append(art)
 
-    # 2. Remove near-duplicate headlines within the batch (Jaccard > 0.7)
+    # 2. Fetch recent DB headlines for Jaccard comparison
+    db_headlines: list[str] = []
+    recent_rows = db.fetchall(
+        "SELECT headline FROM articles ORDER BY timestamp DESC LIMIT 200"
+    )
+    for row in recent_rows:
+        if row["headline"]:
+            db_headlines.append(row["headline"])
+
+    # 3. Remove near-duplicates against DB + within batch (Jaccard > 0.7)
     deduped: list[ArticleInput] = []
     for art in unique:
         is_dup = False
-        for kept in deduped:
-            if _jaccard_similarity(art.headline, kept.headline) > 0.7:
+        # Check against DB headlines
+        for db_hl in db_headlines:
+            if _jaccard_similarity(art.headline, db_hl) > 0.7:
                 is_dup = True
                 break
+        # Check against already-kept batch articles
+        if not is_dup:
+            for kept in deduped:
+                if _jaccard_similarity(art.headline, kept.headline) > 0.7:
+                    is_dup = True
+                    break
         if not is_dup:
             deduped.append(art)
 

@@ -101,6 +101,17 @@ class TestSectorSignal:
         assert sig.catalyst_details is None
         assert sig.article_count == 0
         assert sig.confidence == 0.0
+        assert sig.key_driver == ""
+        assert sig.reasoning == ""
+
+    def test_new_fields_populated(self):
+        sig = SectorSignal(
+            sector="ai_compute", sentiment=0.5, momentum=0.2,
+            key_driver="NVIDIA partnership",
+            reasoning="Strong bullish signal from NVIDIA. FET already up 5%.",
+        )
+        assert sig.key_driver == "NVIDIA partnership"
+        assert "NVIDIA" in sig.reasoning
 
 
 class TestSectorSignalSet:

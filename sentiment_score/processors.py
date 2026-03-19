@@ -13,6 +13,8 @@ import math
 from datetime import datetime, timedelta, timezone
 from typing import Any
 
+import requests
+
 from sentiment_score.models import ScoredArticle, SectorSignal, SectorSignalSet
 from utils.db import DataStore
 
@@ -475,3 +477,216 @@ def compute_sector_signals(
     )
 
     return signal_set
+
+
+# ---------------------------------------------------------------------------
+# v2: Sector summary (deterministic)
+# ---------------------------------------------------------------------------
+
+
+def build_sector_summary(
+    db: DataStore, sector: str, lookback_hours: float
+) -> dict[str, Any]:
+    """Build a deterministic summary of articles for one sector.
+
+    Queries the DB for classified articles in the given sector within
+    the lookback window. Returns headline list, article velocity,
+    ticker frequency, and catalyst count.
+
+    Args:
+        db: Open DataStore.
+        sector: Sector ID (e.g. "defi").
+        lookback_hours: How far back to look.
+
+    Returns:
+        Dict with sector, article_count, velocity, top_headlines,
+        mentioned_tickers, catalyst_count.
+    """
+    now = datetime.now(tz=timezone.utc)
+    cutoff = (now - timedelta(hours=lookback_hours)).isoformat()
+    prev_cutoff = (now - timedelta(hours=2 * lookback_hours)).isoformat()
+
+    # Current window: top 10 by relevance
+    current_rows = db.fetchall(
+        """SELECT headline, body_snippet, source, mentioned_tickers,
+                  relevance_score, is_catalyst, timestamp
+           FROM articles
+           WHERE processed = 1 AND llm_sector = ? AND timestamp >= ?
+           ORDER BY relevance_score DESC LIMIT 10""",
+        (sector, cutoff),
+    )
+
+    # Counts for velocity
+    current_count_row = db.fetchone(
+        "SELECT COUNT(*) as cnt FROM articles "
+        "WHERE processed=1 AND llm_sector=? AND timestamp>=?",
+        (sector, cutoff),
+    )
+    current_count = current_count_row["cnt"] if current_count_row else 0
+
+    prev_count_row = db.fetchone(
+        "SELECT COUNT(*) as cnt FROM articles "
+        "WHERE processed=1 AND llm_sector=? AND timestamp>=? AND timestamp<?",
+        (sector, prev_cutoff, cutoff),
+    )
+    prev_count = prev_count_row["cnt"] if prev_count_row else 0
+
+    # Velocity
+    if prev_count == 0:
+        velocity = "accelerating" if current_count > 0 else "steady"
+    elif current_count > prev_count * 1.5:
+        velocity = "accelerating"
+    elif current_count < prev_count * 0.5:
+        velocity = "decelerating"
+    else:
+        velocity = "steady"
+
+    # Build headlines + aggregate tickers
+    top_headlines: list[dict[str, Any]] = []
+    mentioned_tickers: dict[str, int] = {}
+    catalyst_count = 0
+
+    for row in current_rows:
+        ts = datetime.fromisoformat(row["timestamp"])
+        if ts.tzinfo is None:
+            ts = ts.replace(tzinfo=timezone.utc)
+        age_hours = round((now - ts).total_seconds() / 3600, 1)
+
+        tickers = json.loads(row["mentioned_tickers"]) if row["mentioned_tickers"] else []
+        for t in tickers:
+            mentioned_tickers[t] = mentioned_tickers.get(t, 0) + 1
+
+        if row["is_catalyst"]:
+            catalyst_count += 1
+
+        top_headlines.append({
+            "headline": row["headline"],
+            "snippet": row["body_snippet"] or "",
+            "source": row["source"],
+            "tickers": tickers,
+            "age_hours": age_hours,
+            "is_catalyst": bool(row["is_catalyst"]),
+        })
+
+    return {
+        "sector": sector,
+        "article_count": current_count,
+        "velocity": velocity,
+        "top_headlines": top_headlines,
+        "mentioned_tickers": mentioned_tickers,
+        "catalyst_count": catalyst_count,
+    }
+
+
+# ---------------------------------------------------------------------------
+# v2: Price fetching
+# ---------------------------------------------------------------------------
+
+# Map common tickers to Kraken pair format
+_KRAKEN_PAIRS: dict[str, str] = {
+    "BTC": "XBTUSD", "ETH": "ETHUSD", "SOL": "SOLUSD",
+    "XRP": "XRPUSD", "ADA": "ADAUSD", "DOT": "DOTUSD",
+    "AVAX": "AVAXUSD", "LINK": "LINKUSD", "UNI": "UNIUSD",
+    "AAVE": "AAVEUSD", "DOGE": "DOGEUSD", "SHIB": "SHIBUSD",
+    "FET": "FETUSD", "NEAR": "NEARUSD", "SUI": "SUIUSD",
+    "APT": "APTUSD", "FIL": "FILUSD", "LTC": "LTCUSD",
+}
+
+
+def fetch_current_prices(tickers: list[str]) -> list[dict[str, Any]]:
+    """Fetch current prices from Kraken REST API.
+
+    Args:
+        tickers: List of ticker symbols (e.g. ["BTC", "ETH"]).
+
+    Returns:
+        List of dicts with ticker, price, change_24h_pct.
+        Returns empty list on failure.
+    """
+    if not tickers:
+        return []
+
+    pairs = []
+    ticker_for_pair: dict[str, str] = {}
+    for t in tickers[:5]:
+        pair = _KRAKEN_PAIRS.get(t, f"{t}USD")
+        pairs.append(pair)
+        ticker_for_pair[pair] = t
+
+    try:
+        url = f"https://api.kraken.com/0/public/Ticker?pair={','.join(pairs)}"
+        resp = requests.get(url, timeout=10)
+        resp.raise_for_status()
+        data = resp.json()
+    except Exception:
+        logger.exception("Kraken price fetch failed")
+        return []
+
+    results: list[dict[str, Any]] = []
+    for pair_key, ticker in ticker_for_pair.items():
+        pair_data = None
+        for key in data.get("result", {}):
+            if pair_key in key or ticker in key:
+                pair_data = data["result"][key]
+                break
+        if pair_data is None:
+            continue
+
+        try:
+            price = float(pair_data["c"][0])
+            open_price = float(pair_data["o"])
+            change_pct = ((price - open_price) / open_price) * 100 if open_price else 0.0
+            results.append({
+                "ticker": ticker,
+                "price": price,
+                "change_24h_pct": round(change_pct, 3),
+            })
+        except (KeyError, ValueError, IndexError):
+            logger.warning("Failed to parse price for %s", ticker)
+            continue
+
+    return results
+
+
+# ---------------------------------------------------------------------------
+# v2: Evidence gathering
+# ---------------------------------------------------------------------------
+
+
+def gather_evidence(
+    sector: str,
+    sector_map: dict[str, Any],
+    sector_summary: dict[str, Any],
+    previous_signals: dict[str, float] | None,
+) -> dict[str, Any]:
+    """Gather quantitative market context for sector scoring.
+
+    Args:
+        sector: Sector ID.
+        sector_map: Parsed sector_map.json.
+        sector_summary: Output of build_sector_summary().
+        previous_signals: Dict mapping sector -> previous sentiment. None on first tick.
+
+    Returns:
+        Dict with token_prices, previous_sentiment, and optional signals.
+    """
+    # Find tokens in this sector
+    sector_tickers = [
+        pair.split("/")[0]
+        for pair, info in sector_map.items()
+        if info.get("primary") == sector
+    ][:5]
+
+    token_prices = fetch_current_prices(sector_tickers)
+
+    prev_sent = 0.0
+    if previous_signals and sector in previous_signals:
+        prev_sent = previous_signals[sector]
+
+    return {
+        "token_prices": token_prices,
+        "previous_sentiment": prev_sent,
+        "funding_rate": None,       # populated by derivatives module when available
+        "nupl": None,               # populated by on_chain module when available
+        "exchange_net_flow": None,   # populated by on_chain module when available
+    }

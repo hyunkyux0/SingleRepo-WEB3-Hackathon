@@ -21,7 +21,7 @@ import re
 import sys
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
 
@@ -64,7 +64,8 @@ def fetch_cryptopanic() -> list[dict]:
         return []
 
     # API format: /api/{plan}/v2/posts/ — "developer" is the free-tier plan name
-    url = f"https://cryptopanic.com/api/developer/v2/posts/?auth_token={api_key}&filter=hot&public=true"
+    # No filter = all recent posts chronologically (20 per page)
+    url = f"https://cryptopanic.com/api/developer/v2/posts/?auth_token={api_key}&public=true"
 
     try:
         resp = requests.get(url, timeout=15)
@@ -219,7 +220,49 @@ def fetch_all(
                 logger.exception("Fetcher failed for %s", source_id)
 
     logger.info("Total fetched: %d articles from %d sources", len(all_articles), len(futures))
+    all_articles = _filter_by_age(all_articles)
     return all_articles
+
+
+# ---------------------------------------------------------------------------
+# Age filter
+# ---------------------------------------------------------------------------
+
+
+def _filter_by_age(
+    articles: list[dict], max_age_hours: float = 24,
+) -> list[dict]:
+    """Discard articles older than max_age_hours.
+
+    Articles without a parseable timestamp are kept by default.
+
+    Args:
+        articles: List of article dicts.
+        max_age_hours: Maximum article age in hours.
+
+    Returns:
+        Filtered list with old articles removed.
+    """
+    now = datetime.now(tz=timezone.utc)
+    cutoff = now - timedelta(hours=max_age_hours)
+    result = []
+    for art in articles:
+        ts_str = art.get("timestamp", "")
+        if not ts_str:
+            result.append(art)
+            continue
+        try:
+            ts = datetime.fromisoformat(ts_str)
+            if ts.tzinfo is None:
+                ts = ts.replace(tzinfo=timezone.utc)
+            if ts >= cutoff:
+                result.append(art)
+        except (ValueError, TypeError):
+            result.append(art)
+    removed = len(articles) - len(result)
+    if removed > 0:
+        logger.info("Age filter: removed %d articles older than %.0fh", removed, max_age_hours)
+    return result
 
 
 # ---------------------------------------------------------------------------

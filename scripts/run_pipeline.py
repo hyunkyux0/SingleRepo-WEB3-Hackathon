@@ -88,6 +88,8 @@ def main() -> None:
                 "catalyst_details": sig.catalyst_details,
                 "article_count": sig.article_count,
                 "confidence": sig.confidence,
+                "key_driver": sig.key_driver,
+                "reasoning": sig.reasoning,
             }
             for sector, sig in signal_set.sectors.items()
         },
@@ -107,18 +109,26 @@ def main() -> None:
     print(f"After filter:        {meta.get('articles_after_filter', 0)}")
     print(f"Catalysts detected:  {meta.get('catalysts_detected', 0)}")
     print(f"Fast classified:     {meta.get('fast_path_classified', 0)}")
-    print(f"Batch processed:     {meta.get('batch_processed', 0)}")
+    print(f"Batch classified:    {meta.get('batch_classified', 0)}")
     print(f"LLM calls:           {meta.get('llm_calls', 0)}")
     print(f"Processing time:     {meta.get('processing_time_ms', 0):.0f}ms")
 
-    print(f"\n{'Sector':<16} {'Sent':>8} {'Mom':>8} {'Conf':>6} {'Arts':>5} {'Catalyst'}")
-    print(f"{'-'*16} {'-'*8} {'-'*8} {'-'*6} {'-'*5} {'-'*8}")
+    print(f"\n{'Sector':<16} {'Sent':>8} {'Mom':>8} {'Conf':>6} {'Arts':>5} {'Cat':>4} Key Driver")
+    print(f"{'-'*16} {'-'*8} {'-'*8} {'-'*6} {'-'*5} {'-'*4} {'-'*30}")
     for sector, sig in sorted(signal_set.sectors.items()):
-        catalyst = "YES" if sig.catalyst_active else ""
+        catalyst = "Y" if sig.catalyst_active else ""
+        driver = sig.key_driver[:30] if sig.key_driver else ""
         print(
             f"{sector:<16} {sig.sentiment:>+8.4f} {sig.momentum:>+8.4f} "
-            f"{sig.confidence:>6.3f} {sig.article_count:>5d} {catalyst}"
+            f"{sig.confidence:>6.3f} {sig.article_count:>5d} {catalyst:>4} {driver}"
         )
+
+    # Print reasoning for sectors with signal
+    has_reasoning = [(s, sig) for s, sig in signal_set.sectors.items() if sig.reasoning and sig.reasoning != "No articles in window."]
+    if has_reasoning:
+        print(f"\nSector Reasoning:")
+        for sector, sig in has_reasoning:
+            print(f"  [{sector}] {sig.reasoning}")
 
     # Print top movers
     non_zero = {k: v for k, v in asset_scores.items() if v["sentiment"] != 0.0}

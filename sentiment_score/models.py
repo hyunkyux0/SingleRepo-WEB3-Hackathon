@@ -35,6 +35,8 @@ class SectorSignal(BaseModel):
     catalyst_details: Optional[dict] = None
     article_count: int = 0
     confidence: float = 0.0  # scales with volume + LLM confidence
+    key_driver: str = ""     # primary factor driving the score
+    reasoning: str = ""      # LLM explanation referencing evidence
 
 
 class SectorSignalSet(BaseModel):
