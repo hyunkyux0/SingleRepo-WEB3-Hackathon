@@ -30,18 +30,21 @@ class CoinMetricsCollector:
         """
         if self._coverage_cache:
             return self._coverage_cache
+        asset_set = set(assets)
         try:
+            # Fetch full catalog (no asset filter) because CoinMetrics returns
+            # 400 if ANY requested asset ID is unknown (e.g. "1000cheems").
+            # We intersect locally instead.
             resp = requests.get(
                 f"{self.BASE_URL}/catalog/assets",
-                params={"assets": ",".join(a.lower() for a in assets)},
-                timeout=15,
+                timeout=30,
             )
             resp.raise_for_status()
             data = resp.json().get("data", [])
             for entry in data:
                 cm_id = entry.get("asset", "")
                 upper = cm_id.upper()
-                if upper not in assets:
+                if upper not in asset_set:
                     continue
                 available = {m["metric"] for m in entry.get("metrics", [])}
                 has_flows = "FlowInExNtv" in available and "FlowOutExNtv" in available
