@@ -14,18 +14,19 @@ class CoinMetricsCollector:
 
     BASE_URL = "https://community-api.coinmetrics.io/v4"
 
-    # CoinMetrics uses lowercase asset IDs -- discovered at runtime
-    _coverage_cache: dict[str, str] = {}  # asset -> cm_id, populated by check_coverage()
+    REQUIRED_METRICS = {"FlowInExNtv", "FlowOutExNtv", "AdrActCnt", "CapMVRVCur"}
+    # Subset of metrics for assets that lack exchange flow data
+    FALLBACK_METRICS = {"AdrActCnt", "CapMVRVCur"}
 
     def __init__(self) -> None:
-        # Instance-level cache so it is not shared across instances
-        self._coverage_cache: dict[str, str] = {}
+        self._coverage_cache: dict[str, dict] = {}  # asset -> {"cm_id": str, "has_flows": bool}
 
-    def check_coverage(self, assets: list[str]) -> dict[str, str]:
+    def check_coverage(self, assets: list[str]) -> dict[str, dict]:
         """Runtime coverage check: query CoinMetrics catalog to discover
-        which assets are available (spec Section 2 coverage note).
-        Returns dict mapping asset -> coinmetrics_id for available assets.
-        Caches result for subsequent calls.
+        which assets are available and which metrics they support.
+
+        Returns dict mapping asset -> {"cm_id": str, "has_flows": bool, "metrics": set}.
+        Assets not in CoinMetrics at all are excluded.
         """
         if self._coverage_cache:
             return self._coverage_cache
@@ -40,14 +41,27 @@ class CoinMetricsCollector:
             for entry in data:
                 cm_id = entry.get("asset", "")
                 upper = cm_id.upper()
-                if upper in assets:
-                    self._coverage_cache[upper] = cm_id
+                if upper not in assets:
+                    continue
+                available = {m["metric"] for m in entry.get("metrics", [])}
+                has_flows = "FlowInExNtv" in available and "FlowOutExNtv" in available
+                has_mvrv = "CapMVRVCur" in available
+                has_addr = "AdrActCnt" in available
+                if not has_mvrv and not has_addr:
+                    logger.info(f"CoinMetrics: {upper} has no usable metrics, skipping")
+                    continue
+                self._coverage_cache[upper] = {
+                    "cm_id": cm_id,
+                    "has_flows": has_flows,
+                    "has_mvrv": has_mvrv,
+                    "has_addr": has_addr,
+                    "metrics": available,
+                }
         except Exception as e:
             logger.warning(f"CoinMetrics coverage check failed: {e}")
-            # Fallback: try common assets
-            for a in assets:
-                self._coverage_cache[a] = a.lower()
-        logger.info(f"CoinMetrics coverage: {len(self._coverage_cache)}/{len(assets)} assets available")
+        full = sum(1 for v in self._coverage_cache.values() if v["has_flows"])
+        partial = len(self._coverage_cache) - full
+        logger.info(f"CoinMetrics coverage: {full} full (with flows), {partial} partial, {len(assets) - len(self._coverage_cache)} unavailable")
         return self._coverage_cache
 
     def poll_interval_seconds(self) -> int:
@@ -59,16 +73,30 @@ class CoinMetricsCollector:
 
         coverage = self.check_coverage(assets)
         for asset in assets:
-            cm_asset = coverage.get(asset)
-            if not cm_asset:
+            info = coverage.get(asset)
+            if not info:
                 logger.debug(f"CoinMetrics: no coverage for {asset}, skipping")
                 continue
+
+            cm_asset = info["cm_id"]
+            # Only request metrics this asset actually has
+            request_metrics = []
+            if info["has_flows"]:
+                request_metrics.extend(["FlowInExNtv", "FlowOutExNtv"])
+            if info["has_mvrv"]:
+                request_metrics.append("CapMVRVCur")
+            if info["has_addr"]:
+                request_metrics.append("AdrActCnt")
+
+            if not request_metrics:
+                continue
+
             try:
                 resp = requests.get(
                     f"{self.BASE_URL}/timeseries/asset-metrics",
                     params={
                         "assets": cm_asset,
-                        "metrics": "FlowInExNtv,FlowOutExNtv,AdrActCnt,CapMVRVCur",
+                        "metrics": ",".join(request_metrics),
                         "start_time": yesterday,
                         "end_time": yesterday,
                         "frequency": "1d",
