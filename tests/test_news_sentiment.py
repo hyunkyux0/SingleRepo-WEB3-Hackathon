@@ -10,7 +10,6 @@ import pytest
 from news_sentiment.models import ArticleInput, ClassificationOutput
 from news_sentiment.processors import (
     load_sector_map,
-    load_sources_config,
     _jaccard_similarity,
     deduplicate,
     keyword_prefilter,
@@ -144,8 +143,10 @@ class TestConfigLoaders:
         assert sm["NEAR/USD"]["secondary"] == "ai_compute"
         assert sm["BTC/USD"]["secondary"] == "store_of_value"
 
-    def test_sources_config_structure(self):
-        sc = load_sources_config("config/sources.json")
+    def test_sources_config_loads(self):
+        import json
+        with open("config/sources.json") as f:
+            sc = json.load(f)
         assert "sources" in sc
         for s in sc["sources"]:
             assert "id" in s

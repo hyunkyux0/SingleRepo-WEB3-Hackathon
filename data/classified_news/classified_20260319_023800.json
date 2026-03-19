@@ -1,0 +1,88 @@
+{
+  "classified_at": "2026-03-19T02:38:00.150039+00:00",
+  "article_count": 3,
+  "sectors_summary": {
+    "ai_compute": 1,
+    "l1_infra": 1,
+    "meme": 1
+  },
+  "catalysts_count": 0,
+  "articles": [
+    {
+      "id": "8104e51306490864",
+      "timestamp": "2026-03-18T23:32:31+00:00",
+      "source": "rss_decrypt",
+      "headline": "Coalition Urges OpenAI to Scrap AI Ballot Measure Over Child Safety Concerns",
+      "body_snippet": "Advocacy groups say the OpenAI-backed measure would limit legal accountability and lock in narrow protections for children.",
+      "url": "https://decrypt.co/361638/coalition-openai-scrap-ai-ballot-measure-child-safety",
+      "mentioned_tickers": [],
+      "source_sentiment": null,
+      "relevance_score": 0.15,
+      "is_catalyst": false,
+      "matched_sectors": [],
+      "classification": {
+        "primary_sector": "ai_compute",
+        "secondary_sector": null,
+        "confidence": 0.72,
+        "cross_market": true,
+        "llm_used": "openrouter/openai/gpt-5.4-nano",
+        "tokens_used": 306,
+        "sentiment": 0.0,
+        "magnitude": "low",
+        "reasoning": ""
+      }
+    },
+    {
+      "id": "52069cd6d47ddc99",
+      "timestamp": "2026-03-18T21:00:02+00:00",
+      "source": "rss_decrypt",
+      "headline": "Algorand Foundation Cuts 25% of Staff as Crypto Industry Layoffs Grow",
+      "body_snippet": "The organization behind layer-1 blockchain Algorand laid off 25% of its staff due to macroeconomic uncertainty and lower crypto prices.",
+      "url": "https://decrypt.co/361625/algorand-foundation-cuts-staff-crypto-industry-layoffs-grow",
+      "mentioned_tickers": [],
+      "source_sentiment": null,
+      "relevance_score": 0.25,
+      "is_catalyst": false,
+      "matched_sectors": [],
+      "classification": {
+        "primary_sector": "l1_infra",
+        "secondary_sector": null,
+        "confidence": 0.86,
+        "cross_market": false,
+        "llm_used": "openrouter/openai/gpt-5.4-nano",
+        "tokens_used": 316,
+        "sentiment": 0.0,
+        "magnitude": "low",
+        "reasoning": ""
+      }
+    },
+    {
+      "id": "7bd0815e89deb081",
+      "timestamp": "2026-03-18T20:41:27+00:00",
+      "source": "rss_decrypt",
+      "headline": "Trump White House Registers Aliens.gov—Is the UFO File Drop Imminent?",
+      "body_snippet": "The White House registered aliens.gov, a month after Trump ordered the release of all government UAP and UFO files following a viral Obama moment.",
+      "url": "https://decrypt.co/361606/trumps-white-house-registers-aliens-gov-ufo-file-drop-imminent",
+      "mentioned_tickers": [
+        "TRUMP"
+      ],
+      "source_sentiment": null,
+      "relevance_score": 0.3,
+      "is_catalyst": false,
+      "matched_sectors": [
+        "meme"
+      ],
+      "classification": {
+        "primary_sector": "meme",
+        "secondary_sector": null,
+        "confidence": 0.44,
+        "cross_market": false,
+        "llm_used": "openrouter/openai/gpt-5.4-nano",
+        "tokens_used": 322,
+        "sentiment": 0.0,
+        "magnitude": "low",
+        "reasoning": ""
+      }
+    }
+  ]
+}

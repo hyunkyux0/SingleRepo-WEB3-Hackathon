@@ -1,0 +1,851 @@
+{
+  "timestamp": "2026-03-19T02-50-51",
+  "exchange": "bybit",
+  "assets": [
+    "PUMP",
+    "1000CHEEMS",
+    "PENGU",
+    "DOGE",
+    "LINEA",
+    "WLFI",
+    "ENA",
+    "PLUME",
+    "XPL",
+    "TRX",
+    "ADA",
+    "BIO",
+    "XRP",
+    "HBAR",
+    "HEMI",
+    "SEI",
+    "ARB",
+    "TUT",
+    "POL",
+    "FET",
+    "XLM",
+    "ASTER",
+    "WLD",
+    "S",
+    "WIF",
+    "SUI",
+    "CFX",
+    "CRV",
+    "BMT",
+    "ONDO",
+    "EDEN",
+    "NEAR",
+    "STO",
+    "FIL",
+    "AVNT",
+    "DOT",
+    "EIGEN",
+    "APT",
+    "FORM",
+    "VIRTUAL",
+    "UNI",
+    "TON",
+    "MIRA",
+    "LISTA",
+    "OPEN",
+    "TRUMP",
+    "SOMI",
+    "ICP",
+    "SOL",
+    "LINK",
+    "AVAX",
+    "PENDLE",
+    "CAKE",
+    "ETH",
+    "ZEN",
+    "LTC",
+    "ZEC",
+    "BNB",
+    "AAVE",
+    "TAO",
+    "BTC",
+    "PAXG"
+  ],
+  "funding_rates": [
+    {
+      "asset": "PUMP",
+      "timestamp": "2025-06-03 00:00:00",
+      "exchange": "bybit",
+      "rate": 5e-05
+    },
+    {
+      "asset": "PENGU",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": -3.688e-05
+    },
+    {
+      "asset": "DOGE",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": 3.274e-05
+    },
+    {
+      "asset": "LINEA",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": 5e-05
+    },
+    {
+      "asset": "WLFI",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": 5e-05
+    },
+    {
+      "asset": "ENA",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": -2.404e-05
+    },
+    {
+      "asset": "PLUME",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": 5e-05
+    },
+    {
+      "asset": "XPL",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": -0.0003151
+    },
+    {
+      "asset": "TRX",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": 6.435e-05
+    },
+    {
+      "asset": "ADA",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": -1.184e-05
+    },
+    {
+      "asset": "BIO",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": 4.734e-05
+    },
+    {
+      "asset": "XRP",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": 9.54e-06
+    },
+    {
+      "asset": "HBAR",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": -0.00012471
+    },
+    {
+      "asset": "HEMI",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": 5e-05
+    },
+    {
+      "asset": "SEI",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": -5.96e-06
+    },
+    {
+      "asset": "ARB",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": -4.611e-05
+    },
+    {
+      "asset": "TUT",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": 5e-05
+    },
+    {
+      "asset": "POL",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": 5e-05
+    },
+    {
+      "asset": "FET",
+      "timestamp": "2024-06-07 08:00:00",
+      "exchange": "bybit",
+      "rate": 0.0001
+    },
+    {
+      "asset": "XLM",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": 2.688e-05
+    },
+    {
+      "asset": "ASTER",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": -7.9e-06
+    },
+    {
+      "asset": "WLD",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": -0.00012073
+    },
+    {
+      "asset": "S",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": -0.00012982
+    },
+    {
+      "asset": "WIF",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": 5e-05
+    },
+    {
+      "asset": "SUI",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": 0.0001
+    },
+    {
+      "asset": "CFX",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": 0.0001
+    },
+    {
+      "asset": "CRV",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": -7.94e-06
+    },
+    {
+      "asset": "BMT",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": 3.979e-05
+    },
+    {
+      "asset": "ONDO",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": -5.355e-05
+    },
+    {
+      "asset": "EDEN",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": 5e-05
+    },
+    {
+      "asset": "NEAR",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": -9.465e-05
+    },
+    {
+      "asset": "STO",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": 5e-05
+    },
+    {
+      "asset": "FIL",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": -2.022e-05
+    },
+    {
+      "asset": "AVNT",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": -0.00021394
+    },
+    {
+      "asset": "DOT",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": -0.00020988
+    },
+    {
+      "asset": "EIGEN",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": -0.00025975
+    },
+    {
+      "asset": "APT",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": -7.276e-05
+    },
+    {
+      "asset": "FORM",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": 5e-05
+    },
+    {
+      "asset": "VIRTUAL",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": 3.37e-06
+    },
+    {
+      "asset": "UNI",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": -3.05e-06
+    },
+    {
+      "asset": "TON",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": -5.43e-05
+    },
+    {
+      "asset": "MIRA",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": 5e-05
+    },
+    {
+      "asset": "LISTA",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": 5e-05
+    },
+    {
+      "asset": "OPEN",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": 5e-05
+    },
+    {
+      "asset": "TRUMP",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": -0.00018897
+    },
+    {
+      "asset": "SOMI",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": 5e-05
+    },
+    {
+      "asset": "ICP",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": 3.75e-06
+    },
+    {
+      "asset": "SOL",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": -8.398e-05
+    },
+    {
+      "asset": "LINK",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": -5.921e-05
+    },
+    {
+      "asset": "AVAX",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": 1.442e-05
+    },
+    {
+      "asset": "PENDLE",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": 0.0001
+    },
+    {
+      "asset": "CAKE",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": -1.36e-06
+    },
+    {
+      "asset": "ETH",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": 3.889e-05
+    },
+    {
+      "asset": "ZEN",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": -0.00024025
+    },
+    {
+      "asset": "LTC",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": 8.455e-05
+    },
+    {
+      "asset": "ZEC",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": 0.0001
+    },
+    {
+      "asset": "BNB",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": -3.321e-05
+    },
+    {
+      "asset": "AAVE",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": 6.89e-06
+    },
+    {
+      "asset": "TAO",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": 5e-05
+    },
+    {
+      "asset": "BTC",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": 1.783e-05
+    },
+    {
+      "asset": "PAXG",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": 5e-05
+    }
+  ],
+  "open_interest": [
+    {
+      "asset": "PENGU",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 2011220360.0,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "DOGE",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 1006487549.0,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "LINEA",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 814824160.0,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "WLFI",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 376705348.0,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "ENA",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 354315694.0,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "PLUME",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 263780884.0,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "XPL",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 244135221.0,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "TRX",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 103142602.0,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "ADA",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 204116432.0,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "BIO",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 105917190.0,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "XRP",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 151898377.1,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "HBAR",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 185517032.0,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "HEMI",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 67950540.0,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "SEI",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 218150485.0,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "ARB",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 207659751.8,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "TUT",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 46197418.0,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "POL",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 160749684.0,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "XLM",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 85456405.0,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "ASTER",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 63495616.0,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "WLD",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 72214916.9,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "S",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 99006828.0,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "WIF",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 77949428.0,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "SUI",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 61780950.0,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "CFX",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 31564794.0,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "CRV",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 63040081.3,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "BMT",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 17400066.0,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "ONDO",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 77959816.0,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "EDEN",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 9692424.0,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "NEAR",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 33764413.7,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "STO",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 16033238.0,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "FIL",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 15948976.2,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "AVNT",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 29187436.0,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "DOT",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 19909309.2,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "EIGEN",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 34207024.0,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "APT",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 23469993.6,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "FORM",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 2394726.0,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "VIRTUAL",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 24719024.0,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "UNI",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 7110656.0,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "TON",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 18838189.8,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "MIRA",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 10666947.19999999,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "LISTA",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 2756928.0,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "OPEN",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 5166624.0,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "TRUMP",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 9019271.69999999,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "SOMI",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 12073375.6,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "ICP",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 7624205.6,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "SOL",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 6391113.6,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "LINK",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 6203771.0,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "AVAX",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 5167931.2,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "PENDLE",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 4502414.0,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "CAKE",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 1994187.0,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "ETH",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 839005.3,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "ZEN",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 653567.19999999,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "LTC",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 927434.5,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "ZEC",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 162977.32999999,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "BNB",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 134494.44,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "AAVE",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 366942.38,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "TAO",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 169001.51,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "BTC",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 47783.053,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "PAXG",
+      "timestamp": "2026-03-19 02:50:00",
+      "exchange": "bybit",
+      "oi_value": 6512.588,
+      "oi_usd": 0.0
+    }
+  ]
+}

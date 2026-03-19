@@ -22,7 +22,7 @@ OUTPUT_DIR = Path("data/asset_registry")
 
 def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(description="Discover assets with perpetual futures")
-    parser.add_argument("--max-assets", type=int, default=40)
+    parser.add_argument("--max-assets", type=int, default=100)
     parser.add_argument("--dry-run", action="store_true", help="Don't write to DB")
     args = parser.parse_args(argv)
 

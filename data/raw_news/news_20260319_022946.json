@@ -1,0 +1,911 @@
+{
+  "fetched_at": "2026-03-19T02:29:46.175050+00:00",
+  "article_count": 90,
+  "sources": [
+    "rss_coindesk",
+    "rss_decrypt",
+    "rss_cointelegraph"
+  ],
+  "articles": [
+    {
+      "id": "8104e51306490864",
+      "timestamp": "2026-03-18T23:32:31+00:00",
+      "source": "rss_decrypt",
+      "headline": "Coalition Urges OpenAI to Scrap AI Ballot Measure Over Child Safety Concerns",
+      "body_snippet": "Advocacy groups say the OpenAI-backed measure would limit legal accountability and lock in narrow protections for children.",
+      "url": "https://decrypt.co/361638/coalition-openai-scrap-ai-ballot-measure-child-safety",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "52069cd6d47ddc99",
+      "timestamp": "2026-03-18T21:00:02+00:00",
+      "source": "rss_decrypt",
+      "headline": "Algorand Foundation Cuts 25% of Staff as Crypto Industry Layoffs Grow",
+      "body_snippet": "The organization behind layer-1 blockchain Algorand laid off 25% of its staff due to macroeconomic uncertainty and lower crypto prices.",
+      "url": "https://decrypt.co/361625/algorand-foundation-cuts-staff-crypto-industry-layoffs-grow",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "7bd0815e89deb081",
+      "timestamp": "2026-03-18T20:41:27+00:00",
+      "source": "rss_decrypt",
+      "headline": "Trump White House Registers Aliens.gov—Is the UFO File Drop Imminent?",
+      "body_snippet": "The White House registered aliens.gov, a month after Trump ordered the release of all government UAP and UFO files following a viral Obama moment.",
+      "url": "https://decrypt.co/361606/trumps-white-house-registers-aliens-gov-ufo-file-drop-imminent",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "e1c46840215a27a7",
+      "timestamp": "2026-03-18T20:20:10+00:00",
+      "source": "rss_decrypt",
+      "headline": "From Coinbase to Ripple: The Biggest Crypto Cases Dumped by Trump's SEC",
+      "body_snippet": "Under President Trump, the SEC has backed down from nearly all its fights with crypto firms. These are the biggest cases ended so far.",
+      "url": "https://decrypt.co/308273/trump-sec-ending-crypto-lawsuits-investigations",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "af1dd79c7ecafae2",
+      "timestamp": "2026-03-18T18:11:15+00:00",
+      "source": "rss_decrypt",
+      "headline": "Bitcoin, Ethereum Waver as Fed Holds Interest Rates Steady",
+      "body_snippet": "Inflation has exceeded the central bank’s 2% target for nearly five years, but the Fed held rates firm again as Bitcoin and Ethereum wobbled.",
+      "url": "https://decrypt.co/361603/bitcoin-ethereum-waver-fed-holds-interest-rates-steady",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "67b2982c944c8c1f",
+      "timestamp": "2026-03-18T17:47:02+00:00",
+      "source": "rss_decrypt",
+      "headline": "Myriad Traders Slash Spring Rally Chances as Bitcoin, Ethereum Slide",
+      "body_snippet": "A hotter-than-expected inflation reading pushed crypto prices lower Wednesday—slashing the chances of a broad spring breakout.",
+      "url": "https://decrypt.co/361599/myriad-traders-slash-spring-rally-chances-as-bitcoin-ethereum-slide",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "99eb74c0567349f8",
+      "timestamp": "2026-03-18T17:38:38+00:00",
+      "source": "rss_decrypt",
+      "headline": "You Can Now Trade Official S&#038;P 500 Perpetual Futures via Hyperliquid",
+      "body_snippet": "The S&#038;P 500 index was licensed to Trade[XYZ], a provider of markets for real-world assets on Hyperliquid for perpetual futures.",
+      "url": "https://decrypt.co/361597/now-trade-official-sp-500-perpetual-futures-hyperliquid",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "8f3971d0a1a73039",
+      "timestamp": "2026-03-18T17:11:34+00:00",
+      "source": "rss_decrypt",
+      "headline": "Crypto Market Structure Bill to Face Key Vote in April and Must Pass by May, Senators Say",
+      "body_snippet": "Sen. Bernie Moreno said if the Clarity Act isn’t passed by May, “digital asset legislation will not pass for the foreseeable future.”",
+      "url": "https://decrypt.co/361581/crypto-market-structure-bill-key-vote-april-must-pass-may",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "ffa88fc2779ff8cc",
+      "timestamp": "2026-03-18T16:50:11+00:00",
+      "source": "rss_decrypt",
+      "headline": "Pudgy Penguins Launched A New Game. Crypto Scammers Made A Fake Version",
+      "body_snippet": "Malwarebytes has warned that a phishing campaign is mimicking the Pudgy World game to steal user credentials",
+      "url": "https://decrypt.co/361574/pudgy-penguins-launched-a-new-game-crypto-scammers-made-a-fake-version",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "c547995e6cbcb7ab",
+      "timestamp": "2026-03-18T16:43:03+00:00",
+      "source": "rss_decrypt",
+      "headline": "Stripe-Backed Tempo Network Launches With Focus on AI Agent Payments",
+      "body_snippet": "Tempo, the layer-1 blockchain backed by payments giant Stripe, launched its mainnet with a clear focus on AI agent payments.",
+      "url": "https://decrypt.co/361573/stripe-backed-tempo-network-launches-ai-agent-payments",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "a39fc4ce897f52a4",
+      "timestamp": "2026-03-18T16:34:19+00:00",
+      "source": "rss_decrypt",
+      "headline": "Citi Downgrades Crypto Exchange Gemini After Cutting Bitcoin, Ethereum Price Targets",
+      "body_snippet": "Gemini stock (GEMI) fell 16% on Wednesday following the downgrade and a broader market dip, after Citi cut its Bitcoin and Ethereum targets.",
+      "url": "https://decrypt.co/361496/citi-downgrades-gemini-cutting-bitcoin-ethereum-targets",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "c2c464897e19d6e1",
+      "timestamp": "2026-03-18T15:31:02+00:00",
+      "source": "rss_decrypt",
+      "headline": "'Crypto Castle': YouTube Comedy Takes You Back to When Bitcoin Was Just $250",
+      "body_snippet": "“The Crypto Castle” takes a look at the early days of Bitcoin—and the \"sad evolution\" it's undergone since then.",
+      "url": "https://decrypt.co/360897/new-youtube-comedy-set-bitcoin-just-250",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "328c39f6f1709693",
+      "timestamp": "2026-03-18T15:05:40+00:00",
+      "source": "rss_decrypt",
+      "headline": "Bitcoin, Ethereum Slip on Inflation Surprise as Oil Prices Jump",
+      "body_snippet": "Bitcoin fell alongside U.S. stocks after the world's largest gas field came under attack amid hotter-than-expected inflation data.",
+      "url": "https://decrypt.co/361556/bitcoin-ethereum-slip-inflation-surprise-oil-prices-jump",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "fa758a4a3254943c",
+      "timestamp": "2026-03-18T14:07:17+00:00",
+      "source": "rss_decrypt",
+      "headline": "Canadian Regulator Revokes Registrations of 23 Crypto Firms",
+      "body_snippet": "Canada's FINTRAC pulled the licenses of multiple money services businesses, in a \"significantly increased pace of action.\"",
+      "url": "https://decrypt.co/361546/canadian-regulator-revokes-registration-of-23-crypto-firms",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "c07ca61277db5664",
+      "timestamp": "2026-03-18T12:46:07+00:00",
+      "source": "rss_decrypt",
+      "headline": "Bitcoin ETFs' $1.2B Streak Hangs in Balance as FOMC Takes Center Stage",
+      "body_snippet": "Experts warn that Bitcoin ETF inflows remain \"episodic\" without policy shifts, ahead of today's FOMC meeting.",
+      "url": "https://decrypt.co/361518/bitcoin-etfs-1-2b-streak-hangs-in-balance-as-fomc-takes-center-stage",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "e655920443c35684",
+      "timestamp": "2026-03-18T12:04:23+00:00",
+      "source": "rss_decrypt",
+      "headline": "Morning Minute: The SEC &#038; CFTC Declare 'Most Crypto Assets' Are Not Securities",
+      "body_snippet": "After a decade of lawsuits, the SEC and CFTC finally wrote the rules for digital assets.",
+      "url": "https://decrypt.co/361508/morning-minute-the-sec-cftc-declare-most-crypto-assets-are-not-securities",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "0e3ca684272ceca3",
+      "timestamp": "2026-03-18T12:01:02+00:00",
+      "source": "rss_decrypt",
+      "headline": "Forget AGI—Top AI Models Still Struggle With Math",
+      "body_snippet": "New benchmark study results show leading AI models still lag humans in visual math reasoning.",
+      "url": "https://decrypt.co/361474/forget-agi-top-ai-models-still-struggle-with-math",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "931125d5d10f228d",
+      "timestamp": "2026-03-18T06:07:47+00:00",
+      "source": "rss_decrypt",
+      "headline": "UK Panel Calls Crypto Donations 'High Risk,' Seeks Immediate Ban",
+      "body_snippet": "A cross-party committee has warned that cryptocurrency donations leave UK politics open to foreign interference.",
+      "url": "https://decrypt.co/361481/uk-panel-calls-crypto-donations-high-risk-seeks-immediate-ban",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "1fbb66ffaab45a9a",
+      "timestamp": "2026-03-18T05:58:39+00:00",
+      "source": "rss_decrypt",
+      "headline": "Bitcoin Depot Flags Control 'Weaknesses' as Connecticut Halts Its Operations",
+      "body_snippet": "Its license was suspended after regulators accused the Bitcoin ATM operator of overcharging kiosk users and failing to provide some refunds.",
+      "url": "https://decrypt.co/361479/bitcoin-depot-flags-control-weaknesses-connecticut-halts-operations",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "419a283a0ca5ebe1",
+      "timestamp": "2026-03-18T04:22:09+00:00",
+      "source": "rss_decrypt",
+      "headline": "Democrats Press Meta Over Facial Recognition Plans for Smart Glasses",
+      "body_snippet": "Lawmakers are citing privacy risks tied to wearable AI and are asking how Meta intends to secure consent from both users and bystanders.",
+      "url": "https://decrypt.co/361477/democrats-press-meta-facial-recognition-plans-smart-glasses",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "6af8c12aa70e517b",
+      "timestamp": "2026-03-17T22:45:41+00:00",
+      "source": "rss_decrypt",
+      "headline": "Nvidia’s DLSS 5 Launch Sparks Meme Frenzy as Gamers Balk at AI ‘Neural Rendering’",
+      "body_snippet": "NVIDIA pitched DLSS 5 as a breakthrough in real-time rendering. Players saw something closer to AI overreach.",
+      "url": "https://decrypt.co/361465/nvidias-dlss-5-sparks-meme-frenzy-ai",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "65521b767ea9cc6a",
+      "timestamp": "2026-03-17T21:46:02+00:00",
+      "source": "rss_decrypt",
+      "headline": "Crypto Gift Card Platform Bitrefill Discloses Hack, Points Finger at North Korean Groups",
+      "body_snippet": "Bitrefill, which lets users swap Bitcoin, Dogecoin and other crypto assets for gift cards, disclosed a breach that took place on March 1.",
+      "url": "https://decrypt.co/361462/crypto-gift-card-platform-bitrefill-hack-north-korean-groups",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "a4df0ca26755b9d1",
+      "timestamp": "2026-03-17T21:09:30+00:00",
+      "source": "rss_decrypt",
+      "headline": "Crypto Bill Stablecoin Yield Compromise Could Come This Week: Tim Scott",
+      "body_snippet": "The White House is prepared to announce progress as soon as tomorrow on the issue plaguing crypto's market structure bill.",
+      "url": "https://decrypt.co/361456/tim-scott-crypto-bill-stablecoin-yield-compromise",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "1acc047ae5f9d286",
+      "timestamp": "2026-03-17T20:56:52+00:00",
+      "source": "rss_decrypt",
+      "headline": "Arizona Files Charges Against Kalshi, Calling Prediction Market an 'Illegal Gambling Operation'",
+      "body_snippet": "Prediction market platform Kalshi was hit with 20 criminal charges in Arizona, which alleged that it's an \"illegal gambling operation.\"",
+      "url": "https://decrypt.co/361452/arizona-files-charges-kalshi-prediction-market-illegal-gambling",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "eec60a43f7cc43f1",
+      "timestamp": "2026-03-17T20:35:27+00:00",
+      "source": "rss_decrypt",
+      "headline": "CFTC Clears Phantom to Connect Users to Regulated Derivatives Markets",
+      "body_snippet": "Under the ruling, the developer of the Phantom self-custody crypto wallet avoids having to register as a broker.",
+      "url": "https://decrypt.co/361449/phantom-cftc-regulated-derivatives-markets",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "72c074980100f86c",
+      "timestamp": "2026-03-17T20:05:00+00:00",
+      "source": "rss_decrypt",
+      "headline": "SEC Declares 'Most Crypto Assets' Not Securities, Including Staking, Airdrops and Bitcoin Mining",
+      "body_snippet": "SEC Chair Paul Atkins said the new securities guidance, which impacts \"most crypto assets,\" provides \"clear lines in clear terms.\"",
+      "url": "https://decrypt.co/361446/sec-most-crypto-assets-not-securities-staking-airdrops-bitcoin-mining",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "e608e3fae12a2f51",
+      "timestamp": "2026-03-17T19:23:57+00:00",
+      "source": "rss_decrypt",
+      "headline": "What If Elon Musk's Grok Leaks Classified Info? Elizabeth Warren Is Worried—The Pentagon Isn't",
+      "body_snippet": "Sen. Warren is demanding answers after the Pentagon handed Elon Musk's xAI classified network access—despite NSA warnings and a trail of harmful AI outputs.",
+      "url": "https://decrypt.co/361441/elon-musk-grok-leaks-classified-info-elizabeth-warren-worried",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "cfe9ee4e4bb65de9",
+      "timestamp": "2026-03-17T19:01:13+00:00",
+      "source": "rss_decrypt",
+      "headline": "OpenAI Releases GPT-5.4 Mini and Nano, Which Could Be More Useful Than the Big Model",
+      "body_snippet": "OpenAI's new small models are faster and cheaper than GPT-5.4, and for most everyday use cases, that's exactly what developers and businesses actually need.",
+      "url": "https://decrypt.co/361434/openai-gpt-5-4-mini-nano-small-models-coding-subagents",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "ea6f594ec5ebcbab",
+      "timestamp": "2026-03-17T18:45:28+00:00",
+      "source": "rss_decrypt",
+      "headline": "Urea Surges 34% as Iran Conflict Ripples Through Commodities, Bitcoin",
+      "body_snippet": "The Iran conflict is impacting on commodities beyond oil, as the closure of the Strait of Hormuz chokes off shipping.",
+      "url": "https://decrypt.co/361430/urea-surges-34-as-iran-conflict-ripples-through-commodities-bitcoin",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "43e7814928d5e3d1",
+      "timestamp": "2026-03-17T17:46:10+00:00",
+      "source": "rss_decrypt",
+      "headline": "PayPal Expands PYUSD Stablecoin Globally as Supply Tops $4 Billion",
+      "body_snippet": "PayPal’s PYUSD is expanding to a total of 70 international markets as the payments giant’s stablecoin tops a $4 billion market cap.",
+      "url": "https://decrypt.co/361422/paypal-expands-pyusd-stablecoin-globally-as-supply-tops-4-billion",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "9f23faf662ba9d5b",
+      "timestamp": "2026-03-17T17:18:36+00:00",
+      "source": "rss_decrypt",
+      "headline": "Democrats Target Prediction Market Insider Trading, Claim Trump Allies Are Profiting",
+      "body_snippet": "Democratic lawmakers introduced legislation prohibiting prediction markets that hinge on government action or pre-determined outcomes.",
+      "url": "https://decrypt.co/361398/senate-democrats-war-related-prediction-markets-trump-insiders-profiting",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "9c47f662b37bafb8",
+      "timestamp": "2026-03-17T16:35:09+00:00",
+      "source": "rss_decrypt",
+      "headline": "Allium Brings 65TB of Data from Bitcoin, Ethereum, Sui and More to Walrus",
+      "body_snippet": "The partnership aims to lay the foundations for the agentic workflows that will become increasingly important to on-chain finance.",
+      "url": "https://decrypt.co/361390/allium-brings-65tb-of-data-from-bitcoin-ethereum-sui-and-more-to-walrus",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "60e82da0ea073eb8",
+      "timestamp": "2026-03-17T16:02:05+00:00",
+      "source": "rss_decrypt",
+      "headline": "XRP Flips BNB, Hitting Highest Price in a Month as Ripple Plans to Seek Brazil License",
+      "body_snippet": "The Ripple-linked XRP has leapfrogged BNB in market cap as the crypto payments firm expands its Brazil push.",
+      "url": "https://decrypt.co/361389/xrp-flips-bnb-highest-price-month-ripple-brazil-license",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "da0f9d36de74025e",
+      "timestamp": "2026-03-17T15:01:03+00:00",
+      "source": "rss_decrypt",
+      "headline": "Sam Altman’s World Taps Coinbase’s Open Protocol to Verify Humans Behind AI Agents",
+      "body_snippet": "A new toolkit aims to allow AI agents to prove that a real person stands behind them when interacting online.",
+      "url": "https://decrypt.co/361323/altman-world-coinbase-open-protocol-verify-humans-ai",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "feeb34177fda5ef8",
+      "timestamp": "2026-03-17T13:54:25+00:00",
+      "source": "rss_decrypt",
+      "headline": "Morning Minute: Strategy's $1.58B Buy Pushes Bitcoin to $75k",
+      "body_snippet": "Strategy just made its biggest Bitcoin buy of 2026, and Kalshi is running a $1 billion March Madness bracket contest.",
+      "url": "https://decrypt.co/361363/morning-minute-strategys-1-58b-buy-pushes-btc-to-75k",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "7f4db8c62e2a1010",
+      "timestamp": "2026-03-19T02:24:28+00:00",
+      "source": "rss_cointelegraph",
+      "headline": "Algorand Foundation cuts 25% of staff, citing macro uncertainty",
+      "body_snippet": "The Algorand Foundation said it has a “more sustainable alignment” of resources with the protocol’s long-term business priorities.",
+      "url": "https://cointelegraph.com/news/algorand-foundation-staff-layoffs-crypto-market-uncertainty-macro?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "730770394b2e38e2",
+      "timestamp": "2026-03-19T02:02:08+00:00",
+      "source": "rss_cointelegraph",
+      "headline": "Fold Q4 revenue up, CEO sees Bitcoin rewards overtaking air miles",
+      "body_snippet": "Fold CEO Will Reeves said it is focused on scaling its 2026 product line after paying off two convertible debts, removing overhang and enabling it to focus on growth.",
+      "url": "https://cointelegraph.com/news/fold-revenue-rises-adds-customers-bitcoin-rewards?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "db50a278f2d513d6",
+      "timestamp": "2026-03-18T23:23:32+00:00",
+      "source": "rss_cointelegraph",
+      "headline": "Bitcoin falls under $71K but data shows BTC’s bullish momentum holding",
+      "body_snippet": "Bitcoin dropped below $71,000, but the market’s tilt toward bulls holds as spot ETF inflows and BTC buying from Strategy boost investor sentiment.",
+      "url": "https://cointelegraph.com/news/bitcoin-falls-under-71k-but-data-shows-btc-s-bullish-momentum-holding?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "552e43ae5e35357a",
+      "timestamp": "2026-03-18T21:55:09+00:00",
+      "source": "rss_cointelegraph",
+      "headline": "Here’s what happened in crypto today",
+      "body_snippet": "Need to know what happened in crypto today? Here is the latest news on daily trends and events impacting Bitcoin price, blockchain, DeFi, NFTs, Web3 and crypto regulation.",
+      "url": "https://cointelegraph.com/news/what-happened-in-crypto-today?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "ef85035d524438e4",
+      "timestamp": "2026-03-18T21:30:14+00:00",
+      "source": "rss_cointelegraph",
+      "headline": "Fed leaves rates unchanged, says geopolitical uncertainty clouds outlook",
+      "body_snippet": "The effect on energy prices from the Iran war will impact the economy, but the size and scope of the macroeconomic shock are still unknown.",
+      "url": "https://cointelegraph.com/news/fed-leaves-rates-unchanged-geopolitical-uncertainty?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "1b85e0e722f7689a",
+      "timestamp": "2026-03-18T21:07:16+00:00",
+      "source": "rss_cointelegraph",
+      "headline": "Kalshi CEO fires back against Arizona criminal charges as ‘total overstep‘",
+      "body_snippet": "The prediction markets co-founder said that the company would “abide by court decisions“ but signaled that the charges were based partly on political bias and media attention.",
+      "url": "https://cointelegraph.com/news/kalshi-ceo-arizona-criminal-charges-total-overstep?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "102208845591a392",
+      "timestamp": "2026-03-18T20:19:15+00:00",
+      "source": "rss_cointelegraph",
+      "headline": "SEC Chair explains why NFTs fall outside of securities laws",
+      "body_snippet": "Paul Atkins says nonfungible tokens are typically collectibles, not investment contracts, as the agency outlines new categories of digital assets outside securities laws.",
+      "url": "https://cointelegraph.com/news/sec-chair-nfts-not-securities-explained?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "5bc6c137fbaa8799",
+      "timestamp": "2026-03-18T19:47:34+00:00",
+      "source": "rss_cointelegraph",
+      "headline": "FTX Recovery Trust to distribute $2.2B to creditors in March",
+      "body_snippet": "The fourth round of reimbursements to creditors and former clients of the failed crypto exchange since February 2025 brings the total paid to about $10 billion.",
+      "url": "https://cointelegraph.com/news/ftx-recovery-trust-to-distribute-2-2b-to-creditors-in-march?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "043ab1c0498efcb5",
+      "timestamp": "2026-03-18T19:39:49+00:00",
+      "source": "rss_cointelegraph",
+      "headline": "Crypto Fear and Greed rebounds off extreme lows as traders re-enter",
+      "body_snippet": "The Crypto Fear and Greed Index just ended a 48-day stretch in the “extreme fear” zone, signalling improving sentiment among investors. Will fresh capital inflows reignite the bull market?",
+      "url": "https://cointelegraph.com/news/crypto-fear-and-greed-rebounds-off-extreme-lows-as-traders-re-enter?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "b3e1168f86674ab9",
+      "timestamp": "2026-03-18T19:21:32+00:00",
+      "source": "rss_cointelegraph",
+      "headline": "‘We are so close this time‘ — Senator Lummis on market structure bill",
+      "body_snippet": "The Wyoming Republican said that the main issue holding up passage of the bill was stablecoin yield, while adding that she believed a provision on DeFi had been ”put to bed.”",
+      "url": "https://cointelegraph.com/news/senator-lummis-market-structure-bill-so-close?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "0aa152c37047eb35",
+      "timestamp": "2026-03-18T18:16:41+00:00",
+      "source": "rss_cointelegraph",
+      "headline": "Fed holds rates amid higher inflation outlook: Bitcoin bounces to $72K",
+      "body_snippet": "Bitcoin’s pre-FOMC sell-off eased as the US Federal Reserve's choice to leave interest rates unchanged was followed by a swift bounce in BTC price.",
+      "url": "https://cointelegraph.com/news/fed-holds-rates-amid-higher-inflation-outlook-bitcoin-bounces-to-dollar72k?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "cde9043a3badebac",
+      "timestamp": "2026-03-18T17:44:54+00:00",
+      "source": "rss_cointelegraph",
+      "headline": "S&P Dow Jones licenses S&P 500 perpetual futures for Hyperliquid",
+      "body_snippet": "The new derivative allows eligible non-US users to trade leveraged exposure to the index around the clock using official data on a decentralized platform.",
+      "url": "https://cointelegraph.com/news/s-p-dow-jones-licenses-first-s-p-500-perpetuals-for-onchain-trading-on-hyperliquid?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "20e5615b4d4a26c6",
+      "timestamp": "2026-03-18T17:30:00+00:00",
+      "source": "rss_cointelegraph",
+      "headline": "‘Rich Dad, Poor Dad’ author says ‘pin is near’ on TradFi ‘bubble burst:’ Predicts $750K Bitcoin",
+      "body_snippet": "Author and personal finance educator Robert Kiyosaki says Bitcoin is going to $750,000, but there's a catch.",
+      "url": "https://cointelegraph.com/news/rich-dad-poor-dad-author-says-pin-is-near-on-tradfi-bubble-burst-predicts-750k-bitcoin?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "3d5b1989618975be",
+      "timestamp": "2026-03-18T16:39:32+00:00",
+      "source": "rss_cointelegraph",
+      "headline": "Bhutan offloads an additional $72.3M Bitcoin amid market downturn",
+      "body_snippet": "After the Kingdom of Bhutan's BTC reserve peaked in October 2024, when it held more than 13,000 coins, it has been pared to just 4,400 Bitcoin.",
+      "url": "https://cointelegraph.com/news/bhutan-offloads-72-3m-bitcoin-downturn?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "83a4d55bdfdb56f6",
+      "timestamp": "2026-03-18T16:19:28+00:00",
+      "source": "rss_cointelegraph",
+      "headline": "Bitcoin tests fresh decoupling trade as tech correlation drops to 2018 lows",
+      "body_snippet": "BTC price is vastly outperforming the tech-heavy Nasdaq index amid the US–Iran war, but its risks of crashing toward $51,000 persist.",
+      "url": "https://cointelegraph.com/news/bitcoin-tests-fresh-decoupling-trade-tech-correlation-breaks?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "26e179831ec6f51e",
+      "timestamp": "2026-03-18T14:42:53+00:00",
+      "source": "rss_cointelegraph",
+      "headline": "Japan’s SBI VC Trade launches retail USDC lending as stablecoin use grows",
+      "body_snippet": "SBI VC Trade said users could lend assets directly to its platform, but added that the company may re-lend funds as part of its operations.",
+      "url": "https://cointelegraph.com/news/japan-s-sbi-vc-trade-launches-retail-usdc-lending-as-stablecoin-use-grows?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "e8448586755ef724",
+      "timestamp": "2026-03-18T14:20:36+00:00",
+      "source": "rss_cointelegraph",
+      "headline": "Crypto industry ties were a liability in Illinois primary",
+      "body_snippet": "Ties to the crypto industry became a vector for attack in a recent Democratic primary election in the state of Illinois.",
+      "url": "https://cointelegraph.com/news/crypto-industry-ties-liability-illinois-primary?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "44299e9ecee9f587",
+      "timestamp": "2026-03-18T14:20:31+00:00",
+      "source": "rss_cointelegraph",
+      "headline": "Circle’s policy chief tells UK to merge MiCA clarity with US stablecoin rules",
+      "body_snippet": "The UK has a unique opportunity to merge the best of the EU’s MiCA framework and the US GENIUS Act, Circle’s Dante Disparte told the House of Lords committee on Wednesday.",
+      "url": "https://cointelegraph.com/news/circle-uk-mica-us-stablecoin-rules?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "b6e800167db05741",
+      "timestamp": "2026-03-18T14:02:38+00:00",
+      "source": "rss_cointelegraph",
+      "headline": "Bitcoin dips to $72K on hot US PPI inflation hours before Fed FOMC meeting",
+      "body_snippet": "Bitcoin price action fell to week-to-date lows with Bitcoin caught between high US inflation and nerves over Fed policy hints at the day's FOMC meeting.",
+      "url": "https://cointelegraph.com/news/bitcoin-dips-near-72k-hot-us-ppi-inflation-hours-fed-rates?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "b3bf0ca4057db28c",
+      "timestamp": "2026-03-18T14:00:00+00:00",
+      "source": "rss_cointelegraph",
+      "headline": "74% of institutions expect crypto prices to rise in 12 months: Survey",
+      "body_snippet": "A Coinbase-EY study reveals institutional investors plan to boost crypto allocations in 2026, favoring regulated products as stablecoins and tokenization gain traction.",
+      "url": "https://cointelegraph.com/news/institutional-investors-crypto-exposure-new-survey?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "03dbcc2e0ea566f8",
+      "timestamp": "2026-03-18T14:00:00+00:00",
+      "source": "rss_cointelegraph",
+      "headline": "Crypto firms’ open letter urges top US colleges to teach DeFi",
+      "body_snippet": "Crypto firms argue that DeFi should be taught at top schools so that students can eventually take on a rapid rise in non-technical crypto jobs on Wall Street.",
+      "url": "https://cointelegraph.com/news/crypto-firms-urge-more-defi-classes-us-colleges?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "5d025310ed95ce81",
+      "timestamp": "2026-03-18T12:30:00+00:00",
+      "source": "rss_cointelegraph",
+      "headline": "Crypto cards aren't the future, but onchain credit is",
+      "body_snippet": "Crypto cards force asset sales and tax hits. Onchain credit enables yield-bearing collateral power spending without liquidation, making cards obsolete interfaces.",
+      "url": "https://cointelegraph.com/news/onchain-credit-is-the-future?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "266fc26417309fd5",
+      "timestamp": "2026-03-18T11:47:32+00:00",
+      "source": "rss_cointelegraph",
+      "headline": "RedotPay defends team reshuffle amid funding talks and IPO plans",
+      "body_snippet": "RedotPay says it restructured teams for efficiency after a Bloomberg report flagged executive turnover, China sensitivities and new funding talks.",
+      "url": "https://cointelegraph.com/news/redotpay-team-consolidation-turnover-claims-funding-ipo?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "a576bde7a95706dd",
+      "timestamp": "2026-03-18T11:27:59+00:00",
+      "source": "rss_cointelegraph",
+      "headline": "Connecticut suspends Bitcoin Depot as 2026 revenue outlook worsens",
+      "body_snippet": "Connecticut halts Bitcoin Depot’s operations, with the company expecting lower revenue in 2026 amid mounting regulatory pressure and a steep decline in its stock price.",
+      "url": "https://cointelegraph.com/news/connecticut-bitcoin-depot-license-halt-stock-slide?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "6b0e68eda3274d2a",
+      "timestamp": "2026-03-18T10:51:24+00:00",
+      "source": "rss_cointelegraph",
+      "headline": "UK lawmakers seek moratorium on crypto donations to political parties",
+      "body_snippet": "A UK parliamentary committee urged an immediate moratorium on crypto political donations until stronger safeguards are in place.",
+      "url": "https://cointelegraph.com/news/uk-committee-crypto-political-donations-moratorium?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "a8a05722aafbdf19",
+      "timestamp": "2026-03-18T10:30:53+00:00",
+      "source": "rss_cointelegraph",
+      "headline": "Tally winds down, citing lack of viable market for DAO tooling",
+      "body_snippet": "Tally said its platform served more than one million users, supporting governance across hundreds of organizations and processing over $1 billion in payments.",
+      "url": "https://cointelegraph.com/news/tally-winds-down-citing-lack-of-viable-market-for-dao-tooling?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "194c23a305e91f01",
+      "timestamp": "2026-03-18T10:19:06+00:00",
+      "source": "rss_cointelegraph",
+      "headline": "Bitcoin stalls at $76K: Key BTC price levels to watch ahead of FOMC",
+      "body_snippet": "Bitcoin price traded at $74,000 as investors braced for Jerome Powell’s post-FOMC speech that could see volatile swings toward key BTC price levels.",
+      "url": "https://cointelegraph.com/news/bitcoin-stalls-76k-key-btc-price-levels-to-watch-ahead-fomc?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "5881d8486528b228",
+      "timestamp": "2026-03-18T10:18:41+00:00",
+      "source": "rss_cointelegraph",
+      "headline": "Ethereum aims to cut bridge times by 98% to 13 seconds with new rule",
+      "body_snippet": "Ethereum’s FCR aims to reduce bridge times by up to 98%, bringing L1-to-L2 and exchange deposits down to 13 seconds without a hard fork.",
+      "url": "https://cointelegraph.com/news/ethereum-cuts-bridge-times-98-percent-13-seconds-fast-confirmation-rule?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "45e444543767519f",
+      "timestamp": "2026-03-18T08:49:05+00:00",
+      "source": "rss_cointelegraph",
+      "headline": "Bitcoin ETF inflow streak nears October run, but totals still lag",
+      "body_snippet": "US spot Bitcoin ETFs draw $1.2 billion over seven days, far short of October 2025’s nine-day $6 billion streak, as XRP ETFs turn green.",
+      "url": "https://cointelegraph.com/news/bitcoin-etf-streak-nears-october-run-but-inflows-lag-far-behind?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "6e2879e7dcdf467b",
+      "timestamp": "2026-03-18T06:42:45+00:00",
+      "source": "rss_cointelegraph",
+      "headline": "Australian crypto shopping surges, but so do banking blocks: Survey",
+      "body_snippet": "Online shopping was the leading real-world use case for crypto among Australians, followed by paying for services such as freelancing and video game purchases.",
+      "url": "https://cointelegraph.com/news/australia-crypto-payments-rise-banking-blocks-survey?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "36899fa718a6df8f",
+      "timestamp": "2026-03-18T20:44:02+00:00",
+      "source": "rss_coindesk",
+      "headline": "SEC approves Nasdaq's move to support tokenized securities trading",
+      "body_snippet": "",
+      "url": "https://www.coindesk.com/policy/2026/03/18/sec-approves-nasdaq-s-move-to-allow-tokenized-securities-trading",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "e46b3e918df4498b",
+      "timestamp": "2026-03-18T20:31:18+00:00",
+      "source": "rss_coindesk",
+      "headline": "Fairshake's $10 million Illinois misfire marks first big hitch in crypto political surge",
+      "body_snippet": "",
+      "url": "https://www.coindesk.com/news-analysis/2026/03/18/fairshake-s-usd10-million-illinois-misfire-marks-first-big-hitch-in-crypto-political-surge",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "a935616adb93e532",
+      "timestamp": "2026-03-18T20:19:04+00:00",
+      "source": "rss_coindesk",
+      "headline": "Bitcoin sinks below $71,000, stocks close at session lows, as 2026 Fed rate cut hopes fade further",
+      "body_snippet": "",
+      "url": "https://www.coindesk.com/markets/2026/03/18/bitcoin-sinks-below-usd71-000-stocks-close-at-session-lows-as-2026-rate-cut-hopes-fade-further",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "ad612932b796eaac",
+      "timestamp": "2026-03-18T19:56:41+00:00",
+      "source": "rss_coindesk",
+      "headline": "Polymarket acquires Brahma to scale blockchain trading infrastructure",
+      "body_snippet": "",
+      "url": "https://www.coindesk.com/business/2026/03/18/polymarket-acquires-defi-brahma-to-build-reliable-financial-blockchain-infrastructure",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "e87d39b7978221cd",
+      "timestamp": "2026-03-18T19:06:59+00:00",
+      "source": "rss_coindesk",
+      "headline": "Sam Bankman-Fried's bankrupt exchange FTX set to repay creditors $2.2 billion this month",
+      "body_snippet": "",
+      "url": "https://www.coindesk.com/business/2026/03/18/sam-bankman-fried-s-bankrupt-exchange-ftx-set-to-repay-creditors-usd2-2-billion-this-month",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "9725e79a5a9a1bae",
+      "timestamp": "2026-03-18T18:19:24+00:00",
+      "source": "rss_coindesk",
+      "headline": "Kalshi co-founder fights back against Arizona’s ‘overstep’ in what a lawyer calls a federal-state turf war",
+      "body_snippet": "",
+      "url": "https://www.coindesk.com/policy/2026/03/18/kalshi-co-founder-fights-back-against-arizona-s-overstep-in-what-a-lawyer-calls-a-federal-state-turf-war",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "440ae04a82ee196d",
+      "timestamp": "2026-03-18T17:59:47+00:00",
+      "source": "rss_coindesk",
+      "headline": "Federal Reserve holds policy steady as Iran war adds to growth and inflation concerns",
+      "body_snippet": "",
+      "url": "https://www.coindesk.com/markets/2026/03/18/federal-reserve-holds-policy-steady-as-it-balances-growth-and-inflation-concerns",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "e498d1372e5e8f3a",
+      "timestamp": "2026-03-18T17:09:02+00:00",
+      "source": "rss_coindesk",
+      "headline": "The era of cheap money is over as the Iran war creates a permanent 'inflation floor'",
+      "body_snippet": "",
+      "url": "https://www.coindesk.com/markets/2026/03/18/the-era-of-cheap-money-is-over-as-the-iran-war-creates-a-permanent-inflation-floor",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "4e55c345dc805491",
+      "timestamp": "2026-03-18T16:17:13+00:00",
+      "source": "rss_coindesk",
+      "headline": "Crypto Long & Short: When price stops working, yield starts mattering",
+      "body_snippet": "",
+      "url": "https://www.coindesk.com/coindesk-indices/2026/03/18/crypto-long-and-short-when-price-stops-working-yield-starts-mattering",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "fa7d64664c40c9ab",
+      "timestamp": "2026-03-18T15:52:37+00:00",
+      "source": "rss_coindesk",
+      "headline": "The Protocol: Ethereum community debates foundation’s new mandate document",
+      "body_snippet": "",
+      "url": "https://www.coindesk.com/tech/2026/03/18/the-protocol-ethereum-community-debates-foundation-s-new-mandate-document",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "c413ecb673fa5032",
+      "timestamp": "2026-03-18T15:48:29+00:00",
+      "source": "rss_coindesk",
+      "headline": "Former Binance CEO CZ waves off accusations on Iran, terror ties",
+      "body_snippet": "",
+      "url": "https://www.coindesk.com/policy/2026/03/18/former-binance-ceo-cz-waves-off-accusations-on-iran-terror-ties",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "4cf394c165138760",
+      "timestamp": "2026-03-18T15:44:32+00:00",
+      "source": "rss_coindesk",
+      "headline": "Trump-linked American Bitcoin's BTC holdings overtake Mike Novogratz’s Galaxy Digital",
+      "body_snippet": "",
+      "url": "https://www.coindesk.com/business/2026/03/18/trump-linked-american-bitcoin-just-overtook-mike-novogratz-s-galaxy-digital-in-the-bitcoin-rankings",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "e98d7c6c203924a2",
+      "timestamp": "2026-03-18T15:14:18+00:00",
+      "source": "rss_coindesk",
+      "headline": "Crypto exchange Kraken freezes multibillion-dollar IPO plan due to difficult market conditions",
+      "body_snippet": "",
+      "url": "https://www.coindesk.com/business/2026/03/17/crypto-exchange-kraken-freezes-multibillion-dollar-ipo-plan-due-to-difficult-market-conditions",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "4aebaf1952fa5937",
+      "timestamp": "2026-03-18T15:13:09+00:00",
+      "source": "rss_coindesk",
+      "headline": "Traders can now bet on the S&P 500 around the clock without ever touching a traditional stock exchange",
+      "body_snippet": "",
+      "url": "https://www.coindesk.com/markets/2026/03/18/traders-can-now-bet-on-the-s-and-p-500-around-the-clock-without-ever-touching-a-traditional-stock-exchange",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "b7bb04efced64139",
+      "timestamp": "2026-03-18T15:10:40+00:00",
+      "source": "rss_coindesk",
+      "headline": "Key U.S. senator on crypto market structure bill negotiation: 'We think we've got it'",
+      "body_snippet": "",
+      "url": "https://www.coindesk.com/policy/2026/03/18/key-u-s-senator-on-crypto-market-structure-bill-negotiation-we-think-we-ve-got-it",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "c3f552e5f847c6c6",
+      "timestamp": "2026-03-18T14:53:08+00:00",
+      "source": "rss_coindesk",
+      "headline": "Bitcoin hash rate is tumbling as Iran war lifts energy prices",
+      "body_snippet": "",
+      "url": "https://www.coindesk.com/markets/2026/03/18/bitcoin-hash-rate-is-tumbling-as-iran-war-lifts-energy-prices",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "cd3e611f0458e8b9",
+      "timestamp": "2026-03-18T14:19:54+00:00",
+      "source": "rss_coindesk",
+      "headline": "Bank of Korea adds two banks to digital won trials as real-world testing begins",
+      "body_snippet": "",
+      "url": "https://www.coindesk.com/business/2026/03/18/bank-of-korea-adds-two-banks-to-digital-won-trials-as-real-world-testing-begins",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "b69b536a1bf24036",
+      "timestamp": "2026-03-18T14:05:28+00:00",
+      "source": "rss_coindesk",
+      "headline": "Stripe-led payments blockchain Tempo goes live with protocol for AI agents",
+      "body_snippet": "",
+      "url": "https://www.coindesk.com/tech/2026/03/18/stripe-led-payments-blockchain-tempo-goes-live-with-protocol-for-ai-agents",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "0e1707acb9617748",
+      "timestamp": "2026-03-18T14:01:26+00:00",
+      "source": "rss_coindesk",
+      "headline": "CoinDesk 20 performance update: index falls 3.1% as all constituents trade lower",
+      "body_snippet": "",
+      "url": "https://www.coindesk.com/coindesk-indices/2026/03/18/coindesk-20-performance-update-index-falls-3-1-as-all-constituents-trade-lower",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "dd7f28321a0d6d3f",
+      "timestamp": "2026-03-18T14:00:00+00:00",
+      "source": "rss_coindesk",
+      "headline": "Large investors are doubling down on crypto, but getting a lot pickier about risk",
+      "body_snippet": "",
+      "url": "https://www.coindesk.com/business/2026/03/18/large-investors-are-doubling-down-on-crypto-but-getting-a-lot-pickier-about-risk",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "5ac776e5994b8ef6",
+      "timestamp": "2026-03-18T13:01:14+00:00",
+      "source": "rss_coindesk",
+      "headline": "RedotPay executive turnover clouds crypto payments firm's $4 billion U.S. IPO ambition",
+      "body_snippet": "",
+      "url": "https://www.coindesk.com/business/2026/03/18/redotpay-executive-turnover-clouds-crypto-payments-firm-s-usd4-billion-u-s-ipo-ambition",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "954a1dbfa46d5756",
+      "timestamp": "2026-03-18T12:50:43+00:00",
+      "source": "rss_coindesk",
+      "headline": "Bitcoin quickly pulls back to $71,000 as Iran fears team up with poor U.S. inflation data",
+      "body_snippet": "",
+      "url": "https://www.coindesk.com/markets/2026/03/18/bitcoin-quickly-pulls-back-to-usd72-300-as-iran-fears-team-up-with-poor-u-s-inflation-data",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "c0f90bbc546be801",
+      "timestamp": "2026-03-18T11:57:12+00:00",
+      "source": "rss_coindesk",
+      "headline": "UK lawmakers urge ‘immediate moratorium’ on crypto political donations",
+      "body_snippet": "",
+      "url": "https://www.coindesk.com/policy/2026/03/18/uk-lawmakers-urge-immediate-moratorium-on-crypto-political-donations",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "247743d2ada00ba1",
+      "timestamp": "2026-03-18T11:25:38+00:00",
+      "source": "rss_coindesk",
+      "headline": "Powell's comments on oil, inflation are likely to guide bitcoin traders",
+      "body_snippet": "",
+      "url": "https://www.coindesk.com/daybook-us/2026/03/18/powell-s-comments-on-oil-inflation-are-likely-to-guide-bitcoin-traders",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "c3aaf92c43a00222",
+      "timestamp": "2026-03-18T10:40:00+00:00",
+      "source": "rss_coindesk",
+      "headline": "Bitcoin’s rally runs into 'sell the news' risk ahead of Fed decision",
+      "body_snippet": "",
+      "url": "https://www.coindesk.com/markets/2026/03/18/bitcoin-s-rally-runs-into-sell-the-news-risk-ahead-of-fed-decision",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    }
+  ]
+}

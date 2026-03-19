@@ -1,7 +1,10 @@
 """Data processing functions for the news sentiment pipeline.
 
-Handles news fetching from multiple sources, deduplication, keyword-based
-pre-filtering, and SQLite persistence via the shared :class:`utils.db.DataStore`.
+Handles deduplication, keyword-based pre-filtering, and SQLite persistence
+via the shared :class:`utils.db.DataStore`.
+
+Note: News fetching is handled exclusively by ``scripts/fetch_news.py``.
+This module only processes articles it receives.
 """
 
 from __future__ import annotations
@@ -9,14 +12,9 @@ from __future__ import annotations
 import hashlib
 import json
 import logging
-import os
 import re
-from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from typing import Any
-
-import feedparser
-import requests
 
 from news_sentiment.models import ArticleInput, ClassificationOutput
 from utils.db import DataStore
@@ -85,227 +83,37 @@ def load_sector_map(path: str) -> dict[str, Any]:
         return json.load(fh)
 
 
-def load_sources_config(path: str) -> dict[str, Any]:
-    """Load the data-source registry from *path*.
-
-    Args:
-        path: Filesystem path to ``config/sources.json``.
-
-    Returns:
-        Parsed JSON object with a ``"sources"`` list.
-    """
-    with open(path, "r", encoding="utf-8") as fh:
-        return json.load(fh)
-
-
 # ---------------------------------------------------------------------------
-# Source fetchers
+# Dict-to-model conversion
 # ---------------------------------------------------------------------------
 
 
-def fetch_cryptopanic(config: dict[str, Any]) -> list[ArticleInput]:
-    """Fetch recent posts from the CryptoPanic API.
+def dict_to_article(d: dict[str, Any]) -> ArticleInput:
+    """Convert a raw article dict (from scripts/fetch_news.py) to ArticleInput.
 
     Args:
-        config: The ``"config"`` sub-dict from the CryptoPanic source entry
-                in ``sources.json``.  Must contain ``"base_url"`` and
-                ``"auth_token_env"``.
+        d: Dict with keys: id, timestamp, source, headline, body_snippet,
+           url, mentioned_tickers, source_sentiment.
 
     Returns:
-        A list of :class:`ArticleInput` objects.  Returns an empty list on
-        any API or parsing error.
+        An :class:`ArticleInput` instance.
     """
-    api_key = os.getenv(config.get("auth_token_env", "CRYPTOPANIC_API_KEY"), "")
-    if not api_key:
-        logger.warning("CRYPTOPANIC_API_KEY not set; skipping CryptoPanic fetch")
-        return []
-
-    base_url = config.get("base_url", "https://cryptopanic.com/api/v1")
-    url = f"{base_url}/posts/?auth_token={api_key}&filter=hot&public=true"
-
+    ts_raw = d.get("timestamp", "")
     try:
-        resp = requests.get(url, timeout=15)
-        resp.raise_for_status()
-        data = resp.json()
-    except Exception:
-        logger.exception("CryptoPanic API request failed")
-        return []
+        ts = datetime.fromisoformat(ts_raw)
+    except (ValueError, TypeError):
+        ts = datetime.now(tz=timezone.utc)
 
-    articles: list[ArticleInput] = []
-    for item in data.get("results", []):
-        try:
-            # Parse timestamp — CryptoPanic uses ISO 8601
-            ts_raw = item.get("published_at") or item.get("created_at", "")
-            ts = datetime.fromisoformat(ts_raw.replace("Z", "+00:00"))
-
-            # Extract tickers from currencies list
-            tickers: list[str] = []
-            for cur in item.get("currencies", []) or []:
-                code = cur.get("code", "")
-                if code:
-                    tickers.append(code.upper())
-
-            # Derive sentiment from votes if available
-            votes = item.get("votes", {}) or {}
-            pos = votes.get("positive", 0)
-            neg = votes.get("negative", 0)
-            source_sentiment: float | None = None
-            if pos + neg > 0:
-                source_sentiment = (pos - neg) / (pos + neg)
-
-            article_url = item.get("url", "") or ""
-            article_id = hashlib.sha256(
-                (article_url or item.get("title", "") + ts_raw).encode()
-            ).hexdigest()[:16]
-
-            articles.append(
-                ArticleInput(
-                    id=article_id,
-                    timestamp=ts,
-                    source="cryptopanic",
-                    headline=item.get("title", ""),
-                    body_snippet=item.get("body", "") or "",
-                    url=article_url,
-                    mentioned_tickers=tickers,
-                    source_sentiment=source_sentiment,
-                )
-            )
-        except Exception:
-            logger.exception("Failed to parse CryptoPanic item: %s", item.get("title", ""))
-            continue
-
-    logger.info("CryptoPanic: fetched %d articles", len(articles))
-    return articles
-
-
-def fetch_rss(config: dict[str, Any]) -> list[ArticleInput]:
-    """Fetch articles from an RSS feed.
-
-    Args:
-        config: The ``"config"`` sub-dict from an RSS source entry in
-                ``sources.json``.  Must contain ``"feed_url"``.
-
-    Returns:
-        A list of :class:`ArticleInput` objects.  Returns an empty list on
-        any fetch or parsing error.
-    """
-    feed_url = config.get("feed_url", "")
-    if not feed_url:
-        logger.warning("No feed_url in RSS config; skipping")
-        return []
-
-    try:
-        feed = feedparser.parse(feed_url)
-    except Exception:
-        logger.exception("RSS fetch failed for %s", feed_url)
-        return []
-
-    if feed.bozo and not feed.entries:
-        logger.warning("RSS feed returned no entries: %s", feed_url)
-        return []
-
-    # Derive source id from feed URL
-    source_id = "rss"
-    if "coindesk" in feed_url.lower():
-        source_id = "rss_coindesk"
-    elif "cointelegraph" in feed_url.lower():
-        source_id = "rss_cointelegraph"
-    elif "decrypt" in feed_url.lower():
-        source_id = "rss_decrypt"
-    elif "theblock" in feed_url.lower():
-        source_id = "rss_theblock"
-
-    articles: list[ArticleInput] = []
-    for entry in feed.entries:
-        try:
-            # Parse timestamp
-            ts: datetime
-            if hasattr(entry, "published_parsed") and entry.published_parsed:
-                import time as _time
-
-                ts = datetime.fromtimestamp(
-                    _time.mktime(entry.published_parsed), tz=timezone.utc
-                )
-            elif hasattr(entry, "updated_parsed") and entry.updated_parsed:
-                import time as _time
-
-                ts = datetime.fromtimestamp(
-                    _time.mktime(entry.updated_parsed), tz=timezone.utc
-                )
-            else:
-                ts = datetime.now(tz=timezone.utc)
-
-            headline = entry.get("title", "")
-            link = entry.get("link", "")
-            summary = entry.get("summary", "") or ""
-            # Strip HTML tags from summary (simple approach)
-            body_snippet = re.sub(r"<[^>]+>", "", summary)[:500]
-
-            article_id = hashlib.sha256(
-                (link or headline + str(ts)).encode()
-            ).hexdigest()[:16]
-
-            articles.append(
-                ArticleInput(
-                    id=article_id,
-                    timestamp=ts,
-                    source=source_id,
-                    headline=headline,
-                    body_snippet=body_snippet,
-                    url=link,
-                )
-            )
-        except Exception:
-            logger.exception("Failed to parse RSS entry: %s", entry.get("title", ""))
-            continue
-
-    logger.info("%s: fetched %d articles", source_id, len(articles))
-    return articles
-
-
-# Mapping from source type to fetcher function
-_FETCHER_MAP: dict[str, Any] = {
-    "api": fetch_cryptopanic,
-    "rss": fetch_rss,
-}
-
-
-def fetch_all_sources(sources_config: dict[str, Any]) -> list[ArticleInput]:
-    """Fetch articles from all enabled sources in parallel.
-
-    Args:
-        sources_config: The parsed ``sources.json`` object containing a
-                        ``"sources"`` list.
-
-    Returns:
-        Combined list of :class:`ArticleInput` from all enabled sources.
-    """
-    sources = sources_config.get("sources", [])
-    enabled = [s for s in sources if s.get("enabled", False)]
-
-    all_articles: list[ArticleInput] = []
-
-    with ThreadPoolExecutor(max_workers=min(len(enabled), 8) or 1) as executor:
-        future_to_source = {}
-        for src in enabled:
-            src_type = src.get("type", "")
-            fetcher = _FETCHER_MAP.get(src_type)
-            if fetcher is None:
-                logger.warning("No fetcher for source type %r, skipping %s", src_type, src.get("id"))
-                continue
-            future = executor.submit(fetcher, src.get("config", {}))
-            future_to_source[future] = src.get("id", src_type)
-
-        for future in as_completed(future_to_source):
-            source_id = future_to_source[future]
-            try:
-                articles = future.result()
-                all_articles.extend(articles)
-            except Exception:
-                logger.exception("Fetcher failed for source %s", source_id)
-
-    logger.info("fetch_all_sources: %d total articles from %d sources", len(all_articles), len(enabled))
-    return all_articles
+    return ArticleInput(
+        id=d.get("id", hashlib.sha256(str(d).encode()).hexdigest()[:16]),
+        timestamp=ts,
+        source=d.get("source", "unknown"),
+        headline=d.get("headline", ""),
+        body_snippet=d.get("body_snippet", ""),
+        url=d.get("url", ""),
+        mentioned_tickers=d.get("mentioned_tickers", []),
+        source_sentiment=d.get("source_sentiment"),
+    )
 
 
 # ---------------------------------------------------------------------------

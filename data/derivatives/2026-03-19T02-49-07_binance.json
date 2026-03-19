@@ -1,0 +1,52 @@
+{
+  "timestamp": "2026-03-19T02-49-07",
+  "exchange": "binance",
+  "assets": [
+    "BTC",
+    "ETH",
+    "SOL"
+  ],
+  "funding_rates": [
+    {
+      "asset": "BTC",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "binance",
+      "rate": -9.74e-06
+    },
+    {
+      "asset": "ETH",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "binance",
+      "rate": -3.8e-06
+    },
+    {
+      "asset": "SOL",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "binance",
+      "rate": -0.00010064
+    }
+  ],
+  "open_interest": [
+    {
+      "asset": "BTC",
+      "timestamp": "2026-03-19 02:49:05.197000",
+      "exchange": "binance",
+      "oi_value": 86288.931,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "ETH",
+      "timestamp": "2026-03-19 02:49:05.362000",
+      "exchange": "binance",
+      "oi_value": 2227786.923,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "SOL",
+      "timestamp": "2026-03-19 02:49:04.105000",
+      "exchange": "binance",
+      "oi_value": 9476735.44,
+      "oi_usd": 0.0
+    }
+  ]
+}

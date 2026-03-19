@@ -1,0 +1,750 @@
+{
+  "generated_at": "2026-03-19T02:38:00.244098+00:00",
+  "sector_signals": {
+    "timestamp": "2026-03-19T02:38:00.243970+00:00",
+    "sector_count": 6,
+    "total_articles_scored": 2,
+    "strongest_sector": "l1_infra",
+    "strongest_sentiment": 0.0,
+    "sectors": {
+      "l1_infra": {
+        "sector": "l1_infra",
+        "sentiment": 0.0,
+        "momentum": 0.0,
+        "catalyst_active": false,
+        "catalyst_details": null,
+        "article_count": 1,
+        "confidence": 0.086,
+        "articles_in_window": 1,
+        "articles_in_previous_window": 0
+      },
+      "defi": {
+        "sector": "defi",
+        "sentiment": 0.0,
+        "momentum": 0.0,
+        "catalyst_active": false,
+        "catalyst_details": null,
+        "article_count": 0,
+        "confidence": 0.0,
+        "articles_in_window": 0,
+        "articles_in_previous_window": 0
+      },
+      "ai_compute": {
+        "sector": "ai_compute",
+        "sentiment": 0.0,
+        "momentum": 0.0,
+        "catalyst_active": false,
+        "catalyst_details": null,
+        "article_count": 1,
+        "confidence": 0.072,
+        "articles_in_window": 1,
+        "articles_in_previous_window": 0
+      },
+      "meme": {
+        "sector": "meme",
+        "sentiment": 0.0,
+        "momentum": 0.0,
+        "catalyst_active": false,
+        "catalyst_details": null,
+        "article_count": 0,
+        "confidence": 0.0,
+        "articles_in_window": 0,
+        "articles_in_previous_window": 1
+      },
+      "store_of_value": {
+        "sector": "store_of_value",
+        "sentiment": 0.0,
+        "momentum": 0.0,
+        "catalyst_active": false,
+        "catalyst_details": null,
+        "article_count": 0,
+        "confidence": 0.0,
+        "articles_in_window": 0,
+        "articles_in_previous_window": 0
+      },
+      "other": {
+        "sector": "other",
+        "sentiment": 0.0,
+        "momentum": 0.0,
+        "catalyst_active": false,
+        "catalyst_details": null,
+        "article_count": 0,
+        "confidence": 0.0,
+        "articles_in_window": 0,
+        "articles_in_previous_window": 0
+      }
+    }
+  },
+  "asset_scores": {
+    "BTC/USD": {
+      "asset": "BTC/USD",
+      "sector": "l1_infra",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.086,
+      "catalyst_active": false,
+      "secondary_sector": "store_of_value",
+      "secondary_sentiment": 0.0
+    },
+    "ETH/USD": {
+      "asset": "ETH/USD",
+      "sector": "l1_infra",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.086,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "SOL/USD": {
+      "asset": "SOL/USD",
+      "sector": "l1_infra",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.086,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "AVAX/USD": {
+      "asset": "AVAX/USD",
+      "sector": "l1_infra",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.086,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "SUI/USD": {
+      "asset": "SUI/USD",
+      "sector": "l1_infra",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.086,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "NEAR/USD": {
+      "asset": "NEAR/USD",
+      "sector": "l1_infra",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.086,
+      "catalyst_active": false,
+      "secondary_sector": "ai_compute",
+      "secondary_sentiment": 0.0
+    },
+    "SEI/USD": {
+      "asset": "SEI/USD",
+      "sector": "l1_infra",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.086,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "APT/USD": {
+      "asset": "APT/USD",
+      "sector": "l1_infra",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.086,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "TON/USD": {
+      "asset": "TON/USD",
+      "sector": "l1_infra",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.086,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "ADA/USD": {
+      "asset": "ADA/USD",
+      "sector": "l1_infra",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.086,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "DOT/USD": {
+      "asset": "DOT/USD",
+      "sector": "l1_infra",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.086,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "ICP/USD": {
+      "asset": "ICP/USD",
+      "sector": "l1_infra",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.086,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "XRP/USD": {
+      "asset": "XRP/USD",
+      "sector": "l1_infra",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.086,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "XLM/USD": {
+      "asset": "XLM/USD",
+      "sector": "l1_infra",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.086,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "HBAR/USD": {
+      "asset": "HBAR/USD",
+      "sector": "l1_infra",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.086,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "TRX/USD": {
+      "asset": "TRX/USD",
+      "sector": "l1_infra",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.086,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "BNB/USD": {
+      "asset": "BNB/USD",
+      "sector": "l1_infra",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.086,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "POL/USD": {
+      "asset": "POL/USD",
+      "sector": "l1_infra",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.086,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "ARB/USD": {
+      "asset": "ARB/USD",
+      "sector": "l1_infra",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.086,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "LINEA/USD": {
+      "asset": "LINEA/USD",
+      "sector": "l1_infra",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.086,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "HEMI/USD": {
+      "asset": "HEMI/USD",
+      "sector": "l1_infra",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.086,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "AAVE/USD": {
+      "asset": "AAVE/USD",
+      "sector": "defi",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.0,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "UNI/USD": {
+      "asset": "UNI/USD",
+      "sector": "defi",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.0,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "CRV/USD": {
+      "asset": "CRV/USD",
+      "sector": "defi",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.0,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "PENDLE/USD": {
+      "asset": "PENDLE/USD",
+      "sector": "defi",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.0,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "LINK/USD": {
+      "asset": "LINK/USD",
+      "sector": "defi",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.0,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "LISTA/USD": {
+      "asset": "LISTA/USD",
+      "sector": "defi",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.0,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "ENA/USD": {
+      "asset": "ENA/USD",
+      "sector": "defi",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.0,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "ONDO/USD": {
+      "asset": "ONDO/USD",
+      "sector": "defi",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.0,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "CAKE/USD": {
+      "asset": "CAKE/USD",
+      "sector": "defi",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.0,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "EIGEN/USD": {
+      "asset": "EIGEN/USD",
+      "sector": "defi",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.0,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "FET/USD": {
+      "asset": "FET/USD",
+      "sector": "ai_compute",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.072,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "TAO/USD": {
+      "asset": "TAO/USD",
+      "sector": "ai_compute",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.072,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "WLD/USD": {
+      "asset": "WLD/USD",
+      "sector": "ai_compute",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.072,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "VIRTUAL/USD": {
+      "asset": "VIRTUAL/USD",
+      "sector": "ai_compute",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.072,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "DOGE/USD": {
+      "asset": "DOGE/USD",
+      "sector": "meme",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.0,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "SHIB/USD": {
+      "asset": "SHIB/USD",
+      "sector": "meme",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.0,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "PEPE/USD": {
+      "asset": "PEPE/USD",
+      "sector": "meme",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.0,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "BONK/USD": {
+      "asset": "BONK/USD",
+      "sector": "meme",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.0,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "WIF/USD": {
+      "asset": "WIF/USD",
+      "sector": "meme",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.0,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "FLOKI/USD": {
+      "asset": "FLOKI/USD",
+      "sector": "meme",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.0,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "PENGU/USD": {
+      "asset": "PENGU/USD",
+      "sector": "meme",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.0,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "1000CHEEMS/USD": {
+      "asset": "1000CHEEMS/USD",
+      "sector": "meme",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.0,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "TRUMP/USD": {
+      "asset": "TRUMP/USD",
+      "sector": "meme",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.0,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "PUMP/USD": {
+      "asset": "PUMP/USD",
+      "sector": "meme",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.0,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "PAXG/USD": {
+      "asset": "PAXG/USD",
+      "sector": "store_of_value",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.0,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "LTC/USD": {
+      "asset": "LTC/USD",
+      "sector": "store_of_value",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.0,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "ZEC/USD": {
+      "asset": "ZEC/USD",
+      "sector": "store_of_value",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.0,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "OPEN/USD": {
+      "asset": "OPEN/USD",
+      "sector": "other",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.0,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "S/USD": {
+      "asset": "S/USD",
+      "sector": "other",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.0,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "OMNI/USD": {
+      "asset": "OMNI/USD",
+      "sector": "other",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.0,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "AVNT/USD": {
+      "asset": "AVNT/USD",
+      "sector": "other",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.0,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "EDEN/USD": {
+      "asset": "EDEN/USD",
+      "sector": "other",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.0,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "FORM/USD": {
+      "asset": "FORM/USD",
+      "sector": "other",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.0,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "WLFI/USD": {
+      "asset": "WLFI/USD",
+      "sector": "other",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.0,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "BIO/USD": {
+      "asset": "BIO/USD",
+      "sector": "other",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.0,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "MIRA/USD": {
+      "asset": "MIRA/USD",
+      "sector": "other",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.0,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "PLUME/USD": {
+      "asset": "PLUME/USD",
+      "sector": "other",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.0,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "ASTER/USD": {
+      "asset": "ASTER/USD",
+      "sector": "other",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.0,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "BMT/USD": {
+      "asset": "BMT/USD",
+      "sector": "other",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.0,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "STO/USD": {
+      "asset": "STO/USD",
+      "sector": "other",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.0,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "SOMI/USD": {
+      "asset": "SOMI/USD",
+      "sector": "other",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.0,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "XPL/USD": {
+      "asset": "XPL/USD",
+      "sector": "other",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.0,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "CFX/USD": {
+      "asset": "CFX/USD",
+      "sector": "other",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.0,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "TUT/USD": {
+      "asset": "TUT/USD",
+      "sector": "other",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.0,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "ZEN/USD": {
+      "asset": "ZEN/USD",
+      "sector": "other",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.0,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    },
+    "FIL/USD": {
+      "asset": "FIL/USD",
+      "sector": "other",
+      "sentiment": 0.0,
+      "momentum": 0.0,
+      "confidence": 0.0,
+      "catalyst_active": false,
+      "secondary_sector": null,
+      "secondary_sentiment": null
+    }
+  }
+}

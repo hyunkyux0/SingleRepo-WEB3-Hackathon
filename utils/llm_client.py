@@ -1,13 +1,14 @@
 """
-Universal LLM client with OpenRouter primary and OpenAI fallback.
+Universal LLM client with OpenAI primary and OpenRouter fallback.
 
 Supports two model paths:
-  - Standard (batch): OPENROUTER_MODEL — used for bulk article processing
-  - Fast (real-time):  OPENROUTER_MODEL_FAST — used for catalyst classification
+  - Standard (batch): OPENAI_MODEL — used for bulk article processing
+  - Fast (real-time):  OPENAI_MODEL_FAST — used for catalyst classification
+                       (defaults to OPENAI_MODEL if not set)
 
 Provider hierarchy:
-  1. OpenRouter (OPENROUTER_API_KEY + OPENROUTER_MODEL / OPENROUTER_MODEL_FAST)
-  2. OpenAI fallback (OPENAI_API_KEY + OPENAI_MODEL, default gpt-5.4-nano)
+  1. OpenAI (OPENAI_API_KEY + OPENAI_MODEL)
+  2. OpenRouter fallback (OPENROUTER_API_KEY + OPENROUTER_MODEL)
 
 Both providers use the OpenAI SDK since OpenRouter exposes an OpenAI-compatible API.
 """
@@ -33,12 +34,12 @@ logger = logging.getLogger(__name__)
 # Environment helpers
 # ---------------------------------------------------------------------------
 
-OPENROUTER_API_KEY: Optional[str] = os.getenv("OPENROUTER_API_KEY")
-OPENROUTER_MODEL: Optional[str] = os.getenv("OPENROUTER_MODEL")
-OPENROUTER_MODEL_FAST: Optional[str] = os.getenv("OPENROUTER_MODEL_FAST")
-
 OPENAI_API_KEY: Optional[str] = os.getenv("OPENAI_API_KEY")
 OPENAI_MODEL: str = os.getenv("OPENAI_MODEL", "gpt-5.4-nano")
+OPENAI_MODEL_FAST: Optional[str] = os.getenv("OPENAI_MODEL_FAST")
+
+OPENROUTER_API_KEY: Optional[str] = os.getenv("OPENROUTER_API_KEY")
+OPENROUTER_MODEL: Optional[str] = os.getenv("OPENROUTER_MODEL")
 
 OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
 
@@ -49,14 +50,11 @@ OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
 
 
 def get_llm_label() -> str:
-    """Return a human-readable 'provider/model' string for the active config.
-
-    Reflects the standard (batch) model, not the fast model.
-    """
-    if OPENROUTER_API_KEY and OPENROUTER_MODEL:
-        return f"openrouter/{OPENROUTER_MODEL}"
+    """Return a human-readable 'provider/model' string for the active config."""
     if OPENAI_API_KEY:
         return f"openai/{OPENAI_MODEL}"
+    if OPENROUTER_API_KEY and OPENROUTER_MODEL:
+        return f"openrouter/{OPENROUTER_MODEL}"
     return "none/unconfigured"
 
 
@@ -65,11 +63,17 @@ def get_llm_client() -> tuple[OpenAI, str, str]:
 
     Returns:
         (client, model_name, provider) where provider is
-        ``"openrouter"`` or ``"openai"``.
+        ``"openai"`` or ``"openrouter"``.
 
     Raises:
         RuntimeError: If no API key is configured for any provider.
     """
+    # Primary: OpenAI
+    if OPENAI_API_KEY:
+        client = OpenAI(api_key=OPENAI_API_KEY)
+        return client, OPENAI_MODEL, "openai"
+
+    # Fallback: OpenRouter
     if OPENROUTER_API_KEY and OPENROUTER_MODEL:
         client = OpenAI(
             base_url=OPENROUTER_BASE_URL,
@@ -77,20 +81,16 @@ def get_llm_client() -> tuple[OpenAI, str, str]:
         )
         return client, OPENROUTER_MODEL, "openrouter"
 
-    if OPENAI_API_KEY:
-        client = OpenAI(api_key=OPENAI_API_KEY)
-        return client, OPENAI_MODEL, "openai"
-
     raise RuntimeError(
         "No LLM provider configured. "
-        "Set OPENROUTER_API_KEY + OPENROUTER_MODEL or OPENAI_API_KEY in .env"
+        "Set OPENAI_API_KEY or OPENROUTER_API_KEY + OPENROUTER_MODEL in .env"
     )
 
 
 def get_llm_client_fast() -> tuple[OpenAI, str, str]:
     """Return the fast-path LLM client for real-time catalyst classification.
 
-    Uses ``OPENROUTER_MODEL_FAST`` when available, otherwise falls back to
+    Uses ``OPENAI_MODEL_FAST`` when set, otherwise falls back to
     the standard client returned by :func:`get_llm_client`.
 
     Returns:
@@ -99,14 +99,11 @@ def get_llm_client_fast() -> tuple[OpenAI, str, str]:
     Raises:
         RuntimeError: If no API key is configured for any provider.
     """
-    if OPENROUTER_API_KEY and OPENROUTER_MODEL_FAST:
-        client = OpenAI(
-            base_url=OPENROUTER_BASE_URL,
-            api_key=OPENROUTER_API_KEY,
-        )
-        return client, OPENROUTER_MODEL_FAST, "openrouter"
+    if OPENAI_API_KEY and OPENAI_MODEL_FAST:
+        client = OpenAI(api_key=OPENAI_API_KEY)
+        return client, OPENAI_MODEL_FAST, "openai"
 
-    # Fall back to standard client (which itself falls back to OpenAI)
+    # Fall back to standard client
     return get_llm_client()
 
 
@@ -116,14 +113,24 @@ def get_llm_client_fast() -> tuple[OpenAI, str, str]:
 
 
 def _get_fallback_client() -> Optional[tuple[OpenAI, str, str]]:
-    """Return the OpenAI fallback client, or ``None`` if unconfigured.
+    """Return the fallback client, or ``None`` if unconfigured.
 
-    This is used internally when the primary OpenRouter call fails.
+    When OpenAI is primary, OpenRouter is the fallback (and vice versa).
     """
-    if not OPENAI_API_KEY:
-        return None
-    client = OpenAI(api_key=OPENAI_API_KEY)
-    return client, OPENAI_MODEL, "openai"
+    if OPENAI_API_KEY:
+        # Primary is OpenAI; fallback is OpenRouter
+        if OPENROUTER_API_KEY and OPENROUTER_MODEL:
+            client = OpenAI(
+                base_url=OPENROUTER_BASE_URL,
+                api_key=OPENROUTER_API_KEY,
+            )
+            return client, OPENROUTER_MODEL, "openrouter"
+    else:
+        # Primary is OpenRouter; fallback is OpenAI
+        if OPENAI_API_KEY:
+            client = OpenAI(api_key=OPENAI_API_KEY)
+            return client, OPENAI_MODEL, "openai"
+    return None
 
 
 # ---------------------------------------------------------------------------
@@ -146,10 +153,10 @@ def call_llm(
     Args:
         system_prompt: The system-role message content.
         user_prompt: The user-role message content.
-        temperature: Sampling temperature (0.0 – 2.0).
+        temperature: Sampling temperature (0.0 - 2.0).
         max_completion_tokens: Maximum tokens in the completion.
         fast: When ``True``, use the fast-path model
-              (``OPENROUTER_MODEL_FAST``) instead of the batch model.
+              (``OPENAI_MODEL_FAST``) instead of the batch model.
 
     Returns:
         A tuple of ``(content, usage_dict, llm_used_label)`` where:
@@ -207,7 +214,7 @@ def call_llm(
         primary_model,
     )
 
-    # -- Fallback: OpenAI (single attempt) ---------------------------------
+    # -- Fallback (single attempt) -----------------------------------------
     fallback = _get_fallback_client()
     if fallback is None:
         raise RuntimeError(

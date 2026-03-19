@@ -1,0 +1,52 @@
+{
+  "timestamp": "2026-03-19T02-49-07",
+  "exchange": "bybit",
+  "assets": [
+    "BTC",
+    "ETH",
+    "SOL"
+  ],
+  "funding_rates": [
+    {
+      "asset": "BTC",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": 1.783e-05
+    },
+    {
+      "asset": "ETH",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": 3.889e-05
+    },
+    {
+      "asset": "SOL",
+      "timestamp": "2026-03-19 00:00:00",
+      "exchange": "bybit",
+      "rate": -8.398e-05
+    }
+  ],
+  "open_interest": [
+    {
+      "asset": "BTC",
+      "timestamp": "2026-03-19 02:45:00",
+      "exchange": "bybit",
+      "oi_value": 47773.47,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "ETH",
+      "timestamp": "2026-03-19 02:45:00",
+      "exchange": "bybit",
+      "oi_value": 840867.54,
+      "oi_usd": 0.0
+    },
+    {
+      "asset": "SOL",
+      "timestamp": "2026-03-19 02:45:00",
+      "exchange": "bybit",
+      "oi_value": 6390774.4,
+      "oi_usd": 0.0
+    }
+  ]
+}

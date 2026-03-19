@@ -1,0 +1,159 @@
+{
+  "fetched_at": "2026-03-19T02:34:31.273573+00:00",
+  "article_count": 15,
+  "sources": [
+    "rss_decrypt"
+  ],
+  "articles": [
+    {
+      "id": "8104e51306490864",
+      "timestamp": "2026-03-18T23:32:31+00:00",
+      "source": "rss_decrypt",
+      "headline": "Coalition Urges OpenAI to Scrap AI Ballot Measure Over Child Safety Concerns",
+      "body_snippet": "Advocacy groups say the OpenAI-backed measure would limit legal accountability and lock in narrow protections for children.",
+      "url": "https://decrypt.co/361638/coalition-openai-scrap-ai-ballot-measure-child-safety",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "52069cd6d47ddc99",
+      "timestamp": "2026-03-18T21:00:02+00:00",
+      "source": "rss_decrypt",
+      "headline": "Algorand Foundation Cuts 25% of Staff as Crypto Industry Layoffs Grow",
+      "body_snippet": "The organization behind layer-1 blockchain Algorand laid off 25% of its staff due to macroeconomic uncertainty and lower crypto prices.",
+      "url": "https://decrypt.co/361625/algorand-foundation-cuts-staff-crypto-industry-layoffs-grow",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "7bd0815e89deb081",
+      "timestamp": "2026-03-18T20:41:27+00:00",
+      "source": "rss_decrypt",
+      "headline": "Trump White House Registers Aliens.gov—Is the UFO File Drop Imminent?",
+      "body_snippet": "The White House registered aliens.gov, a month after Trump ordered the release of all government UAP and UFO files following a viral Obama moment.",
+      "url": "https://decrypt.co/361606/trumps-white-house-registers-aliens-gov-ufo-file-drop-imminent",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "e1c46840215a27a7",
+      "timestamp": "2026-03-18T20:20:10+00:00",
+      "source": "rss_decrypt",
+      "headline": "From Coinbase to Ripple: The Biggest Crypto Cases Dumped by Trump's SEC",
+      "body_snippet": "Under President Trump, the SEC has backed down from nearly all its fights with crypto firms. These are the biggest cases ended so far.",
+      "url": "https://decrypt.co/308273/trump-sec-ending-crypto-lawsuits-investigations",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "af1dd79c7ecafae2",
+      "timestamp": "2026-03-18T18:11:15+00:00",
+      "source": "rss_decrypt",
+      "headline": "Bitcoin, Ethereum Waver as Fed Holds Interest Rates Steady",
+      "body_snippet": "Inflation has exceeded the central bank’s 2% target for nearly five years, but the Fed held rates firm again as Bitcoin and Ethereum wobbled.",
+      "url": "https://decrypt.co/361603/bitcoin-ethereum-waver-fed-holds-interest-rates-steady",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "67b2982c944c8c1f",
+      "timestamp": "2026-03-18T17:47:02+00:00",
+      "source": "rss_decrypt",
+      "headline": "Myriad Traders Slash Spring Rally Chances as Bitcoin, Ethereum Slide",
+      "body_snippet": "A hotter-than-expected inflation reading pushed crypto prices lower Wednesday—slashing the chances of a broad spring breakout.",
+      "url": "https://decrypt.co/361599/myriad-traders-slash-spring-rally-chances-as-bitcoin-ethereum-slide",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "99eb74c0567349f8",
+      "timestamp": "2026-03-18T17:38:38+00:00",
+      "source": "rss_decrypt",
+      "headline": "You Can Now Trade Official S&#038;P 500 Perpetual Futures via Hyperliquid",
+      "body_snippet": "The S&#038;P 500 index was licensed to Trade[XYZ], a provider of markets for real-world assets on Hyperliquid for perpetual futures.",
+      "url": "https://decrypt.co/361597/now-trade-official-sp-500-perpetual-futures-hyperliquid",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "8f3971d0a1a73039",
+      "timestamp": "2026-03-18T17:11:34+00:00",
+      "source": "rss_decrypt",
+      "headline": "Crypto Market Structure Bill to Face Key Vote in April and Must Pass by May, Senators Say",
+      "body_snippet": "Sen. Bernie Moreno said if the Clarity Act isn’t passed by May, “digital asset legislation will not pass for the foreseeable future.”",
+      "url": "https://decrypt.co/361581/crypto-market-structure-bill-key-vote-april-must-pass-may",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "ffa88fc2779ff8cc",
+      "timestamp": "2026-03-18T16:50:11+00:00",
+      "source": "rss_decrypt",
+      "headline": "Pudgy Penguins Launched A New Game. Crypto Scammers Made A Fake Version",
+      "body_snippet": "Malwarebytes has warned that a phishing campaign is mimicking the Pudgy World game to steal user credentials",
+      "url": "https://decrypt.co/361574/pudgy-penguins-launched-a-new-game-crypto-scammers-made-a-fake-version",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "c547995e6cbcb7ab",
+      "timestamp": "2026-03-18T16:43:03+00:00",
+      "source": "rss_decrypt",
+      "headline": "Stripe-Backed Tempo Network Launches With Focus on AI Agent Payments",
+      "body_snippet": "Tempo, the layer-1 blockchain backed by payments giant Stripe, launched its mainnet with a clear focus on AI agent payments.",
+      "url": "https://decrypt.co/361573/stripe-backed-tempo-network-launches-ai-agent-payments",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "a39fc4ce897f52a4",
+      "timestamp": "2026-03-18T16:34:19+00:00",
+      "source": "rss_decrypt",
+      "headline": "Citi Downgrades Crypto Exchange Gemini After Cutting Bitcoin, Ethereum Price Targets",
+      "body_snippet": "Gemini stock (GEMI) fell 16% on Wednesday following the downgrade and a broader market dip, after Citi cut its Bitcoin and Ethereum targets.",
+      "url": "https://decrypt.co/361496/citi-downgrades-gemini-cutting-bitcoin-ethereum-targets",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "c2c464897e19d6e1",
+      "timestamp": "2026-03-18T15:31:02+00:00",
+      "source": "rss_decrypt",
+      "headline": "'Crypto Castle': YouTube Comedy Takes You Back to When Bitcoin Was Just $250",
+      "body_snippet": "“The Crypto Castle” takes a look at the early days of Bitcoin—and the \"sad evolution\" it's undergone since then.",
+      "url": "https://decrypt.co/360897/new-youtube-comedy-set-bitcoin-just-250",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "328c39f6f1709693",
+      "timestamp": "2026-03-18T15:05:40+00:00",
+      "source": "rss_decrypt",
+      "headline": "Bitcoin, Ethereum Slip on Inflation Surprise as Oil Prices Jump",
+      "body_snippet": "Bitcoin fell alongside U.S. stocks after the world's largest gas field came under attack amid hotter-than-expected inflation data.",
+      "url": "https://decrypt.co/361556/bitcoin-ethereum-slip-inflation-surprise-oil-prices-jump",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "fa758a4a3254943c",
+      "timestamp": "2026-03-18T14:07:17+00:00",
+      "source": "rss_decrypt",
+      "headline": "Canadian Regulator Revokes Registrations of 23 Crypto Firms",
+      "body_snippet": "Canada's FINTRAC pulled the licenses of multiple money services businesses, in a \"significantly increased pace of action.\"",
+      "url": "https://decrypt.co/361546/canadian-regulator-revokes-registration-of-23-crypto-firms",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    },
+    {
+      "id": "c07ca61277db5664",
+      "timestamp": "2026-03-18T12:46:07+00:00",
+      "source": "rss_decrypt",
+      "headline": "Bitcoin ETFs' $1.2B Streak Hangs in Balance as FOMC Takes Center Stage",
+      "body_snippet": "Experts warn that Bitcoin ETF inflows remain \"episodic\" without policy shifts, ahead of today's FOMC meeting.",
+      "url": "https://decrypt.co/361518/bitcoin-etfs-1-2b-streak-hangs-in-balance-as-fomc-takes-center-stage",
+      "mentioned_tickers": [],
+      "source_sentiment": null
+    }
+  ]
+}

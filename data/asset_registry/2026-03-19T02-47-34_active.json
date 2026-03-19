@@ -1,0 +1,479 @@
+{
+  "timestamp": "2026-03-19T02-47-34",
+  "max_assets": 40,
+  "active_count": 40,
+  "excluded_count": 27,
+  "active": [
+    {
+      "asset": "S",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 24,
+      "excluded_reason": null
+    },
+    {
+      "asset": "ARB",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 17,
+      "excluded_reason": null
+    },
+    {
+      "asset": "AVNT",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 35,
+      "excluded_reason": null
+    },
+    {
+      "asset": "EDEN",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 31,
+      "excluded_reason": null
+    },
+    {
+      "asset": "HEMI",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 15,
+      "excluded_reason": null
+    },
+    {
+      "asset": "FET",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 20,
+      "excluded_reason": null
+    },
+    {
+      "asset": "FORM",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 39,
+      "excluded_reason": null
+    },
+    {
+      "asset": "FIL",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 34,
+      "excluded_reason": null
+    },
+    {
+      "asset": "PUMP",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 1,
+      "excluded_reason": null
+    },
+    {
+      "asset": "HBAR",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 14,
+      "excluded_reason": null
+    },
+    {
+      "asset": "XRP",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 13,
+      "excluded_reason": null
+    },
+    {
+      "asset": "WLFI",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 6,
+      "excluded_reason": null
+    },
+    {
+      "asset": "EIGEN",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 38,
+      "excluded_reason": null
+    },
+    {
+      "asset": "LINEA",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 5,
+      "excluded_reason": null
+    },
+    {
+      "asset": "1000CHEEMS",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 2,
+      "excluded_reason": null
+    },
+    {
+      "asset": "BIO",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 12,
+      "excluded_reason": null
+    },
+    {
+      "asset": "XLM",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 21,
+      "excluded_reason": null
+    },
+    {
+      "asset": "SUI",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 26,
+      "excluded_reason": null
+    },
+    {
+      "asset": "NEAR",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 32,
+      "excluded_reason": null
+    },
+    {
+      "asset": "SEI",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 16,
+      "excluded_reason": null
+    },
+    {
+      "asset": "PENGU",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 3,
+      "excluded_reason": null
+    },
+    {
+      "asset": "PLUME",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 8,
+      "excluded_reason": null
+    },
+    {
+      "asset": "WIF",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 25,
+      "excluded_reason": null
+    },
+    {
+      "asset": "VIRTUAL",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 40,
+      "excluded_reason": null
+    },
+    {
+      "asset": "APT",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 37,
+      "excluded_reason": null
+    },
+    {
+      "asset": "POL",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 19,
+      "excluded_reason": null
+    },
+    {
+      "asset": "DOGE",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 4,
+      "excluded_reason": null
+    },
+    {
+      "asset": "CRV",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 28,
+      "excluded_reason": null
+    },
+    {
+      "asset": "ASTER",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 22,
+      "excluded_reason": null
+    },
+    {
+      "asset": "TRX",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 10,
+      "excluded_reason": null
+    },
+    {
+      "asset": "BMT",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 29,
+      "excluded_reason": null
+    },
+    {
+      "asset": "ONDO",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 30,
+      "excluded_reason": null
+    },
+    {
+      "asset": "STO",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 33,
+      "excluded_reason": null
+    },
+    {
+      "asset": "WLD",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 23,
+      "excluded_reason": null
+    },
+    {
+      "asset": "XPL",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 9,
+      "excluded_reason": null
+    },
+    {
+      "asset": "CFX",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 27,
+      "excluded_reason": null
+    },
+    {
+      "asset": "DOT",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 36,
+      "excluded_reason": null
+    },
+    {
+      "asset": "TUT",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 18,
+      "excluded_reason": null
+    },
+    {
+      "asset": "ADA",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 11,
+      "excluded_reason": null
+    },
+    {
+      "asset": "ENA",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 7,
+      "excluded_reason": null
+    }
+  ],
+  "excluded": [
+    {
+      "asset": "OPEN",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 45,
+      "excluded_reason": "OI rank 45 exceeds max_assets=40"
+    },
+    {
+      "asset": "TRUMP",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 46,
+      "excluded_reason": "OI rank 46 exceeds max_assets=40"
+    },
+    {
+      "asset": "TON",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 42,
+      "excluded_reason": "OI rank 42 exceeds max_assets=40"
+    },
+    {
+      "asset": "SOL",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 49,
+      "excluded_reason": "OI rank 49 exceeds max_assets=40"
+    },
+    {
+      "asset": "OMNI",
+      "has_perps": false,
+      "exchange_sources": "[]",
+      "oi_rank": null,
+      "excluded_reason": "No perpetual contract on Binance for OMNI"
+    },
+    {
+      "asset": "CAKE",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 53,
+      "excluded_reason": "OI rank 53 exceeds max_assets=40"
+    },
+    {
+      "asset": "PAXG",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 62,
+      "excluded_reason": "OI rank 62 exceeds max_assets=40"
+    },
+    {
+      "asset": "LINK",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 50,
+      "excluded_reason": "OI rank 50 exceeds max_assets=40"
+    },
+    {
+      "asset": "FLOKI",
+      "has_perps": false,
+      "exchange_sources": "[]",
+      "oi_rank": null,
+      "excluded_reason": "No perpetual contract on Binance for FLOKI"
+    },
+    {
+      "asset": "BONK",
+      "has_perps": false,
+      "exchange_sources": "[]",
+      "oi_rank": null,
+      "excluded_reason": "No perpetual contract on Binance for BONK"
+    },
+    {
+      "asset": "BTC",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 61,
+      "excluded_reason": "OI rank 61 exceeds max_assets=40"
+    },
+    {
+      "asset": "TAO",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 60,
+      "excluded_reason": "OI rank 60 exceeds max_assets=40"
+    },
+    {
+      "asset": "UNI",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 41,
+      "excluded_reason": "OI rank 41 exceeds max_assets=40"
+    },
+    {
+      "asset": "PEPE",
+      "has_perps": false,
+      "exchange_sources": "[]",
+      "oi_rank": null,
+      "excluded_reason": "No perpetual contract on Binance for PEPE"
+    },
+    {
+      "asset": "AAVE",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 59,
+      "excluded_reason": "OI rank 59 exceeds max_assets=40"
+    },
+    {
+      "asset": "LISTA",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 44,
+      "excluded_reason": "OI rank 44 exceeds max_assets=40"
+    },
+    {
+      "asset": "AVAX",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 51,
+      "excluded_reason": "OI rank 51 exceeds max_assets=40"
+    },
+    {
+      "asset": "MIRA",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 43,
+      "excluded_reason": "OI rank 43 exceeds max_assets=40"
+    },
+    {
+      "asset": "ETH",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 54,
+      "excluded_reason": "OI rank 54 exceeds max_assets=40"
+    },
+    {
+      "asset": "PENDLE",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 52,
+      "excluded_reason": "OI rank 52 exceeds max_assets=40"
+    },
+    {
+      "asset": "ICP",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 48,
+      "excluded_reason": "OI rank 48 exceeds max_assets=40"
+    },
+    {
+      "asset": "BNB",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 58,
+      "excluded_reason": "OI rank 58 exceeds max_assets=40"
+    },
+    {
+      "asset": "SHIB",
+      "has_perps": false,
+      "exchange_sources": "[]",
+      "oi_rank": null,
+      "excluded_reason": "No perpetual contract on Binance for SHIB"
+    },
+    {
+      "asset": "ZEC",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 57,
+      "excluded_reason": "OI rank 57 exceeds max_assets=40"
+    },
+    {
+      "asset": "ZEN",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 55,
+      "excluded_reason": "OI rank 55 exceeds max_assets=40"
+    },
+    {
+      "asset": "LTC",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 56,
+      "excluded_reason": "OI rank 56 exceeds max_assets=40"
+    },
+    {
+      "asset": "SOMI",
+      "has_perps": true,
+      "exchange_sources": "[\"binance\"]",
+      "oi_rank": 47,
+      "excluded_reason": "OI rank 47 exceeds max_assets=40"
+    }
+  ]
+}

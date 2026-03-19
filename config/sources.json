@@ -8,7 +8,7 @@
       "source_weight": 1.0,
       "fetch_interval_min": 5,
       "config": {
-        "base_url": "https://cryptopanic.com/api/v1",
+        "base_url": "https://cryptopanic.com/api/developer/v2",
         "auth_token_env": "CRYPTOPANIC_API_KEY"
       }
     },
